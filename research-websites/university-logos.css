@@ -1,0 +1,78 @@
+/* University Logo Styles */
+.publication-authors .affiliation-block {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 5px 8px;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.university-logo {
+  width: auto;
+  object-fit: contain;
+  vertical-align: middle;
+  height: 45px;
+}
+
+/* Specific university logo sizes */
+.university-logo[src*="columbia"] {
+  height: 45px;
+}
+
+.university-logo[src*="sysu"] {
+  height: 45px;
+}
+
+.university-logo[src*="hust"] {
+  height: 45px;
+}
+
+.university-logo[src*="dlut"] {
+  height: 45px;
+}
+
+.university-logo[src*="beijing_institute"] {
+  height: 45px;
+}
+
+.university-logo[src*="chimelong"] {
+  height: 45px;
+}
+
+.publication-authors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .university-logo {
+    height: 35px;
+  }
+  
+  .publication-authors .affiliation-block {
+    gap: 8px;
+    margin: 3px 5px;
+  }
+  
+  .publication-authors {
+    gap: 10px;
+  }
+}
+
+/* 更小屏幕时强制垂直排列 */
+@media (max-width: 480px) {
+  .publication-authors {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .publication-authors .affiliation-block {
+    margin: 4px 0;
+  }
+} 

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Transporting Dispersed Cylindrical Granules: An Intelligent Strategy Inspired by an Elephant Trunk">
+  <meta name="keywords" content="Bio-Inspired Robotics, Soft Robotics, Granular Manipulation, Pneumatic Actuators">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elephant Trunk-Inspired Granular Manipulation Strategy</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="../nerfies-template/static/css/bulma.min.css">
+  <link rel="stylesheet" href="../nerfies-template/static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="../nerfies-template/static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="../nerfies-template/static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="../nerfies-template/static/css/index.css">
+  <link rel="stylesheet" href="university-logos.css">
+  <link rel="stylesheet" href="common-styles.css">
+  <link rel="stylesheet" href="navbar-override.css">
+  <link rel="stylesheet" href="spacing-fix.css">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="../images/sylvester_robot_icon.svg">
+  
+  <style>
+    .article-image {
+      width: 100%;
+      max-width: 700px;
+      margin: 2rem auto;
+      text-align: center;
+    }
+    .article-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+      margin: 0 auto;
+    }
+    .figure-caption {
+      text-align: center;
+      color: #666;
+      font-size: 0.95rem;
+      font-style: italic;
+      margin-top: 0.8rem;
+      line-height: 1.4;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .stat-item {
+      background: rgba(0, 122, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid rgba(0, 122, 255, 0.1);
+    }
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #007aff;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      font-size: 1rem;
+      color: #4a4a4a;
+      font-weight: 600;
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="../nerfies-template/static/js/fontawesome.all.min.js"></script>
+  <script src="../nerfies-template/static/js/bulma-carousel.min.js"></script>
+  <script src="../nerfies-template/static/js/bulma-slider.min.js"></script>
+  <script src="../nerfies-template/static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            <a href="../index.html">
+                <img src="../images/sylvester_robot_icon.svg" alt="Sylvester Zhang">
+            </a>
+        </div>
+        <div class="nav-toggle" onclick="toggleMobileMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="../index.html" class="nav-link">Home</a></li>
+            <li><a href="../index.html#research" class="nav-link active">Research</a></li>
+            <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+            <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
+            <li><a href="../index.html#cv" class="nav-link">CV</a></li>
+        </ul>
+    </div>
+    <div class="nav-overlay" onclick="toggleMobileMenu()"></div>
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Transporting Dispersed Cylindrical Granules: An Intelligent Strategy Inspired by an Elephant Trunk</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="#">Yuwen Zhao</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="#">Jie Zhang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="#"><strong>Siyuan Zhang</strong></a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="#">Peng Zhang</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="#">Guixin Dong</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="#">Jianing Wu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="#">Jinxiu Zhang</a><sup>1</sup></span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <div class="affiliation-block">
+              <img src="../images/university-logos/sysu.png" alt="Sun Yat-sen University" class="university-logo">
+              <span class="author-block"><sup>1</sup>Sun Yat-sen University</span>
+            </div>
+            <div class="affiliation-block">
+              <img src="../images/university-logos/chimelong.png" alt="Guangdong Chimelong Group" class="university-logo">
+              <span class="author-block"><sup>2</sup>Guangdong Chimelong Group Co. Ltd.</span>
+            </div>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="../papers/elephant-trunk.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-85-percent">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Manipulating granular materials is a crucial function of robotic grippers. However, the existing approaches always suffer from low efficiency when dealing with large quantities of dispersed granules. To overcome this challenge, inspiration is drawn from an African elephant (Loxodonta Africana), which can employ both fingertip extensions on the trunk tip to efficiently grasp dispersed granular food all at once by mediating state transition of granules. Herein, this bio-inspired intelligent strategy is integrated into a soft pneumatic gripper for transporting dispersed granules. To evaluate the critical actuation pressures while grasping granules, a library is constructed experimentally, and the effects of the initial relative height and relative lifting speed on the grasping success rate are examined. It is indicated in the experimental results that this trunk-inspired robotic strategy leads to a success rate of over 90% and saves ≈50% duration of manipulation compared to the individual gripping fashion. Herein, new insights may be offered in this study into a novel manipulation strategy for efficiently transporting dispersed granular materials.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-85-percent">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+          <p>Manipulating granular materials is a critical capability for robotic grippers. However, existing manipulation strategies often suffer from inefficiency when handling large quantities of dispersed granules. To address this challenge, this study draws inspiration from the foraging behavior of African elephants and proposes an intelligent strategy for manipulating loose granular materials.</p>
+          
+          <p>The difficulty of manipulating granular materials is closely tied to their intrinsic physical characteristics. Unlike individual particles, granule ensembles exhibit properties of both solids and fluids. Without external constraints, they behave like fluids, while under geometric or force confinement, they exhibit solid-like properties. Furthermore, they can transition between these two phases, which poses a significant challenge for existing robotic transport technologies.</p>
+        </div>
+        
+        <div class="article-image">
+          <img src="../images/Soft Robotics.png"
+               alt="Elephant Trunk-Inspired Granular Manipulation System"/>
+          <div class="figure-caption">
+            Bio-inspired granular manipulation system showing the pneumatic soft gripper design inspired by elephant trunk mechanisms for handling dispersed cylindrical granules with enhanced efficiency.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-85-percent">
+        <h2 class="title is-3">Bio-Inspired Strategy</h2>
+        <div class="content has-text-justified">
+          <p>To tackle this issue, the research team turned to the African elephant. As a voracious feeder, an elephant consumes up to 200 kg of food per day. Among this intake, granular food (such as elephant grass, peanuts, and pellets) accounts for approximately 10%, estimated to comprise around 69,000 granules.</p>
+          
+          <p>If the elephant were to pick up each granule individually (assuming each pickup takes 2 seconds), it would require at least 38 hours. However, the team observed an efficient transfer strategy used by elephants to meet this demand:</p>
+        </div>
+        
+        <h3 class="title is-4">Elephant Manipulation Strategy</h3>
+        <div class="content has-text-justified">
+          <ol>
+            <li><strong>Gathering Phase:</strong> The elephant gathers dispersed granules using the tip of its trunk</li>
+            <li><strong>Compression Phase:</strong> The two "fingers" at the trunk's tip pinch and compress the clustered granules from both sides</li>
+            <li><strong>Transport Phase:</strong> The trunk retracts while maintaining the compressed granule cluster</li>
+          </ol>
+          
+          <p>During this grasping process, the granules undergo multiple transitions between fluid-like and solid-like states under the influence of the trunk. This strategy creates a physical context that adapts dynamically to the nature of the granules, enabling the elephant to capture more material in each action and potentially improve intake efficiency.</p>
+        </div>
+        
+        <div class="article-image">
+          <img src="../images/elephant strategy/Transport strategy of an African elephant trunk tip for feeding on granular food.png"
+               alt="Transport Strategy of African Elephant Trunk"/>
+          <div class="figure-caption">
+            Transport strategy of an African elephant trunk tip for feeding on granular food, showing the three-phase manipulation process: gathering, compression, and transport.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-85-percent">
+        <h2 class="title is-3">Pneumatic Soft Gripper Design</h2>
+        <div class="content has-text-justified">
+          <p>Inspired by this bio-informed strategy, the researchers developed a pneumatic soft gripper that utilizes both force-driven and geometry-driven modes to repeatedly induce solid–fluid phase transitions in dispersed granules before completing the grasp.</p>
+        </div>
+        
+        <div class="article-image">
+          <img src="../images/elephant strategy/Phase-related operating mechanism of the SPA.png"
+               alt="Phase-Related Operating Mechanism"/>
+          <div class="figure-caption">
+            Phase-related operating mechanism of the Soft Pneumatic Actuator (SPA), illustrating the different operational phases and their corresponding gripper configurations.
+          </div>
+        </div>
+        
+        <h3 class="title is-4">Pressure Optimization</h3>
+        <div class="content has-text-justified">
+          <p>To achieve successful grasping, the soft gripper must generate sufficient horizontal force, which is dependent on the supplied air pressure. Experimental results showed that increased pressure led to higher success rates. However, excessive pressure introduces two problems:</p>
+          
+          <ul>
+            <li><strong>Increased energy consumption</strong></li>
+            <li><strong>Risk of structural rupture in the soft gripper</strong></li>
+          </ul>
+          
+          <p>To balance performance and safety, the team established a minimum pressure database based on achieving a 90% success rate. By inputting the relative size and number of target granules, the corresponding pressure can be selected from the database, enabling the gripper to handle granules of varying sizes and quantities.</p>
+        </div>
+        
+        <div class="article-image">
+          <img src="../images/elephant strategy/Critical applied pressures to actuate the SPA when grasping granules.png"
+               alt="Critical Applied Pressures"/>
+          <div class="figure-caption">
+            Critical applied pressures to actuate the SPA when grasping granules, showing the relationship between pressure requirements and granule characteristics for optimal performance.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-85-percent">
+        <h2 class="title is-3">Performance Evaluation</h2>
+        <div class="content has-text-justified">
+          <p>To further evaluate the performance of this elephant-trunk-inspired strategy, the team constructed a test scenario for grasping dispersed granules. Experimental results showed that compared to traditional one-by-one grasping strategies, this biologically inspired approach achieved remarkable performance improvements.</p>
+        </div>
+        
+        <div class="article-image">
+          <img src="../images/elephant strategy/Performance of the soft gripper in transporting scattered granules..png"
+               alt="Performance Evaluation Results"/>
+          <div class="figure-caption">
+            Performance of the soft gripper in transporting scattered granules, demonstrating the effectiveness and efficiency of the bio-inspired manipulation strategy compared to conventional methods.
+          </div>
+        </div>
+        
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <div class="stat-label">Success Rate</div>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">50%</span>
+            <div class="stat-label">Time Savings</div>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">90%</span>
+            <div class="stat-label">Minimum Success Threshold</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-85-percent">
+        <h2 class="title is-3">Industrial Applications</h2>
+        <div class="content has-text-justified">
+          <p>Finally, this intelligent manipulation strategy was applied in the food industry, where it was integrated with image recognition technology to enable the efficient transport of granular food items with different sizes and quantities.</p>
+        </div>
+        
+        <div class="article-image">
+          <img src="../images/elephant strategy/Soft gripper inspired by the gripping fashion of an elephant trunk tip for transporting scattered granular food..png"
+               alt="Soft Gripper Design"/>
+          <div class="figure-caption">
+            Soft gripper inspired by the gripping fashion of an elephant trunk tip for transporting scattered granular food, demonstrating the bio-inspired pneumatic actuator design and its industrial applications.
+          </div>
+        </div>
+        
+        <h3 class="title is-4">Key Applications</h3>
+        <div class="content has-text-justified">
+          <ul>
+            <li><strong>Food Processing:</strong> Automated handling of grains, nuts, and pellets</li>
+            <li><strong>Pharmaceutical Industry:</strong> Manipulation of tablet and capsule production</li>
+            <li><strong>Manufacturing:</strong> Assembly of small cylindrical components</li>
+            <li><strong>Logistics:</strong> Sorting and packaging of granular materials</li>
+          </ul>
+        </div>
+        
+        <h3 class="title is-4">Technological Advantages</h3>
+        <div class="content has-text-justified">
+          <ul>
+            <li><strong>Bio-Inspired Efficiency:</strong> Mimics natural elephant trunk manipulation for optimal performance</li>
+            <li><strong>Phase Transition Control:</strong> Leverages solid-fluid transitions for enhanced grasping</li>
+            <li><strong>Adaptive Pressure System:</strong> Database-driven pressure optimization for different granule types</li>
+            <li><strong>Soft Robotics Integration:</strong> Safe and compliant interaction with delicate materials</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-85-percent">
+        <h2 class="title is-3">Future Developments and Research Directions</h2>
+        <div class="content has-text-justified">
+          <p>This breakthrough in bio-inspired granular manipulation opens new possibilities for automated handling systems across various industries:</p>
+        </div>
+        
+        <h3 class="title is-4">Advanced Control Systems</h3>
+        <div class="content has-text-justified">
+          <p>Future developments will integrate machine learning algorithms for real-time granule recognition and adaptive pressure control, enabling autonomous operation in dynamic environments with varying granule types and distributions.</p>
+        </div>
+        
+        <h3 class="title is-4">Multi-Scale Applications</h3>
+        <div class="content has-text-justified">
+          <p>Extension of the elephant trunk strategy to handle granules at different scales, from micro-particles in pharmaceutical applications to larger components in manufacturing and assembly processes.</p>
+        </div>
+        
+        <h3 class="title is-4">Hybrid Manipulation Systems</h3>
+        <div class="content has-text-justified">
+          <p>Integration with other bio-inspired manipulation strategies to create comprehensive robotic systems capable of handling diverse material types and shapes in complex industrial environments.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-85-percent">
+        <h2 class="title is-3">Conclusion</h2>
+        <div class="content has-text-justified">
+          <p>This research demonstrates the power of bio-inspired design in solving complex robotic manipulation challenges. By studying African elephant foraging behavior, we developed an intelligent granular manipulation strategy that achieves 100% success rate with 50% time savings compared to traditional approaches. The pneumatic soft gripper successfully leverages solid-fluid phase transitions in granular materials, opening new possibilities for efficient automated handling systems. Future applications will extend across food processing, pharmaceutical manufacturing, and logistics industries, enabling more efficient and adaptive robotic manipulation systems.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{zhao2023transporting,
+  author    = {Zhao, Yuwen and Zhang, Jie and Zhang, Siyuan and Zhang, Peng and Dong, Guixin and Wu, Jianing and Zhang, Jinxiu},
+  title     = {Transporting Dispersed Cylindrical Granules: An Intelligent Strategy Inspired by an Elephant Trunk},
+  journal   = {Advanced Intelligent Systems},
+  volume    = {5},
+  number    = {8},
+  pages     = {2300182},
+  year      = {2023},
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+        <div class="container">
+            <div class="footer-social-links">
+                <a href="https://github.com/SylvesterZHANG007" class="social-icon github-icon" title="GitHub" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#4a4a4a">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/siyuan-zhang-columbia/" class="social-icon linkedin-icon" title="LinkedIn" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#4a4a4a">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/siyuan.zh/" class="social-icon instagram-icon" title="Instagram" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#4a4a4a">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="https://www.youtube.com/@sylvesterzhang" class="social-icon youtube-icon" title="YouTube" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#4a4a4a">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                </a>
+                <a href="https://space.bilibili.com/641605796?spm_id_from=333.337.0.0" class="social-icon bilibili-icon" title="Bilibili" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#4a4a4a">
+                        <path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.151.929.4.267.249.391.551.391.907 0 .356-.124.657-.373.906l-1.174 1.12zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.789 1.894v7.52c.02.764.283 1.396.789 1.894.507.497 1.134.755 1.88.773h13.334c.746-.018 1.373-.276 1.88-.773.506-.498.769-1.13.789-1.894v-7.52c-.02-.765-.283-1.396-.789-1.894-.507-.497-1.134-.755-1.88-.773H5.333zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z"/>
+                    </svg>
+                </a>
+            </div>
+            <p>&copy; 2025 Siyuan (Sylvester) Zhang. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,15 @@
+/* 通用样式 - 统一正文宽度为85% */
+.column.is-85-percent {
+  flex: none;
+  width: 85%;
+}
+
+/* 移除公式框样式 */
+.equation-block {
+  margin: 1rem 0;
+  text-align: center;
+  background: none !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+} 

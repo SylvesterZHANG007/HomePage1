@@ -1,0 +1,159 @@
+/* Spacing Fix for Research Pages */
+/* This file reduces excessive whitespace between hero section and content */
+
+/* Fix navigation bar overlap with title - CORRECT APPROACH */
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    padding-top: 70px !important; /* Add padding-top to body to offset fixed navbar */
+}
+
+/* Remove the incorrect margin-top from hero */
+.hero {
+    padding: 2rem 0 !important;
+    margin: 0 !important;
+    margin-top: 0 !important; /* Remove incorrect margin-top */
+    padding-top: 2rem !important;
+}
+
+.hero-body {
+    padding: 1rem 1.5rem !important;
+    margin: 0 !important;
+}
+
+/* Ensure first section doesn't overlap with hero */
+.section:first-of-type {
+    margin-top: 0 !important;
+    padding-top: 1rem !important;
+}
+
+/* Reduce section padding */
+.section {
+    padding: 2rem 1.5rem !important;
+}
+
+/* Reduce container spacing */
+.container.is-max-desktop {
+    padding: 0 !important;
+}
+
+/* Reduce columns spacing */
+.columns.is-centered {
+    margin: 0 !important;
+}
+
+.columns.is-centered.has-text-centered {
+    margin: 0 !important;
+}
+
+/* Reduce column spacing */
+.column {
+    padding: 0.5rem !important;
+}
+
+.column.has-text-centered {
+    padding: 0.5rem !important;
+}
+
+/* Reduce publication links spacing */
+.publication-links {
+    margin: 1rem 0 !important;
+    padding: 0 !important;
+}
+
+.link-block {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Reduce button spacing */
+.external-link.button {
+    margin: 0.5rem !important;
+}
+
+/* Reduce title spacing */
+.publication-title {
+    margin-bottom: 1rem !important;
+    margin-top: 0 !important;
+}
+
+.publication-authors {
+    margin-bottom: 1rem !important;
+}
+
+.affiliation-block {
+    margin-bottom: 1rem !important;
+}
+
+/* Reduce abstract section spacing */
+.section:first-of-type .title.is-3 {
+    margin-top: 0 !important;
+    margin-bottom: 1rem !important;
+}
+
+.section:first-of-type .content {
+    margin-top: 0 !important;
+}
+
+/* Ensure minimal spacing between hero and first section */
+.hero + .section {
+    margin-top: 0 !important;
+    padding-top: 1rem !important;
+}
+
+/* Ensure navbar doesn't create extra space */
+.navbar {
+    margin: 0 !important;
+}
+
+/* Reduce hero section height */
+.hero {
+    min-height: auto !important;
+    height: auto !important;
+}
+
+/* Reduce publication header spacing */
+.publication-header {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Ensure content flows naturally */
+.hero + .section {
+    border-top: none !important;
+}
+
+/* Reduce any remaining Bulma defaults */
+.is-max-desktop {
+    max-width: 100% !important;
+}
+
+/* Ensure proper content flow */
+.section:first-of-type .columns.is-centered.has-text-centered {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Additional navbar overlap fixes - REMOVED INCORRECT RULES */
+.publication-title {
+    padding-top: 0 !important;
+    line-height: 1.2 !important;
+}
+
+/* Ensure hero section is properly positioned */
+.hero {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* Fix any potential overflow issues */
+.hero-body {
+    overflow: visible !important;
+}
+
+/* Ensure title is fully visible */
+.title.is-1.publication-title {
+    word-wrap: break-word !important;
+    hyphens: auto !important;
+    max-width: 100% !important;
+} 
