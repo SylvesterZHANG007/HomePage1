@@ -1,5 +1,28 @@
-/* Unified Width Settings for All Research Pages */
-/* This file applies the same width settings as the main index page */
+/**
+ * Siyuan Zhang - Personal Portfolio Website
+ * Unified Width Styles - 统一宽度样式
+ * 
+ * 功能说明:
+ * - 统一所有研究页面的宽度设置
+ * - 确保页面布局一致性
+ * - 基于index页面的宽度标准
+ * - 响应式宽度调整
+ * 
+ * 应用页面:
+ * - 所有research-websites目录下的HTML文件
+ * - 确保与主页面宽度保持一致
+ * 
+ * 技术特点:
+ * - 使用Bulma CSS框架的列宽系统
+ * - 响应式断点设计
+ * - 统一的容器宽度设置
+ * 
+ * 作者: Siyuan Zhang
+ * 版本: v1.0
+ * 更新: 2024年12月
+ */
+
+/* ===== 统一宽度设置 - 所有研究页面使用与主页面相同的宽度设置 ===== */
 
 /* Main container width settings - matching index page */
 .container.is-max-desktop {

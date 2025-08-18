@@ -1,4 +1,31 @@
-/* 研究页面间距优化 - 使内容更紧凑，最小保持一倍行距 */
+/**
+ * Siyuan Zhang - Personal Portfolio Website
+ * Research Page Spacing Optimization - 研究页面间距优化
+ * 
+ * 功能说明:
+ * - 优化研究页面的段落和元素间距
+ * - 使内容布局更加紧凑
+ * - 保持最小一倍行距确保可读性
+ * - 响应式间距调整
+ * 
+ * 应用页面:
+ * - elephant-trunk.html (大象鼻子启发研究)
+ * - multimodal-gripper.html (多模态夹持器)
+ * - rehabilitation-robot.html (康复机器人)
+ * - self-reproducing-robot.html (自复制机器人)
+ * - smart-materials.html (智能材料)
+ * 
+ * 技术特点:
+ * - 使用!important确保样式优先级
+ * - 响应式断点设计
+ * - 移动端优化间距
+ * 
+ * 作者: Siyuan Zhang
+ * 版本: v1.0
+ * 更新: 2024年12月
+ */
+
+/* ===== 研究页面间距优化 - 使内容更紧凑，最小保持一倍行距 ===== */
 
 /* 研究页面整体间距优化 */
 .section {

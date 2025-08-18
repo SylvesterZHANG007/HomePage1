@@ -1,3 +1,26 @@
+/**
+ * Siyuan Zhang - Personal Portfolio Website
+ * Main JavaScript File - 主要JavaScript功能文件
+ * 
+ * 功能说明:
+ * - 页面导航高亮和滚动监听
+ * - 平滑滚动和页面过渡动画
+ * - 移动端触摸交互优化
+ * - 卡片悬停效果和触摸反馈
+ * 
+ * 技术特点:
+ * - 原生JavaScript ES6+
+ * - 触摸事件处理
+ * - 性能优化的滚动监听
+ * - 响应式交互设计
+ * 
+ * 作者: Siyuan Zhang
+ * 版本: v3.0
+ * 更新: 2024年12月
+ */
+
+// ===== 页面过渡和动画系统 =====
+
 // Page transition animation
 const PageTransition = {
     init() {

@@ -1,4 +1,25 @@
-/* Reset and Base Styles */
+/**
+ * Siyuan Zhang - Personal Portfolio Website
+ * Main Stylesheet - 主要样式文件
+ * 
+ * 功能说明:
+ * - 全局样式重置和基础设置
+ * - 响应式布局和移动端优化
+ * - 动画效果和交互样式
+ * - 玻璃态设计和渐变效果
+ * 
+ * 技术特点:
+ * - CSS Grid 和 Flexbox 布局
+ * - CSS 变量和现代特性
+ * - 响应式断点设计
+ * - 触摸友好的移动端体验
+ * 
+ * 作者: Siyuan Zhang
+ * 版本: v3.0
+ * 更新: 2024年12月
+ */
+
+/* ===== 全局样式重置和基础设置 ===== */
 * {
     margin: 0;
     padding: 0;
