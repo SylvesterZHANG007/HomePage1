@@ -1,1 +1,8 @@
- 
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="#0066CC" rx="8"/>
+  <text x="50" y="35" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold">BIM</text>
+  <text x="50" y="55" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8">北京</text>
+  <text x="50" y="70" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8">机械</text>
+  <text x="50" y="85" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8">研究所</text>
+</svg> 

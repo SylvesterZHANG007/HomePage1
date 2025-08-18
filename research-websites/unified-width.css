@@ -1,0 +1,99 @@
+/* Unified Width Settings for All Research Pages */
+/* This file applies the same width settings as the main index page */
+
+/* Main container width settings - matching index page */
+.container.is-max-desktop {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 40px !important;
+}
+
+/* Navigation container width - matching index page */
+.nav-container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 40px !important;
+}
+
+/* Content column width - using 85% as established in common-styles.css */
+.column.is-85-percent {
+    flex: none !important;
+    width: 85% !important;
+    max-width: 1020px !important; /* 85% of 1200px */
+}
+
+/* Responsive design - matching index page breakpoints */
+@media (max-width: 768px) {
+    .container.is-max-desktop {
+        padding: 0 20px !important;
+    }
+    
+    .nav-container {
+        padding: 0 20px !important;
+    }
+    
+    .column.is-85-percent {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .container.is-max-desktop {
+        padding: 0 16px !important;
+    }
+    
+    .nav-container {
+        padding: 0 16px !important;
+    }
+}
+
+/* Ensure consistent spacing with index page */
+.section {
+    padding: 50px 0 !important;
+}
+
+.section:first-of-type {
+    padding-top: 2rem !important;
+}
+
+/* Hero section width consistency */
+.hero .container.is-max-desktop {
+    max-width: 1200px !important;
+}
+
+/* Publication title width consistency */
+.publication-title {
+    max-width: 100% !important;
+    word-wrap: break-word !important;
+}
+
+/* Abstract and content width consistency */
+.content {
+    max-width: 100% !important;
+}
+
+/* Ensure images don't exceed container width */
+.article-image img {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+/* Stats grid responsive width */
+.stats-grid {
+    max-width: 100% !important;
+}
+
+/* Publication links container width */
+.publication-links {
+    max-width: 100% !important;
+    justify-content: center !important;
+}
+
+/* Affiliation blocks width consistency */
+.affiliation-block {
+    max-width: 100% !important;
+    text-align: center !important;
+}
+
+/* University logos - keeping original size settings from university-logos.css */ 
