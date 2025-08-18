@@ -1,0 +1,250 @@
+/* 研究页面间距优化 - 使内容更紧凑，最小保持一倍行距 */
+
+/* 研究页面整体间距优化 */
+.section {
+    padding: 2rem 0 !important; /* 减少section之间的间距 */
+}
+
+/* 正文段落间距优化 */
+.content p {
+    margin-bottom: 1em; /* 最小一倍行距 */
+    line-height: 1.6;
+}
+
+.content p:last-child {
+    margin-bottom: 0;
+}
+
+/* 标题间距优化 */
+.content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+    line-height: 1.3;
+}
+
+.content h1:first-child, .content h2:first-child, .content h3:first-child,
+.content h4:first-child, .content h5:first-child, .content h6:first-child {
+    margin-top: 0;
+}
+
+/* 图片间距优化 */
+.article-image {
+    margin: 1.5rem auto !important; /* 减少图片前后间距 */
+}
+
+.article-image img {
+    margin: 0 auto !important;
+}
+
+/* 图片说明文字间距 */
+.figure-caption {
+    margin-top: 0.5rem !important; /* 减少图片说明与图片的间距 */
+    margin-bottom: 1rem !important;
+}
+
+/* 列表间距优化 */
+.content ul, .content ol {
+    margin-bottom: 1em;
+    padding-left: 1.5em;
+}
+
+.content li {
+    margin-bottom: 0.3em;
+    line-height: 1.5;
+}
+
+.content li:last-child {
+    margin-bottom: 0;
+}
+
+/* 引用块间距优化 */
+.content blockquote {
+    margin: 1em 0;
+    padding: 0.75em 1em;
+    border-left: 4px solid #007aff;
+    background: rgba(0, 122, 255, 0.05);
+    border-radius: 0 8px 8px 0;
+}
+
+/* 表格间距优化 */
+.content table {
+    margin: 1em 0;
+}
+
+.content table td, .content table th {
+    padding: 0.5em 0.75em;
+    line-height: 1.4;
+}
+
+/* 代码块间距优化 */
+.content pre {
+    margin: 1em 0;
+    padding: 0.75em 1em;
+}
+
+.content code {
+    padding: 0.2em 0.4em;
+    margin: 0 0.2em;
+}
+
+/* 分隔线间距优化 */
+.content hr {
+    margin: 1.5em 0;
+    border: none;
+    height: 1px;
+    background: #e0e0e0;
+}
+
+/* 统计网格间距优化 */
+.stats-grid {
+    margin: 1.5rem 0 !important;
+    gap: 1rem !important;
+}
+
+.stat-item {
+    padding: 1rem !important;
+}
+
+/* 论文链接间距优化 */
+.paper-links {
+    margin: 1rem 0;
+    gap: 0.5rem;
+}
+
+.paper-link {
+    margin: 0.25rem 0;
+}
+
+/* 摘要内容间距优化 */
+.abstract-content {
+    margin: 1rem 0;
+}
+
+.abstract-content p {
+    margin-bottom: 0.75em;
+}
+
+/* 参考文献间距优化 */
+.references {
+    margin: 1.5rem 0;
+}
+
+.references li {
+    margin-bottom: 0.5em;
+    line-height: 1.4;
+}
+
+/* 研究页面特定元素间距优化 */
+.publication-title {
+    margin-bottom: 1.5rem !important;
+    line-height: 1.2;
+}
+
+.publication-authors {
+    margin-bottom: 1rem !important;
+}
+
+.affiliation-block {
+    margin-bottom: 0.5rem !important;
+}
+
+.publication-links {
+    margin-top: 1.5rem !important;
+}
+
+/* 标题间距进一步优化 */
+.title.is-3 {
+    margin-bottom: 1rem !important;
+}
+
+/* 内容区域间距优化 */
+.content.has-text-justified {
+    margin-bottom: 1rem;
+}
+
+/* 图片容器间距优化 */
+.article-image {
+    margin: 1.5rem auto !important;
+}
+
+/* 统计数据间距优化 */
+.stats-grid {
+    margin: 1.5rem 0 !important;
+    gap: 1rem !important;
+}
+
+.stat-item {
+    padding: 1rem !important;
+}
+
+.stat-number {
+    margin-bottom: 0.5rem !important;
+}
+
+/* 链接按钮间距优化 */
+.external-link.button {
+    margin: 0.25rem 0.5rem;
+}
+
+.link-block {
+    margin: 0.5rem 0;
+}
+
+/* 移动端响应式间距调整 */
+@media (max-width: 768px) {
+    .content p {
+        margin-bottom: 0.875em;
+    }
+    
+    .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
+        margin-top: 1.25em;
+        margin-bottom: 0.625em;
+    }
+    
+    .article-image {
+        margin: 1rem auto !important;
+    }
+    
+    .figure-caption {
+        margin-top: 0.4rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .stats-grid {
+        margin: 1rem 0 !important;
+        gap: 0.75rem !important;
+    }
+    
+    .stat-item {
+        padding: 0.75rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .content p {
+        margin-bottom: 0.75em;
+    }
+    
+    .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+    }
+    
+    .article-image {
+        margin: 0.75rem auto !important;
+    }
+    
+    .figure-caption {
+        margin-top: 0.3rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .stats-grid {
+        margin: 0.75rem 0 !important;
+        gap: 0.5rem !important;
+    }
+    
+    .stat-item {
+        padding: 0.5rem !important;
+    }
+} 
