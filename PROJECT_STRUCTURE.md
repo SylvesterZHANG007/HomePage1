@@ -163,7 +163,7 @@ nerfies-template/                 # 基于NeRFies的模板
 ## 📞 联系方式
 
 **作者**: 张思源 (Siyuan Zhang)
-**邮箱**: sylvester.zhang7 at gmail.com
+**邮箱**: sz3297 at columbia.edu
 **GitHub**: [SylvesterZHANG007](https://github.com/SylvesterZHANG007)
 
 ---
