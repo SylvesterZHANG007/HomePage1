@@ -19,6 +19,16 @@
  * 更新: 2024年12月
  */
 
+/* ===== 字体声明 ===== */
+@font-face {
+    font-family: 'Lucida Bright Bold';
+    src: url('fonts/lucidabright_demi.ttf') format('truetype'),
+         url('fonts/lucidabright_demi.ttf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* ===== 全局样式重置和基础设置 ===== */
 * {
     margin: 0;
@@ -261,11 +271,11 @@ body:has(#home) .hero-content-center {
 }
 
 body:has(#home) .hero-main {
-    background: rgba(255, 255, 255, 0.3);
+    background: transparent;
     backdrop-filter: none;
-    border-radius: 20px;
-    padding: 10px 15px;
-    /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); */
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
 }
 
 .hero-main {
@@ -277,14 +287,13 @@ body:has(#home) .hero-main {
 
 .hero-greeting,
 .hero-name {
+    font-family: 'Lucida Bright Bold', 'Lucida Bright', 'Times New Roman', Georgia, serif;
     font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 25px;
-    /* Stained glass multi-layer colorful gradients */
+    font-weight: bold;
+    line-height: 1.1;
+    margin-bottom: 0;
+    /* Pure colorful gradients without white overlay */
     background-image:
-        radial-gradient(120% 120% at 10% 10%, rgba(255,255,255,0.35), transparent 60%),
-        radial-gradient(120% 120% at 90% 20%, rgba(255,255,255,0.25), transparent 60%),
         linear-gradient(120deg, #00d4ff 0%, #5b73ff 35%, #ff6b9d 65%, #ffd36e 100%);
     -webkit-background-clip: text;
     background-clip: text;
@@ -298,8 +307,11 @@ body:has(#home) .hero-main {
     animation: fadeInUp 1s ease;
 }
 
-.hero-name {
+.hero-main {
     margin-bottom: 50px;
+}
+
+.hero-name {
     animation-delay: 0.2s;
 }
 
@@ -1666,11 +1678,11 @@ body:has(#home) .hero-main {
     }
     
     body:has(#home) .hero-main {
-        background: rgba(255, 255, 255, 0.15);
+        background: transparent;
         backdrop-filter: none;
-        border-radius: 20px;
-        padding: 25px 30px;
-        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+        border-radius: 0;
+        padding: 0;
+        box-shadow: none;
     }
     
     .category-grid-two {
