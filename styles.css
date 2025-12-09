@@ -323,6 +323,7 @@ body:has(#home) .hero-main {
 }
 
 .about-description {
+    font-family: 'Lucida Bright Bold', 'Lucida Bright', 'Times New Roman', Georgia, serif;
     font-size: 1.2rem;
     line-height: 1.8;
     color: #4a4a4a;

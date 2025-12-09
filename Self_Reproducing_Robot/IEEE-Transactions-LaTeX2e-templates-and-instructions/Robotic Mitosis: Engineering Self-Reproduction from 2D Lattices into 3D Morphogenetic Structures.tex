@@ -1,0 +1,494 @@
+\documentclass[lettersize,journal]{IEEEtran}
+\usepackage{amsmath,amsfonts}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\usepackage{textcomp}
+\usepackage{stfloats}
+\usepackage{url}
+\usepackage{subfig}  
+\usepackage{subcaption} 
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{enumitem}
+% \usepackage{caption}
+% \setlength{\abovecaptionskip}{2pt}   % 图和标题之间
+% \setlength{\belowcaptionskip}{0pt}   % 标题和后文之间
+\usepackage{orcidlink}
+\hyphenation{op-tical net-works semi-conduc-tor IEEE-Xplore}
+% updated with editorial comments 8/9/2021
+
+\begin{document}
+
+\title{Robotic Mitosis: Engineering Self-Reproduction from 2D Lattices into 3D Morphogenetic Structures}
+
+% \author{Sylvester Zhang, Jiahao Wang, Hod Lipson
+
+% \thanks{Sylvester Zhang is with the Department of Mechanical Engineering, Columbia University, New York, NY, USA (e-mail: sz3297@columbia.edu).
+
+% Jiahao Wang is with the Department of Mechanical Engineering, Columbia University, New York, NY, USA (jw4653@columbia.edu).
+
+% Hod Lipson is with the Department of Mechanical Engineering, Columbia University, New York, NY, USA (e-mail: hod.lipson@columbia.edu).}%
+% }
+\author{Siyuan~Zhang\,\orcidlink{0009-0004-9171-0370}, and Hod~Lipson\,\orcidlink{0000-0003-0769-4618}
+% ~\IEEEmembership{Senior~Member,~IEEE}%
+\thanks{All authors are with the Department of Mechanical Engineering, Columbia University, New York, NY 10027, USA. 
+Corresponding author: Hod Lipson (e-mail: hod.lipson@columbia.edu).}%
+}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark.
+
+\maketitle
+
+\begin{abstract}
+% Self-reproduction is a foundational property of biological systems and represents a critical milestone for creating scalable, autonomous robotic lineages.
+% Despite progress in self-reconfiguration and algorithmic replication, no physically self-reproducing robot has emerged in nearly two decades, leaving open fundamental questions about how artificial bodies can grow, divide, and evolve themselves in real-world conditions.
+% Here we introduce a modular robotics with triangle architecture inspired by cellular division, in which identical lattice-based units autonomously connect, detach, and reorganize through geometry-guided folding and magnetic coupling. This design enables a robot to absorb free modules from its surroundings, increase its own mass, and generate a physically detached evolving copy of itself.
+% We show that the architecture supports reversible transformations between 2D and 3D morphologies and accommodates multiple parent–offspring configurations, including 4-module, 6-module, and 8-module robots. A minimal 2-module “mother” robot achieved reproduction with a 33\% success rate, and robots with more modules achieved consistent reproduction across all trials.
+% Despite relying only on simple hard-coded motion primitives, the system already demonstrates the full cycle of physical self-reproduction. We suggest that increasing the number of modules and integrating learning-based strategies could yield more complex, evolution-like behaviors, enabling robots to discover efficient reproduction pathways under morphological and environmental constraints.
+% These results demonstrate a viable pathway toward embodied, evolving robotic systems, bridging the gap between bio-inspired robotics and life-like bio-robotic organisms.
+
+Self-reproduction is a defining property of biological life and a long-standing milestone for autonomous robotic systems. Despite advances in self-reconfiguration and algorithmic replication, no physical robot has demonstrated embodied self-reproduction capable of reversible shape transformation and structural variation. Here, we introduce a modular robotic architecture that reproduces through a geometry-guided 2D–3D–2D morphological cycle. Identical triangular modules autonomously attach, fold, and reorganize using magnetic coupling, allowing a “mother” robot to absorb free modules, increase its mass, and generate a physically detached offspring.
+We show that this mechanism enables reproduction across multiple scales: a minimal 2-module body reproduces with a 33\% success rate in 4-module system, whereas 6-module and 8-module worms achieve 100\% reproducibility across all trials. The system exhibits early signatures of differentiation, where structurally identical offspring diverge into distinct post-division states due to pathway-dependent morphological transitions.
+These results demonstrate that a small set of geometric, mechanical, and dynamical principles is sufficient to instantiate physical self-reproduction in a modular robot. By grounding replication in embodied interactions rather than symbolic instruction, this work provides a foundation for scalable, evolution-capable robotic lineages.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Self-Reproducing Robot, Modules, Distributed Systems, Bio-inspired Robotics.
+\end{IEEEkeywords}
+
+\section{Introduction}
+\IEEEPARstart{R}{obotic} systems have demonstrated remarkable capabilities across structured environments, yet achieving long-term operation in remote, harsh, or unpredictable settings remains an open challenge. Space exploration \cite{you2025construction}, deep-sea inspection \cite{An_Overview_of_Robotics_and_Autonomous_Systems_for_Harsh_Environments}, and disaster-response missions expose robots to conditions that are difficult to predict, maintain, or repair. Over time, these environments can induce mechanical degradation, component failure, and mission interruption. Representative examples are shown in Fig.~\ref{fig:robotic_scenarios}, spanning space, underwater, and post-disaster deployments.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{extreme environment robot.png}
+    \caption{Robots in extreme environments: (left) Mars rover from NASA, (middle) a bio-inspired underwater robot (source: Festo), and (right) Boston Dynamics' Spot for disaster response. Images sourced from the public internet for educational purposes.}
+    \label{fig:robotic_scenarios}
+\end{figure}
+
+The concept of machines capable of growth and self-repair dates back to the foundational theory of self-reproducing automata by von Neumann \cite{vonNeumann1966}. However, traditional engineering approaches still rely largely on stronger materials, redundancy, and fault-tolerant control. These strategies do not address a fundamental limitation: once deployed, most engineered systems remain static. They cannot expand, repair structural damage, or generate new functional units to sustain operation in dynamic environments \cite{4141032}. In contrast, biological systems achieve long-term persistence through processes of growth, regeneration, and self-reproduction.
+
+To situate the concept of robotic self-reproduction more precisely, we highlight three established categories of morphological autonomy: self-reconfiguration, self-replication, and self-reproduction. 
+Self-reconfigurable robots, pioneered by concepts such as CEBOT \cite{FUKUDA199211} and the M-TRAN system \cite{murata2002mtran}, rearrange their existing components to adopt new shapes but cannot create new mass. 
+Self-replicating systems can assemble an identical copy of themselves, but often without variation. 
+Self-reproducing robots—analogous to biological organisms—construct new units from a parent structure, allowing the potential for inherited variation and evolution-like dynamics. These distinctions are summarized in Table~\ref{tab:self_reproduction_types}, forming a conceptual ladder from structural adaptation to open-ended morphology.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{cell_division.png}
+    \caption{Biological cell division model. The process consists of three phases: (left) absorbing external resources to increase mass, (middle) internal growth and replication, and (right) physical fission into two independent offspring. This cycle serves as the template for our robotic reproduction strategy.}
+    \label{fig:cell division}
+\end{figure}
+
+% To situate the concept of robotic self-reproduction more precisely, we highlight three established categories of morphological autonomy: self-reconfiguration, self-replication, and self-reproduction. Self-reconfigurable robots rearrange their existing components to adopt new shapes. Self-replicating systems can assemble an identical copy of themselves, but without variation. Self-reproducing robots—analogous to biological organisms—construct new units from a parent structure, allowing the potential for inherited variation and evolution-like dynamics. These distinctions are summarized in Table~\ref{tab:self_reproduction_types}, forming a conceptual ladder from structural adaptation to open-ended morphology.
+
+\begin{table*}[t]
+    \centering
+    \caption{Comparison between self-reconfigurable, self-replicating, and self-reproducing robots.}
+    \label{tab:self_reproduction_types}
+    \begin{tabular}{p{3.2cm} p{4.2cm} p{4.2cm} p{4.6cm}}
+        \toprule
+        & \textbf{Self-Reconfigurable Robot} 
+        & \textbf{Self-Replicating Robot} 
+        & \textbf{Self-Reproducing Robot} \\
+        \midrule
+        \textbf{Core capability} 
+        & Change its own shape. 
+        & Build an identical copy. 
+        & Build a new unit from a copied mother robot. \\
+        
+        \textbf{Resulting configuration} 
+        & Single robot with a new form. 
+        & Two or more identical robots. 
+        & Two or more new robots, with the potential for one to be a variant. \\
+        
+        \textbf{Evolutionary implication} 
+        & One robot adapting. 
+        & Just cloning. 
+        & Evolution between copies. \\
+        \bottomrule
+    \end{tabular}
+\end{table*}
+
+
+
+Biological cell division provides a powerful model for this highest level of autonomy. As shown in Fig.~\ref{fig:cell division}, a cell absorbs external resources, increases its mass, and divides into offspring that may inherit or develop new characteristics \cite{XU2016516}. Inspired by this principle \cite{doi:10.1073/pnas.1017075108}, researchers have sought to bridge the gap between biological and mechanical reproduction. While recent breakthroughs have demonstrated kinematic self-replication in reconfigurable biological organisms \cite{kriegman2021kinematic}, achieving similar capabilities in purely electromechanical systems remains a grand challenge. Prior work in modular robotics has explored architectures capable of basic self-replication \cite{AbdelRahman2022}; however, many of these systems rely on cubic \cite{zykoy2005self} or rigid topologies that limit geometric versatility and constrain the space of achievable morphologies.
+
+% Biological cell division provides a powerful model for this highest level of autonomy. As shown in Fig.~\ref{fig:cell division}, a cell absorbs external resources, increases its mass, and divides into offspring that may inherit or develop new characteristics \cite{XU2016516}. Inspired by this principle \cite{doi:10.1073/pnas.1017075108}, prior work in modular robotics has explored three-dimensional architectures capable of basic self-replication \cite{AbdelRahman2022}. However, many of these systems rely on cubic\cite{zykoy2005self} or rigid topologies that limit geometric versatility and constrain the space of achievable morphologies.
+
+In this work, we introduce a planar-to-spatial self-reproducing robot composed of triangular lattice modules; each module consists of two triangle pieces connected via hinge joints. Building upon methods for self-folding machines and programmable matter \cite{felton2014method, hawkes2010programmable}, our architecture enables reversible transformation between compact 2D configurations and functional 3D bodies (Fig.~\ref{fig:2d to 3d}). The mechanism supports modular absorption, structural expansion, and the assembly of a new, physically detached copy, representing a step toward embodied, evolution-capable robotic systems. By leveraging foldable, lightweight geometries, our system expands the design space of robotic self-reproduction beyond traditional cubic forms.
+
+% In this work, we introduce a planar-to-spatial self-reproducing robot composed of triangular lattice modules, with each module consists of 2 triangle piece via hinge joints. This architecture enables reversible transformation between compact 2D configurations and functional 3D bodies (Fig.~\ref{fig:2d to 3d}). The mechanism supports modular absorption, structural expansion, and the assembly of new, physically detached copy, representing a step toward embodied, evolution-capable robotic systems. By leveraging foldable, lightweight geometries with more modules enable multiple degrees of freedom, our system expands the design space of robotic self-reproduction beyond traditional cubic forms.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{transformation from 2d to 3d.png}
+    \caption{Reversible transformation between 2D and 3D configurations. A planar triangular lattice folds into volumetric configurations and subsequently unfolds back into a flat 2D sheet. This reversible transformation underlies the robot’s ability to switch between planar docking states and spatial growth configurations.}
+    \label{fig:2d to 3d}
+\end{figure}
+
+The remainder of this paper is organized as follows: Section II describes the computational design of the triangular module; Section III details prototype fabrication; Section IV presents experimental demonstrations of self-reproduction; Section V discusses extensions including learning-based strategies; and Section VI concludes the work.
+
+% \section{Computational Design}
+% The computational design process began with the careful selection of key hardware components. Spherical magnets were identified as the fundamental element for achieving modular connectivity, owing to their self-aligning properties and strong attractive forces. To quantitatively evaluate their suitability, we modeled the interaction torque between two spherical magnets using the dipole approximation. 
+
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=1\linewidth]{magnet_piece.png}
+%     \caption{Magnet-piece linkages (a) and piece geometry (b).}
+%     \label{fig:magnet_piece}
+% \end{figure}
+
+% Since the intended motion of the module is primarily revolute, each module was designed to consist of two rigid pieces. To ensure compactness while maintaining structural capacity, each piece was modeled as an equilateral triangle with an edge length of $150\,\mathrm{mm}$, as shown in Fig.~\ref{fig:magnet_piece}. 
+
+% The equilateral triangle was selected because it offers unique advantages in both geometry and mechanics. Geometrically, triangles form the fundamental primitive of surface meshes and can approximate arbitrary shapes without distortion, providing scalability and compatibility with both 2D lattices and 3D bodies. Mechanically, the triangle is the only inherently rigid polygon, distributing loads deterministically along its edges. This rigidity is critical in our design, where spherical magnets are the sole means of inter-module attachment; the triangular frame ensures that magnetic joints form a stable, statically determinate structure. These properties make triangles particularly well suited for reliable folding, docking, and structural stability during the self-reproduction process.
+
+% Three spherical magnets, each with a diameter of $0.5$ inch, were embedded at the vertices of the triangular structure. The thickness of each piece was determined to be $19.5\,\mathrm{mm}$, which provides sufficient structural resistance against the magnetic forces.
+
+% \begin{figure}[h]
+%   \centering
+%   {\footnotesize % 整个图里文字缩小到 8pt
+%   \resizebox{0.9\linewidth}{!}{\input{torque_vs_r.pgf}}
+%   }
+%   \caption{Required servo torque versus magnet center distance.}
+%   \label{fig:torque_vs_r}
+% \end{figure}
+
+% The magnetic force between two dipoles separated by distance $r$ is expressed as
+% \begin{equation}
+% F(r) = \frac{3 \mu_0 m^2}{2 \pi r^4},
+% \label{eq:force}
+% \end{equation}
+% where $\mu_0$ is the magnetic permeability of free space and $m$ is the magnetic dipole moment. The corresponding magnetic torque is
+% \begin{equation}
+% \tau_{\mathrm{mag}}(r) = 2 F(r) L,
+% \label{eq:mag_torque}
+% \end{equation}
+% with $L=106\,\mathrm{mm}$ representing the lever arm length from the joint axis to the magnet center, as shown in Fig.~\ref{fig:magnet_piece}b.
+
+% To account for external loading, the gravitational torque of the payload was incorporated:
+% \begin{equation}
+% \tau_{\mathrm{total}}(r) = \tau_{\mathrm{mag}}(r) + \tau_g, 
+% \quad \tau_g = m_{\text{piece}} g L,
+% \label{eq:total_torque}
+% \end{equation}
+% where $\tau_g$ denotes the torque generated by the piece mass $m_{\text{piece}}$ under gravity. At $r=19.5\,\mathrm{mm}$, the required torques were estimated as $\tau_{\mathrm{total}} \approx 13.7\,\mathrm{kg\cdot cm}$ (without payload) and $\tau_{\mathrm{total}} \approx 24.3\,\mathrm{kg\cdot cm}$ (with a $1\,\mathrm{kg}$ payload), as illustrated in Fig.~\ref{fig:torque_vs_r}. 
+
+% These calculations directly informed the actuator selection. A servo motor (fig.~\ref{fig:22kg_servo}) with a rated torque of $22\,\mathrm{kg\cdot cm}$ was chosen to provide sufficient margin for reliable revolute actuation. The Arduino Nano ESP32 (fig.~\ref{fig:arduino}) was selected as the controller due to its communication capability with other modules and compatibility with peripheral devices. In addition to these core components, each module design also accommodates an onboard 7.4V battery, and a power switch to enable autonomous operation and sensing. 
+
+% \begin{figure*}
+%     \centering
+%     \includegraphics[width=1\linewidth]{generations_of_module.png}
+%     \caption{Module design iteration: V1, V2, V3, V4, V5.}
+%     \label{fig:module iteration}
+% \end{figure*}
+
+% \begin{figure*}
+%     \centering
+%     \includegraphics[width=0.65\linewidth]{v5.png}
+%     \caption{Final version (V5) of the module, showing the integrated servo, gear structure, and embedded electronics.}
+%     \label{fig:v5 module}
+% \end{figure*}
+
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=0.5\linewidth]{servo.png}
+%     \caption{Selected servo motor (22~kg$\cdot$cm).}
+%     \label{fig:22kg_servo}
+% \end{figure}
+
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=0.45\linewidth]{arduino_esp32.png}
+%     \caption{Arduino Nano ESP32 microcontroller.}
+%     \label{fig:arduino}
+% \end{figure}
+
+
+% After completing the component selection, the next stage focused on the CAD design of the modular pieces in SolidWorks. A central challenge in the module design was achieving continuous $360^{\circ}$ revolute motion using only a single servo motor. To address this, an internal gear structure was introduced. Specifically, the servo was positioned at the end of one triangular piece, and its output arm was mechanically coupled to the adjacent piece. Through appropriate gear matching between the two pieces, the relative rotation could be doubled, enabling full $360^{\circ}$ motion while requiring only $180^{\circ}$ rotation from the servo itself. This solution provided both compactness and efficiency, ensuring reliable actuation without the need for oversized or specialized servos.  
+
+
+% The design then progressed through five successive generations of iteration, denoted from Version~1 (v1) to Version~5 (v5), as summarized in Fig.~\ref{fig:module iteration}. Version~1 established the initial conceptual layout, while Version~2 optimized the placement of the spherical magnets for improved connectivity. Version~3 refined the internal arrangement of electronic components and further enhanced the gear design. Version~4 focused on improving servo integration and advancing the gear optimization. Finally, Version~5 consolidated all refinements, including a reduction in overall size, resulting in the most compact and robust configuration. The final design, shown in Fig.~\ref{fig:v5 module}, represents the baseline for subsequent physical fabrication and experimental testing.
+
+\section{Computational Design}
+
+The computational design process began with the identification of key hardware elements required to support self-reproduction. Spherical magnets were selected as the primary coupling mechanism between modules due to their self-aligning behavior, omnidirectional connectivity, and sufficient holding force. To evaluate their suitability quantitatively, the interaction torque between two spherical magnets was modeled using the dipole approximation.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{magnet_piece.png}
+    \caption{Structural and geometric foundations of the triangular module. (a) Arrangement of spherical magnets and gear-driven joints across the 19.5 mm module thickness. (b) Piece geometry of the equilateral triangular panel with edge length 150 mm.}
+    \label{fig:magnet_piece}
+\end{figure}
+
+\subsection{Module Geometry and Structural Motivation}
+
+Since the intended inter-module motion is primarily revolute, each module was constructed from two rigid pieces. Ensuring compactness while maintaining structural integrity required careful selection of the polygonal geometry for each piece. We adopted an equilateral triangular shape with an edge length of $150\,\mathrm{mm}$ (Fig.~\ref{fig:magnet_piece}), motivated by both geometric versatility and mechanical stability.
+
+Triangles form the fundamental primitive of surface representation in computer graphics and computational geometry. As the simplest non-degenerate polygon, they remain planar under all transformations and can approximate arbitrary curved surfaces without distortion. This supports scalability across resolutions and ensures compatibility with both 2D tessellations and 3D polyhedral assemblies—an essential requirement for a system designed to alternate between planar and spatial configurations during the reproduction cycle.
+ 
+From a structural standpoint, the triangle is the only inherently rigid polygon. Unlike quadrilaterals or higher-order shapes, which deform unless constrained, a triangular frame maintains its shape under arbitrary loading conditions. This rigidity is particularly advantageous in our system, where magnets serve as the sole attachment method between modules. A triangular arrangement ensures that the magnetic joints form a statically determinate structure capable of resisting shear and bending. Consequently, the triangular piece provides a mechanically robust and geometrically versatile foundation for reliable folding, docking, and self-reproduction.
+
+\subsection{Magnet Placement and Structural Thickness}
+
+To fully leverage the geometric symmetry of the triangle, three spherical magnets (diameter $0.5$ inch) were embedded at its vertices. The piece thickness was set to $19.5\,\mathrm{mm}$ to provide sufficient resistance against the magnetic forces and maintain structural stiffness during folding.
+
+
+\subsection{Magnetic Force and Torque Modeling}
+
+To determine the torque requirements at each revolute joint, the magnetic interaction force between two dipoles separated by distance $r$ was modeled as:
+
+\begin{equation}
+F(r) = \frac{3 \mu_0 m^2}{2 \pi r^4},
+\label{eq:force}
+\end{equation}
+
+where $\mu_0$ is the magnetic permeability of free space and $m$ is the magnetic dipole moment. The corresponding magnetic torque is given by:
+
+\begin{equation}
+\tau_{\mathrm{mag}}(r) = 2 F(r) L,
+\label{eq:mag_torque}
+\end{equation}
+
+with $L = 106\,\mathrm{mm}$ representing the lever arm from the joint axis to the magnet center (Fig.~\ref{fig:magnet_piece}b). External loading was incorporated through the gravitational torque:
+
+\begin{equation}
+\tau_{\mathrm{total}}(r) = \tau_{\mathrm{mag}}(r) + \tau_g, 
+\quad \tau_g = m_{\text{piece}} g L,
+\label{eq:total_torque}
+\end{equation}
+
+where $\tau_g$ accounts for the piece mass $m_{\text{piece}}$ under gravity. At $r = 19.5\,\mathrm{mm}$, the required torque was estimated as $\tau_{\mathrm{total}} \approx 13.7\,\mathrm{kg\cdot cm}$ (no payload) and $\tau_{\mathrm{total}} \approx 24.3\,\mathrm{kg\cdot cm}$ (with $1\,\mathrm{kg}$ payload), as shown in Fig.~\ref{fig:torque_vs_r}.
+
+\begin{figure}
+  \centering
+  {\footnotesize
+  \resizebox{0.9\linewidth}{!}{\input{torque_vs_r.pgf}}
+  }
+  \caption{Required servo torque versus magnet center distance.}
+  \label{fig:torque_vs_r}
+\end{figure}
+
+
+
+\subsection{Actuator and Electronics Selection}
+
+These calculations guided the actuator selection. A $22\,\mathrm{kg\cdot cm}$ servo motor (Fig.~\ref{fig:22kg_servo}) was chosen to provide an adequate safety margin. The Arduino Nano ESP32 (Fig.~\ref{fig:arduino}) was selected for its communication flexibility, onboard computation, and compatibility with peripheral devices. Each module also incorporates a custom 7.4~V battery and power management circuitry for autonomous operation.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{servo.png}
+    \caption{Selected servo motor (22~kg$\cdot$cm).}
+    \label{fig:22kg_servo}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.45\linewidth]{arduino_esp32.png}
+    \caption{Arduino Nano ESP32 microcontroller.}
+    \label{fig:arduino}
+\end{figure}
+
+\subsection{Gear-Based Mechanism for Full Rotation}
+
+With the core components selected, the next stage addressed the mechanical realization of continuous $360^{\circ}$ rotation using a single servo motor. An internal gear mechanism was introduced: the servo was placed at the end of one triangular piece, and its output arm engaged with a gear mounted on the adjacent piece. Proper gear matching doubled the relative rotation, allowing the servo’s $180^{\circ}$ output to produce a full $360^{\circ}$ joint rotation. This configuration ensured compactness and avoided the need for specialized high-torque servos.
+
+\subsection{Design Iteration and Final Configuration}
+
+The module design progressed through five iterations (Fig.~\ref{fig:module iteration}). Version~1 established the initial concept; Version~2 optimized magnet placement; Version~3 refined internal electronics and gear layout; Version~4 improved servo integration; and Version~5 consolidated all refinements into a compact, robust form. The final version (Fig.~\ref{fig:v5 module}) served as the basis for subsequent fabrication and experimental validation.
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=1\linewidth]{generations_of_module.png}
+    \caption{Module design iteration: V1, V2, V3, V4, V5. Versions V1–V5 illustrate the evolution of the mechanical layout, including magnet placement, hinge–gear integration, electronics packaging, and structural stiffening. Each iteration increases reliability of folding, torque transmission, and inter-module attachment.}
+    \label{fig:module iteration}
+\end{figure*}
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.65\linewidth]{v5.png}
+    \caption{Final version (V5) of the module, showing the integrated servo, gear structure, and embedded electronics. This embodiment allows the module to function as a developmental building block for multi-module growth and division.}
+    \label{fig:v5 module}
+\end{figure*}
+
+\section{Prototype Fabrication}
+
+Building on the computational design described in the previous section, a physical prototype of the triangular module was fabricated to validate the mechanical feasibility of the actuation, magnetic coupling, and geometric configuration. As shown in Fig.~\ref{fig:single_real_model}, all key components—including the servo motor, spherical magnets, controller, and onboard electronics—were integrated within the triangular frame. Careful attention was given to the alignment of the gears and the positioning of the magnets, as even small deviations significantly influence the reliability of revolute motion and inter-module connectivity.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\linewidth]{single_module.png}
+    \caption{Fabricated single-module prototype.
+A fully assembled triangular module containing the servo–gear hinge, embedded magnets, electronics, and structural frame. This prototype serves as the fundamental actuation and connection unit for all multi-module configurations evaluated in this work.}
+    \label{fig:single_real_model}
+\end{figure}
+
+
+\subsection{Locomotion Characterization of Minimal Assemblies}
+Before constructing larger structures capable of self-reproduction, we first investigated how the fabricated modules behave as dynamical units. Complex multi-body topologies are difficult to analyze analytically, and their motion patterns emerge from coupled geometric and magnetic interactions. To isolate these effects, we began with two minimal configurations: a single module and a 2-module chain. Each system was driven using periodic, open-loop commands to reveal its intrinsic locomotion tendencies.
+
+As shown in Fig.~\ref{fig:single_module_motion}, the single module exhibits irregular and weakly directed motion, making it unsuitable as a base unit for controlled growth or division. By contrast, the 2-module system (Fig.~\ref{fig:2-module_motion}) demonstrates a far clearer directional bias and repeatable locomotion pattern. This emergent stability motivated our choice of a 2-module worm-like configuration as the minimal ``mother'' robot for initiating the self-reproduction cycle. In this framework, the 2-module chain serves as the smallest functional unit capable of reliably moving, absorbing modules, and initiating morphological transitions.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{single_module_locomotion.png}
+    \caption{Locomotion behavior of a single module under periodic actuation.
+A single triangular module exhibits weakly directed motion when driven with open-loop periodic actuation, indicating insufficient stability for controlled locomotion or growth behavior.}
+    \label{fig:single_module_motion}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{2_module_locomotion.png}
+    \caption{Locomotion behavior of a 2-module robot. A 2-module chain exhibits a clear directional bias and repeatable locomotion pattern under periodic actuation, making it the minimal configuration capable of controlled movement for module absorption and subsequent reproduction.}
+    \label{fig:2-module_motion}
+\end{figure}
+
+
+\subsection{Fundamental 2D–3D–2D Morphological Transition}
+A core requirement for self-reproduction is the ability to transition between planar and spatial configurations: modules must approach in 2D for efficient docking, fold into a 3D structure for growth, and return to 2D for separation. We therefore examined the topological transitions of the 2-module system under controlled actuation.
+
+Figure~\ref{fig:tetrahedron_change} illustrates this sequence. Beginning with a planar configuration (a), the robot folds upward into a transient 3D tetrahedral geometry (b–d). From this intermediate high-energy configuration, the system then reverses the process during decoupling (e–h), eventually returning to a planar but mirrored state (i). This reversible cycle demonstrates the essential morphological pathway:
+\[
+\textbf{2D} \;\longrightarrow\; \textbf{3D} \;\longrightarrow\; \textbf{2D}.
+\]
+
+Such transitions form the structural basis of our reproduction mechanism: planar states enable assembly and division, while the 3D state enables volumetric growth and module rearrangement. The existence of this reversible pathway confirms that even a minimal 2-module system possesses the geometric and mechanical capabilities required for multi-generation physical self-reproduction.
+
+This property becomes the foundation upon which larger, multi-module robots can grow, reconfigure, and ultimately produce detached offspring in the experimental demonstrations that follow.
+
+
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.65\linewidth]{tetrahedron.png}
+    \caption{Transformation sequence of two modules into a tetrahedron through sequential magnetic couplings. Starting from a planar 2-module chain (a), the modules rotate and attach at successive magnet interfaces to form a closed tetrahedral shape (b–d). After reaching the fully folded configuration, the structure reverses the sequence (e–h) and returns to a planar but mirrored layout (i). This reversible 2D–3D–2D pathway forms the basis of the coupling maneuver used in self-reproduction.}
+    \label{fig:tetrahedron_change}
+\end{figure*}
+
+
+\section{Experimental Demonstration}
+
+Having established that a 2-module system can reliably transition through the full 
+\(\textbf{2D} \rightarrow \textbf{3D} \rightarrow \textbf{2D}\) morphological cycle, we next integrated locomotion and modular attachment to validate physical self-reproduction. This section demonstrates that the same geometric and dynamic principles scale naturally from the 2-module “mother” robot to larger assemblies consisting of 4, 6, and 8 modules.
+
+\subsection{Self-Reproduction in a 4-Module System}
+
+We first evaluated the minimal complete reproduction cycle using a 4-module system arranged as a planar worm-like chain. This configuration represents the smallest system capable of both growth and subsequent division.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{4_module_reproduce_process.png}
+    \caption{Self-reproduction process of the 4-module system. Starting from a 2-module mother, the system absorbs two external modules to grow into a 4-module chain. A tetrahedral intermediate is formed through sequential magnetic coupling, enabling structural reorganization and eventual division into two daughter 2-module bodies for new generations.}
+    \label{fig:4_module_reproduce_process}
+\end{figure}
+
+As shown in Fig.~\ref{fig:4_module_reproduce_process}, the 2-module mother robot sequentially absorbed two free modules from the environment to form a 4-module chain. Once assembled, the system performed the tetrahedral coupling maneuver previously characterized in the 2-module experiments. This coupling temporarily lifted the center modules into a 3D configuration, enabling the chain to reorganize and subsequently divide into two independent 2-module individuals.
+
+A notable feature of this process is the emergence of differentiation. Although both offspring originate from the same parent configuration, their final states may vary depending on whether each tetrahedral unit completes the decoupling action. This variability resembles divergent developmental outcomes—analogous to selective gene expression—where structurally similar units follow distinct behavioral trajectories. The complete transition sequence is further illustrated in Fig.~\ref{fig:4_module_process}, from initial distribution (a), sequential attachment (b–c), tetrahedral formation (d–e), and finally the variant post-division states (f–g).
+
+\begin{figure*}[h]
+    \centering
+    \includegraphics[width=0.65\linewidth]{4_module_process.png}
+    \caption{Growth, coupling, and division states in the 4-module self-reproduction pathway.
+A mother robot expands from two to four modules through two absorption (a–c), undergoes a 3D coupling transition that redistributes geometric constraints (e–f), and then reduces back to two daughter chains through dimensional decoupling (g). The schematic on the right captures the developmental stages of this embodied reproduction cycle.}
+    \label{fig:4_module_process}
+\end{figure*}
+
+The reproduction success rate was evaluated across 15 repeated trials (Fig.~\ref{fig:4_module_success_evaluation}). Among these, only the 5 trials highlighted in the green blocks achieved complete self-reproduction, corresponding to a success rate of 33\%. Within this successful subset, only 3 trials resulted in fully separated offspring, while the two remaining green-labeled trials exhibited partial decoupling during the final division stage.
+
+In contrast, several trials in the blue blocks demonstrate “near-miss’’ behaviors: although these executions did not follow the intended actuation sequence or achieve full division, the resulting configurations still resembled the target morphology. These cases indicate that the system possesses multiple feasible---but suboptimal---trajectories through its morphological state space. The remaining trials (uncolored regions) correspond to clear failures, where locomotion, attachment, or coupling errors prevented the reproduction process from progressing beyond early stages.
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.95\linewidth]{4_module_success_evaluation.png}
+    \caption{Experimental evaluation of 4-module self-reproduction outcomes. Trials are grouped by result category in color: (1) unsuccessful attempts that fail during planar assembly (gray), (2) partial pathways that achieve the 3D coupling stage but do not complete division (blue), and (3) fully successful growth–coupling–division cycles that produce a detached replica (green). Corresponding to the trials above.}
+    \label{fig:4_module_success_evaluation}
+\end{figure*}
+
+
+\subsection{Self-Reproduction in a 6-Module System and a 8-Module System}
+Building on the 4-module experiments, we next evaluated self-reproduction in larger 6-module and 8-module worm configurations. Unlike the 4-module system—which required a tightly synchronized sequence of tetrahedral coupling and exhibited a comparatively high failure rate—the larger systems displayed markedly more stable and reliable behavior. The increased body length and mass provided greater inertial damping and improved contact consistency, mitigating unintended drift during locomotion and attachment.
+
+As shown in Fig.~\ref{fig:68}, both the 6-module robot (A) and the 8-module robot (B) successfully initiated and completed division. In each case, the separation occurred at the central joint between subchains: beginning from the aligned worm state (a), the robot executed a series of flapping motions (b–d) that gradually increased the opening angle until physical detachment was achieved. This simplified division mechanism eliminated the need for the tetrahedral intermediate morphology required in the 4-module system, reducing both control complexity and mechanical risk.
+
+Across all trials, both systems achieved a 100\% reproduction success rate, demonstrating that larger worm-like assemblies are inherently more capable of reliable self-reproduction. Increased length enhances mechanical leverage and provides a more forgiving morphological workspace, allowing the robot to exploit passive stability during division. This trend parallels observations in biological multicellular systems, where increased structural complexity often improves robustness and repeatability of reproductive processes.
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.8\linewidth]{6_and_8.png}
+    \caption{Self-reproduction in larger systems. (A) Division process in a 6-module worm: (a) initial aligned configuration, (b–d) progressive flapping leading to separation. (B) Equivalent process in an 8-module worm. Both systems reliably divide via the same motion strategy.}
+    \label{fig:68}
+\end{figure*}
+
+Taken together, these experiments demonstrate that a modular worm-like architecture—even when built from a small number of simple triangular units—can reliably execute the full self-reproduction cycle when driven by a minimal set of hard-coded actuation primitives. Across the 2-, 4-, 6-, and 8-module systems, we observe a consistent geometric principle: self-reproduction emerges from the interplay between reversible 2D–3D transformations, magnetic attachment, and mechanically guided reconfiguration. While the 4-module system exposes the limits of control precision at low structural complexity, larger assemblies exhibit increasing robustness, suggesting that morphological scale itself acts as a stabilizing factor.
+
+This progression—from minimal reproduction capability to increasingly reliable division in larger worms—highlights a fundamental property of the system: complexity is not imposed but emerges through growth, and with it, the capacity for more stable and repeatable reproduction. The demonstrations here establish the feasibility of embodied self-reproduction within a low-complexity robotic platform, forming a physical basis upon which learning-based controllers, adaptive morphologies, and multi-generational evolution may be built.
+
+\section{Discussion}
+The experiments presented here demonstrate that a small set of geometric and physical principles is sufficient to instantiate embodied self-reproduction in a modular robotic system. Across configurations ranging from 2 to 8 modules, the core mechanism remains unchanged: reversible transitions between planar and spatial morphologies, magnetic attachment that supports both assembly and disassembly, and actuation patterns that exploit the passive dynamics of the worm-like chain.
+
+A key insight emerging from these demonstrations is that structural scale profoundly influences reproducibility. Whereas the 4-module system required precise timing and exhibited sensitivity to drift and misalignment, larger chains reproduced with markedly greater stability. This trend suggests that increasing morphological complexity provides a form of physical redundancy—an effect reminiscent of multicellular organisms, where collective structure buffers variations in individual cell behavior.
+
+The system also displays early signatures of differentiation. In the 4-module experiments, offspring sometimes diverged into distinct post-division states despite originating from identical parent configurations. Such divergence is not programmed but arises from the morphological pathways taken during division, indicating that even minimal robotic substrates may support variant-generating processes analogous to developmental variability in biological systems.
+
+The growth–reorganization–division cycle reflects the essential logic of mitosis. Our system likewise absorbs modules, restructures via 2D–3D transformation, and physically divides—providing a mechanical analogue that justifies the term Robotic Mitosis.
+
+Importantly, these results establish a physical basis for self-reproduction that does not rely on digital instruction, symbolic representation, or external assembly. Instead, reproduction is driven by embodied interactions among parts, dynamics, and geometry—a hallmark of biological reproduction and a critical step toward autonomous material-based evolution.
+
+\section{Limitation}
+
+Although the system reliably reproduces in low-dimensional, low-complexity configurations, several factors constrain its scalability. Each module weighs approximately 295 g, and the magnetic joints—while adequate for planar worm morphologies—lack the strength to support multi-layer or volumetric assemblies. As additional layers are introduced, gravitational loading, hinge friction, and accumulated mass quickly exceed the capacity of the magnetic interfaces, leading to deformation or collapse. The servos must simultaneously overcome these forces during 2D–3D transitions; beyond a certain size, the required torque surpasses actuator limits, preventing the formation of larger or higher-dimensional structures.
+
+In addition to these mechanical constraints, the current control strategy imposes further limitations. The system uses simple periodic linear actuation sequences, which, although easy to implement, produce imprecise and often inefficient locomotion. These inaccuracies restrict the operational envelope: during reproduction, the mother robot must begin near the free modules to ensure attachment, as longer-range approach behaviors cannot be executed reliably. The lack of expressive control reduces the robustness of the early growth phase and limits the ability to navigate environmental variability.
+
+More sophisticated actuation patterns—such as superpositions of trigonometric basis functions, optimized using trajectory search or reinforcement learning in simulation (e.g., MuJoCo)—could dramatically improve locomotion stability and precision. Such controllers may enable the robot to initiate reproduction from larger distances, reduce alignment errors during coupling, and ultimately explore more complex morphological pathways. Improving both the mechanical design and the control architecture will be essential for extending self-reproduction from simple chains toward richer, three-dimensional robotic collectives.
+
+\section{Future Work}
+Building on the present demonstrations, several research directions emerge. A first priority is to develop more expressive and reliable locomotion strategies within the existing low-complexity morphology. The current periodic linear controller enables reproduction but limits accuracy during approach and alignment. By leveraging simulation—through trajectory optimization or reinforcement learning in MuJoCo—the system may autonomously discover actuation patterns that are more stable, energy-efficient, and robust to drift. Improved locomotion would expand the operational envelope of the reproductive cycle, enabling the mother robot to initiate growth from greater distances and in more variable environments.
+
+A second direction is to extend self-reproduction beyond simple worm-like chains based on the present system. While the present system reveals the minimal physical conditions for embodied reproduction, richer behaviors likely arise in larger and more complex structures. Exploring branched topologies, looped chains, or truly three-dimensional lattices could uncover new reproduction pathways, including fission-like splitting, budding, or collective morphogenesis. Such investigations would probe how morphological complexity and redundancy contribute to the robustness, variability, and evolvability of robotic assemblies.
+
+Finally, achieving self-reproduction in higher-dimensional or massive structures will require rethinking the hardware itself. The current module weight and magnetic connectors limit scalability; lighter modules, stronger reversible joints, and higher-torque actuation would enable more ambitious architectures. An alternative direction is to redesign the fundamental unit: for example, a one-dimensional rod-like module capable of assembling into surfaces and then into three-dimensional bodies. Such a progression—from line to sheet to volume—would mirror biological developmental transitions and provide a physical platform for studying morphological evolution in robotic systems. Advancing along these lines may ultimately allow the emergence of bio-robotic collectives whose capabilities grow not only through control and computation but through the evolution of their physical form.
+
+\section{Conclusion}
+This work demonstrates that physical self-reproduction can emerge from a minimal set of geometric, mechanical, and dynamical principles. Using triangular modular units connected by magnetic joints, the system is able to grow by acquiring new modules, undergo reversible 2D–3D–2D transformations, and divide into physically detached offspring. Experiments across 2-, 4-, 6-, and 8-module configurations reveal that the same underlying mechanism scales reliably with system size, with larger assemblies exhibiting markedly greater stability and robustness. These results establish a concrete physical pathway—grounded not in symbolic instruction or external assembly but in embodied interactions between structure, actuation, and passive dynamics—toward robotic systems capable of propagation and morphological variation.
+
+The demonstrations presented here represent only the earliest stage of what such systems may achieve. As modules become lighter, joints stronger, and controllers more adaptive, self-reproducing robots could extend from simple worm-like chains to more complex two- and three-dimensional architectures. Integrating learning-based control may further enable robots to refine locomotion, discover new reproduction strategies, and adapt their morphology across generations. Together, these directions point toward a future in which robotic collectives not only mimic biological processes but begin to explore the principles of growth, differentiation, and evolution within physical bodies.
+
+
+\section*{Acknowledgments}
+This research was supported by the National Science Foundation under award NSF NIAIR COLUM-5260404-SPONS-GG017178-01-60908-HL2891.
+
+Author Contributions: S.Z. and H.L. conceived the study. S.Z. designed the mechanical system, fabricated the prototypes, and performed the experiments. S.Z. developed the control algorithms and analyzed the data. H.L. supervised the project, provided conceptual guidance, and secured funding. S.Z. wrote the original draft, and H.L. reviewed and guided the manuscript.
+
+\bibliographystyle{IEEEtran}  
+\bibliography{reference}  
+
+
+\newpage
+% \vspace{11pt}
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{IEEE-Transactions-LaTeX2e-templates-and-instructions/my photo.jpeg}}]{Siyuan Zhang}
+received the B.E. degree in Aeronautical and Astronautical Engineering from Sun Yat-sen University, Shenzhen, China, 2024. And currently he is working toward the M.S. degree in Robotics concentration of Mechanical Engineering with Columbia University. His research interests include soft and bio-inspired robotics and  distributed modular self-reproducing robot.
+\end{IEEEbiography}
+
+ \begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{hod.png}}]{Hod Lipson}
+ (M’02) received the B.Sc. degree in mechanical engineering and the Ph.D. degree in mechanical engineering in computer-aided design and artificial intelligence in design from the Technion—Israel Institute of Technology, Haifa, Israel, in 1989 and 1998, respectively.
+
+He is currently a Professor with the Mechanical Engineering Department, Columbia University, New York, NY. He was a Postdoctoral Researcher with the Department of Computer Science, Brandeis University, Waltham, MA. He was a Lecturer with the Department of Mechanical Engineering, Massachusetts Institute of Technology, Cambridge, where he was engaged in conducting research in design automation. His current research interests include computational methods to synthesize complex systems out of elementary building blocks and the application of such methods to design automation and their implication toward understanding the evolution of complexity in nature and in engineering.
+\end{IEEEbiography}
+
+
+\vfill
+
+\end{document}
+
+
