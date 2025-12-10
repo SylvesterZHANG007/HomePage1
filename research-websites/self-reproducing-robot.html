@@ -122,6 +122,53 @@
     .comparison-table tr:nth-child(even) {
       background-color: #fafafa;
     }
+    .article-video {
+      width: 100%;
+      max-width: 700px;
+      margin: 2rem auto;
+      text-align: center;
+    }
+    .article-video video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+      margin: 0 auto;
+    }
+    .video-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .video-row .video-item {
+      flex: 1 1 300px;
+      max-width: 400px;
+      text-align: center;
+    }
+    .video-row .video-item video {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+    }
+    .video-caption {
+      text-align: center;
+      color: #666;
+      font-size: 0.95rem;
+      font-style: italic;
+      margin-top: 0.8rem;
+      line-height: 1.4;
+    }
+    @media (max-width: 768px) {
+      .video-row {
+        flex-direction: column;
+        align-items: center;
+      }
+      .video-row .video-item {
+        max-width: 100%;
+      }
+    }
   </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -431,7 +478,7 @@
 
         <h3 class="title is-4">Fundamental 2D–3D–2D Morphological Transition</h3>
         <div class="content has-text-justified">
-          <p>A core requirement for self-reproduction is the ability to transition between planar and spatial configurations: modules must approach in 2D for efficient docking, fold into a 3D structure for growth, and return to 2D for separation. As illustrated in Fig. 13, beginning with a planar configuration, the robot folds upward into a transient 3D tetrahedral geometry. From this intermediate high-energy configuration, the system then reverses the process during decoupling, eventually returning to a planar but mirrored state.</p>
+          <p>A core requirement for self-reproduction is the ability to transition between planar and spatial configurations: modules must approach in 2D for efficient docking, fold into a 3D structure for growth, and return to 2D for separation. As illustrated in Fig. 13 and Video 1, beginning with a planar configuration, the robot folds upward into a transient 3D tetrahedral geometry. From this intermediate high-energy configuration, the system then reverses the process during decoupling, eventually returning to a planar but mirrored state.</p>
           <p>This reversible cycle demonstrates the essential morphological pathway: <strong>2D → 3D → 2D</strong>. Such transitions form the structural basis of our reproduction mechanism: planar states enable assembly and division, while the 3D state enables volumetric growth and module rearrangement.</p>
         </div>
         
@@ -440,6 +487,16 @@
                alt="Tetrahedron Transformation"/>
           <div class="figure-caption">
             <strong>Figure 13.</strong> Transformation sequence of two modules into a tetrahedron through sequential magnetic couplings. Starting from a planar 2-module chain (a), the modules rotate and attach at successive magnet interfaces to form a closed tetrahedral shape (b–d). After reaching the fully folded configuration, the structure reverses the sequence (e–h) and returns to a planar but mirrored layout (i). This reversible 2D–3D–2D pathway forms the basis of the coupling maneuver used in self-reproduction.
+          </div>
+        </div>
+        
+        <div class="article-video">
+          <video controls autoplay loop muted playsinline>
+            <source src="../2module_coupling.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="video-caption">
+            <strong>Video 1.</strong> 2-module coupling demonstration showing the reversible 2D–3D–2D morphological transition.
           </div>
         </div>
       </div>
@@ -475,7 +532,17 @@
 
         <h3 class="title is-4">Emergence of Differentiation</h3>
         <div class="content has-text-justified">
-          <p>A notable feature of this process is the emergence of differentiation (Fig. 15). Although both offspring originate from the same parent configuration, their final states may vary depending on whether each tetrahedral unit completes the decoupling action. This variability resembles divergent developmental outcomes—analogous to selective gene expression—where structurally similar units follow distinct behavioral trajectories.</p>
+          <p>A notable feature of this process is the emergence of differentiation (Fig. 15, Video 2). Although both offspring originate from the same parent configuration, their final states may vary depending on whether each tetrahedral unit completes the decoupling action. This variability resembles divergent developmental outcomes—analogous to selective gene expression—where structurally similar units follow distinct behavioral trajectories.</p>
+        </div>
+        
+        <div class="article-video">
+          <video controls autoplay loop muted playsinline>
+            <source src="../4module_devide.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="video-caption">
+            <strong>Video 2.</strong> 4-module division process showing the growth, coupling, and separation cycle.
+          </div>
         </div>
         
         <div class="article-image large-image">
@@ -502,8 +569,29 @@
 
         <h3 class="title is-4">Self-Reproduction in 6-Module and 8-Module Systems</h3>
         <div class="content has-text-justified">
-          <p>Building on the 4-module experiments, we next evaluated self-reproduction in larger 6-module and 8-module worm configurations (Fig. 17). Unlike the 4-module system—which required a tightly synchronized sequence of tetrahedral coupling and exhibited a comparatively high failure rate—the larger systems displayed markedly more stable and reliable behavior. The increased body length and mass provided greater inertial damping and improved contact consistency, mitigating unintended drift during locomotion and attachment.</p>
+          <p>Building on the 4-module experiments, we next evaluated self-reproduction in larger 6-module and 8-module worm configurations (Fig. 17, Video 3, Video 4). Unlike the 4-module system—which required a tightly synchronized sequence of tetrahedral coupling and exhibited a comparatively high failure rate—the larger systems displayed markedly more stable and reliable behavior. The increased body length and mass provided greater inertial damping and improved contact consistency, mitigating unintended drift during locomotion and attachment.</p>
           <p>Both systems achieved a <strong>100% reproduction success rate</strong>, demonstrating that larger worm-like assemblies are inherently more capable of reliable self-reproduction. Increased length enhances mechanical leverage and provides a more forgiving morphological workspace, allowing the robot to exploit passive stability during division. This trend parallels observations in biological multicellular systems, where increased structural complexity often improves robustness and repeatability of reproductive processes.</p>
+        </div>
+        
+        <div class="video-row">
+          <div class="video-item">
+            <video controls autoplay loop muted playsinline>
+              <source src="../6module_devide.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="video-caption">
+              <strong>Video 3.</strong> 6-module division process.
+            </div>
+          </div>
+          <div class="video-item">
+            <video controls autoplay loop muted playsinline>
+              <source src="../8module_devide.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="video-caption">
+              <strong>Video 4.</strong> 8-module division process.
+            </div>
+          </div>
         </div>
         
         <div class="article-image large-image">
