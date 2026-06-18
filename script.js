@@ -33,14 +33,15 @@ const PageTransition = {
 
     setupPageLoad() {
         // Set initial state
+        // NOTE: Do NOT use `transform` on <body> here. A transform on the body
+        // creates a new containing block, which breaks `position: fixed` on the
+        // navbar (it would scroll away with the page). Fade in with opacity only.
         this.body.style.opacity = '0';
-        this.body.style.transform = 'translateY(20px)';
-        this.body.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        
+        this.body.style.transition = 'opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+
         // Smooth page entrance
         setTimeout(() => {
             this.body.style.opacity = '1';
-            this.body.style.transform = 'translateY(0)';
         }, 100);
     },
 
@@ -133,6 +134,18 @@ const PageTransition = {
     }
 };
 
+// Reading progress bar: create once and attach to the navbar (bottom edge)
+const readingProgress = document.createElement('div');
+readingProgress.className = 'reading-progress';
+document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        navbar.appendChild(readingProgress);
+    } else {
+        document.body.appendChild(readingProgress);
+    }
+});
+
 // Navbar scroll effect
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
@@ -148,6 +161,11 @@ window.addEventListener('scroll', () => {
             navbar.style.backdropFilter = 'blur(30px) saturate(180%)';
         }
     }
+
+    // Update reading progress: fraction of the page scrolled (0% -> 100%)
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+    readingProgress.style.width = progress + '%';
 });
 
 // Enhanced intersection observer for animations

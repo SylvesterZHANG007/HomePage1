@@ -144,6 +144,19 @@ body {
     border-bottom: 1px solid rgba(0, 212, 255, 0.1);
 }
 
+/* Reading progress bar: pinned to the bottom edge of the navbar */
+.reading-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background: linear-gradient(90deg, #00d4ff, #0095ff);
+    border-radius: 0 2px 2px 0;
+    transition: width 0.1s ease-out;
+    z-index: 1001;
+}
+
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
