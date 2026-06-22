@@ -58,6 +58,9 @@
       border-radius: 16px;
       margin: 0 auto;
     }
+    .article-image.small {
+      max-width: 480px;
+    }
     .article-image.large {
       max-width: 1000px !important;
     }
@@ -82,7 +85,42 @@
     .mjx-container {
       font-family: "Times New Roman", Times, serif !important;
     }
-    
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+    .data-table th,
+    .data-table td {
+      border: 1px solid #e2e2e2;
+      padding: 0.65rem 0.9rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    .data-table thead th {
+      background: rgba(0, 122, 255, 0.06);
+      color: #1a1a1a;
+      font-weight: 600;
+    }
+    .data-table tbody tr:nth-child(even) {
+      background: #fafafa;
+    }
+    .data-table caption {
+      caption-side: bottom;
+      color: #666;
+      font-size: 0.9rem;
+      font-style: italic;
+      margin-top: 0.6rem;
+    }
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+    .highlight-list li {
+      margin-bottom: 0.5rem;
+    }
+
 
   </style>
 
@@ -224,6 +262,91 @@
             SolidWorks CAD model showing the optimized design for workspace, compactness, and portability.
           </div>
         </div>
+
+        <h3 class="title is-4">Singularity Avoidance and Structural Optimization</h3>
+        <div class="content has-text-justified">
+          <p>The principal challenge with any parallel mechanism is the <em>parallel singularity</em>. At a singular configuration, the moving platform can gain an uncontrolled degree of freedom even when all actuators are locked &mdash; the device loses stiffness and can no longer resist external loads. For a rehabilitation device in contact with a patient, this is a genuine safety concern.</p>
+          <p>Our approach evolved in two steps:</p>
+          <ul class="highlight-list">
+            <li><strong>Avoidance by joint limits:</strong> We analyze the constraint Jacobian (the A-matrix), identify singular configurations from rank degeneration, and restrict each joint to a conservative range (~30&deg; to 80&deg;). This only routes <em>around</em> singularities rather than removing them.</li>
+            <li><strong>Reduction by geometry:</strong> Treating the link-length ratio and the platform radius as design variables, we re-optimized the geometry. When the distal link \(L_2\) is about \(1.15\times\) the proximal link \(L_1\), the singularity curves are pushed toward the workspace boundary, enlarging the usable, well-conditioned interior.</li>
+          </ul>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="data-table">
+            <caption>Geometry before and after optimization. Reducing singularities at the structural level &mdash; rather than only avoiding them with joint limits &mdash; yields more consistent force transmission across the workspace.</caption>
+            <thead>
+              <tr><th>Parameter</th><th>Before</th><th>After</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Distal / proximal link ratio \(L_2 / L_1\)</td><td>1.00</td><td>1.15</td></tr>
+              <tr><td>Global isotropy index (relative)</td><td>baseline</td><td>\(+{\approx}20\%\)</td></tr>
+              <tr><td>Singularities in the interior workspace</td><td>present</td><td>pushed to boundary</td></tr>
+              <tr><td>Usable safe workspace</td><td>constrained by joint limits</td><td>meaningfully larger</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>Why this matters in practice is force-transmission consistency. At low isotropy, the mechanism has strong control authority in one direction and almost none in another, producing uneven motor loading and uneven rehabilitation feedback for the patient. Pushing the singular curves outward keeps the device well-conditioned across the entire usable workspace, not only at its center.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-85-percent">
+        <h2 class="title is-3">Wearable System and Foot-Plate Design</h2>
+        <div class="content has-text-justified">
+          <p>The latest iteration of the device is a fully wearable, strap-mounted unit that drives the patient's foot as a rigid body. The figures below show the overall 3D design and a multi-view layout of the wearable assembly.</p>
+        </div>
+
+        <div class="article-image small">
+          <img src="../images/rehabilitation robot/entire design of the robot.png"
+               alt="Entire 3D design of the wearable rehabilitation robot"/>
+          <div class="figure-caption">
+            Overall 3D design of the latest wearable ankle rehabilitation robot, integrating the 3-RRR spherical parallel mechanism with the shank cuff and shoe-tray foot-plate.
+          </div>
+        </div>
+
+        <div class="article-image small">
+          <img src="../images/rehabilitation robot/Multi-view of the wearable rehabilitation design.png"
+               alt="Multi-view of the wearable rehabilitation design"/>
+          <div class="figure-caption">
+            Multi-view of the wearable rehabilitation design, showing the placement of the three actuated limbs, the shank attachment, and the foot interface from several viewpoints.
+          </div>
+        </div>
+
+        <h3 class="title is-4">The Foot-Plate &mdash; a Shoe-Tray Design</h3>
+        <div class="content has-text-justified">
+          <p>In the literature, foot-plates fall into three patterns. After surveying several comparable rehab devices, we converged on the <strong>shoe-tray</strong> approach: the patient keeps their own shoes on, steps directly into the tray, and a bandage fixes the foot across the dorsum and around the heel. The wearable device then drives the tray as a rigid body.</p>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="data-table">
+            <caption>Comparison of foot-plate strategies. The shoe-tray design simultaneously delivers high stiffness, a wide foot-size range, and high comfort.</caption>
+            <thead>
+              <tr><th>Approach</th><th>Stiffness</th><th>Foot-size range</th><th>Comfort</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Rigid foot plate</td><td>high</td><td>single size</td><td>low &mdash; direct skin contact, hard surface</td></tr>
+              <tr><td>Soft sandal</td><td>drifts under load</td><td>flexible</td><td>medium</td></tr>
+              <tr><td>Shoe tray (ours)</td><td>high</td><td>EU 36&ndash;46 in the same hardware</td><td>high &mdash; patient wears their own shoes</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>This buys two things at once:</p>
+          <ul class="highlight-list">
+            <li><strong>Comfort:</strong> no direct skin contact &mdash; the patient walks on their own shoe sole, so long training sessions become tolerable.</li>
+            <li><strong>Generalization:</strong> one physical device fits users with different foot sizes, with no re-manufacturing per patient.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -240,7 +363,7 @@
         
         <h3 class="title is-4">Geometric Framework</h3>
         <div class="content has-text-justified">
-          <p>The 3-RRR mechanism consists of three identical kinematic chains, each connecting the base platform to the foot platform through actuated (A<sub>i</sub>) and passive (B<sub>i</sub>) joints. This configuration enables three rotational degrees of freedom while maintaining structural rigidity.</p>
+          <p>The 3-RRR mechanism consists of three identical kinematic chains, each connecting the base platform to the foot platform through actuated (\(A_i\)) and passive (\(B_i\)) joints. This configuration enables three rotational degrees of freedom while maintaining structural rigidity.</p>
         </div>
         
         <h3 class="title is-4">Kinematic Mapping</h3>
@@ -252,7 +375,7 @@
             \[C_i = R(\alpha,\beta,\gamma)\,C_{i0}\]
           </div>
           <div class="content has-text-justified">
-            <p>where α, β, and γ represent the ankle's roll, pitch, and yaw rotations.</p>
+            <p>where \(\alpha\), \(\beta\), and \(\gamma\) represent the ankle's roll, pitch, and yaw rotations.</p>
           </div>
         </div>
         
@@ -260,8 +383,8 @@
         <div class="content has-text-justified">
           <p>The kinematics solution enables bidirectional mapping between:</p>
           <ul>
-            <li><strong>Inverse Kinematics:</strong> Given desired ankle pose → calculate required actuator angles θ<sub>i</sub></li>
-            <li><strong>Forward Kinematics:</strong> Given actuator angles θ<sub>i</sub> → determine resulting ankle pose</li>
+            <li><strong>Inverse Kinematics:</strong> Given desired ankle pose &rarr; calculate required actuator angles \(\theta_i\)</li>
+            <li><strong>Forward Kinematics:</strong> Given actuator angles \(\theta_i\) &rarr; determine resulting ankle pose</li>
           </ul>
         </div>
         
@@ -273,7 +396,7 @@
             \[\dot{\mathbf{q}} = J_r\,\omega\]
           </div>
           <div class="content has-text-justified">
-            <p>where J<sub>r</sub> relates joint velocities to platform angular velocity, critical for smooth motion control.</p>
+            <p>where \(J_r\) relates joint velocities to platform angular velocity, critical for smooth motion control.</p>
           </div>
         </div>
       </div>
@@ -299,7 +422,7 @@
             \[M(\mathbf{q})\,\ddot{\mathbf{q}} + C(\mathbf{q},\dot{\mathbf{q}})\,\dot{\mathbf{q}} = \boldsymbol{\tau}\]
           </div>
           <div class="content has-text-justified">
-            <p>where <strong>q</strong> = [θ₁, θ₂, θ₃]ᵀ represents the actuator angles, M(<strong>q</strong>) is the mass matrix, C(<strong>q</strong>,<strong>q̇</strong>) captures Coriolis effects, and <strong>τ</strong> are the applied torques.</p>
+            <p>where \(\mathbf{q} = [\theta_1, \theta_2, \theta_3]^{\mathsf{T}}\) represents the actuator angles, \(M(\mathbf{q})\) is the mass matrix, \(C(\mathbf{q},\dot{\mathbf{q}})\) captures Coriolis effects, and \(\boldsymbol{\tau}\) are the applied torques.</p>
           </div>
         </div>
         
@@ -316,7 +439,7 @@
             \[\tau_i = K_{p,i}\,e_i + K_{d,i}\,\dot{e}_i + K_{i,i} \int e_i\,dt\]
           </div>
           <div class="content has-text-justified">
-            <p>where e<sub>i</sub> = q<sub>i,ref</sub> - q<sub>i</sub> is the tracking error for each axis.</p>
+            <p>where \(e_i = q_{i,\text{ref}} - q_i\) is the tracking error for each axis.</p>
           </div>
         </div>
         
@@ -328,6 +451,38 @@
             <li><strong>Precise Control:</strong> Higher gains for accurate tracking during active therapy exercises</li>
           </ul>
           <p>This adaptability allows the same device to accommodate different stages of patient recovery and therapy requirements.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-85-percent">
+        <h2 class="title is-3">Rehabilitation Strategy &mdash; Assist-As-Needed</h2>
+        <div class="content has-text-justified">
+          <p>The system supports both passive rehabilitation (as a CPM machine does) and active rehabilitation. For the active mode we adopt the <strong>Assist-As-Needed (AAN)</strong> strategy, which is designed to promote neuroplasticity. Unlike a fully passive controller, AAN intervenes only when the user actually needs help:</p>
+          <ul class="highlight-list">
+            <li>If the user can follow the movement &rarr; the robot provides little or no assistance.</li>
+            <li>If the user starts to deviate &rarr; the robot gradually increases assistance.</li>
+            <li>If the user cannot complete the task &rarr; the robot provides sufficient support.</li>
+          </ul>
+          <p>The key idea is to first recognize the user's intent, then use impedance control to <em>assist</em> motion rather than override it. The clinical rationale is neuroplasticity: if the robot always does the work, the patient learns to be passive; if it never helps, the task is too hard and the patient fails. AAN keeps the patient in the productive middle &mdash; just enough support to succeed, not so much that the brain stops trying.</p>
+        </div>
+
+        <h3 class="title is-4">Sensorless User-Torque Estimation</h3>
+        <div class="math-content">
+          <div class="content has-text-justified">
+            <p>We estimate the user's torque without a distal force sensor, reusing the motor current that the Dynamixel servos already report:</p>
+          </div>
+          <div class="equation-block">
+            \[\tau_{\text{user}} \approx k_t\,i_{\text{motor}} - \tau_{\text{dyn}}(\mathbf{q},\dot{\mathbf{q}},\ddot{\mathbf{q}})\]
+          </div>
+          <div class="content has-text-justified">
+            <p>where \(k_t\) is the motor torque constant and \(\tau_{\text{dyn}}\) is the model-based dynamic torque. To be transparent, the AAN law is fully formulated and parameterized in code, but has not yet been deployed on real hardware.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -350,6 +505,96 @@
               <p>Although the 3-RRR SPM is mechanically rigid, tuning feedback gains effectively modulates its compliance characteristics, allowing the same device to provide both gentle assistance and precise control depending on rehabilitation requirements.</p>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-85-percent">
+        <h2 class="title is-3">Hardware Platform</h2>
+        <div class="content has-text-justified">
+          <p>The control and sensing stack is built around a deterministic real-time loop and current-controlled actuators. The figure below shows the assembled real-world prototype.</p>
+        </div>
+
+        <div class="article-image small">
+          <img src="../images/rehabilitation robot/real world model.jpg"
+               alt="Real-world prototype of the wearable ankle rehabilitation robot"/>
+          <div class="figure-caption">
+            Real-world model of the wearable ankle rehabilitation robot. The current 3D-printed structure is a working prototype; the next iteration adds a foam insole and soft padding at the strap interfaces for extended-session comfort.
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="data-table">
+            <caption>Hardware stack of the current prototype.</caption>
+            <thead>
+              <tr><th>Component</th><th>Choice</th><th>Role</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Master controller</td><td>Teensy 4.1 + RS-485 transceiver</td><td>Deterministic 1 kHz control loop</td></tr>
+              <tr><td>Actuators</td><td>3 &times; Dynamixel XM430-W350-R</td><td>Daisy-chained RS-485 bus, current-based torque</td></tr>
+              <tr><td>Orientation sensing</td><td>2 &times; IMU</td><td>One on the shank (tibia), one on the foot-plate / dorsum</td></tr>
+              <tr><td>Joint angles</td><td>Servo encoders</td><td>Relative joint angle per leg</td></tr>
+              <tr><td>Ground-truth gait</td><td>Lab gait mat</td><td>CoP trajectory, step length</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-85-percent">
+        <h2 class="title is-3">Experimental Design and Evaluation</h2>
+        <div class="content has-text-justified">
+          <p>We evaluate the system with five quantitative metrics spanning clinical, biomechanical, and interaction-quality dimensions:</p>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="data-table">
+            <caption>Evaluation metrics and how each is obtained.</caption>
+            <thead>
+              <tr><th>Metric</th><th>What it tells us</th><th>How we obtain it</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>LSI &mdash; Limb Symmetry Index</td><td>Inter-limb gait symmetry (clinical north star)</td><td>Stance / swing time ratio, affected vs. sound side</td></tr>
+              <tr><td>Jerk</td><td>Motion smoothness</td><td>3rd time-derivative of the foot-plate IMU angle</td></tr>
+              <tr><td>Interaction torque</td><td>How well the robot agrees with the user</td><td>\(k_t\,i_{\text{motor}} - \tau_{\text{dyn}}\) (sensorless)</td></tr>
+              <tr><td>CoP trajectory</td><td>Plantar load shifting</td><td>Gait mat</td></tr>
+              <tr><td>Human contribution \(\eta_h\)</td><td>Patient engagement under AAN</td><td>\(\tau_{\text{human}} / \tau_{\text{total}}\) per cycle</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="title is-4">Active-Rehabilitation Experiments</h3>
+        <div class="content has-text-justified">
+          <p>Because the team's own ankles are healthy, our initial subjects artificially induce impairment first. We designed three experiments, deliberately running transparency (E2) before AAN engagement (E3): if the device is not transparent under zero impedance, any improvement under AAN could merely be the device dragging the foot rather than the patient learning.</p>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="data-table">
+            <caption>Active-rehabilitation experiment matrix.</caption>
+            <thead>
+              <tr><th>Experiment</th><th>Setup</th><th>Primary outcome</th><th>Success criterion</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>E1 &mdash; Simulated impairment</td><td>Foot-drop induced by toe weight or motor torque, AAN on</td><td>LSI, hip-hike amplitude</td><td>LSI \(\approx 80\% \rightarrow \approx 95\%\); hip-hike reduced</td></tr>
+              <tr><td>E2 &mdash; System transparency</td><td>Zero-impedance mode, barefoot vs. worn</td><td>IMU \(R^2\), interaction torque</td><td>\(R^2 > 0.95\); \(|\tau_{\text{int}}| \approx 0\)</td></tr>
+              <tr><td>E3 &mdash; Active participation</td><td>AAN sessions over time</td><td>\(\eta_h\), jerk</td><td>\(\eta_h\) trends up; jerk stays smooth</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="title is-4">Passive-Rehabilitation Transfer Effect</h3>
+        <div class="content has-text-justified">
+          <p>For passive rehabilitation we focus on the short-term transfer effect. The subject walks normally as a baseline, trains on the robot for a short session (e.g. enhanced dorsiflexion), then walks again while we check for increased step length and a forward shift of the Center of Pressure. Observing these short-term changes after training indicates that the system is influencing the user's neural control strategy &mdash; not merely pulling them around biomechanically.</p>
         </div>
       </div>
     </div>
@@ -430,6 +675,11 @@
 <footer class="footer">
         <div class="container">
             <div class="footer-social-links">
+                <a href="https://scholar.google.com/citations?user=QDhqc2QAAAAJ&hl=en" class="social-icon scholar-icon" title="Google Scholar" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#4a4a4a">
+                        <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
+                    </svg>
+                </a>
                 <a href="https://github.com/SylvesterZHANG007" class="social-icon github-icon" title="GitHub" target="_blank">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="#4a4a4a">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -456,7 +706,7 @@
                     </svg>
                 </a>
             </div>
-            <p>&copy; 2025 Siyuan (Sylvester) Zhang. All rights reserved.</p>
+            <p>&copy; 2026 Siyuan (Sylvester) Zhang. All rights reserved.</p>
         </div>
     </footer>
 
