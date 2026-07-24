@@ -1,0 +1,124 @@
+/* Clean reading page for the mirrored Financial Times feature.
+   Pairs with the site-wide styles.css for the navbar. */
+
+.ft-article {
+    padding: 110px 0 80px;
+    background: #ffffff;
+}
+
+.ft-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+    color: #1a1a1a;
+    font-size: 1.12rem;
+    line-height: 1.8;
+}
+
+.ft-back {
+    display: inline-block;
+    margin-bottom: 28px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #5b73ff;
+    text-decoration: none;
+}
+.ft-back:hover { text-decoration: underline; }
+
+.ft-kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #990f3d;              /* FT pink-claret */
+    margin: 0 0 14px;
+}
+
+.ft-headline {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.15;
+    font-weight: 700;
+    margin: 0 0 20px;
+    color: #111;
+}
+
+.ft-standfirst {
+    font-size: 1.3rem;
+    line-height: 1.5;
+    color: #333;
+    font-weight: 400;
+    margin: 0 0 24px;
+}
+
+.ft-byline {
+    font-size: 0.9rem;
+    color: #888;
+    margin: 0 0 8px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.ft-container p {
+    margin: 0 0 22px;
+}
+
+.ft-original-link {
+    margin: 0 0 8px;
+}
+.ft-original-link a {
+    display: inline-block;
+    padding: 9px 18px;
+    background: #990f3d;          /* FT claret */
+    color: #fff1e5;               /* FT paper tone */
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+.ft-original-link a:hover {
+    background: #7a0c31;
+}
+
+.ft-section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 44px 0 18px;
+    color: #111;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+}
+
+.ft-figure {
+    margin: 36px 0;
+    text-align: center;
+}
+.ft-figure img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+}
+.ft-figure figcaption {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 10px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.ft-hero { margin-top: 8px; }
+
+.ft-source-note {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #eaeaea;
+    font-size: 0.85rem;
+    color: #999;
+    line-height: 1.6;
+}
+.ft-source-note a { color: #5b73ff; }
+
+@media (max-width: 600px) {
+    .ft-article { padding: 90px 0 60px; }
+    .ft-container { font-size: 1.05rem; }
+}

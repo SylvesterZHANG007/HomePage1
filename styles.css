@@ -20,11 +20,18 @@
  */
 
 /* ===== 字体声明 ===== */
+/* Source Serif 4 — a free, open-source (SIL OFL) humanist serif from Adobe,
+   served by Google Fonts. Chosen as a close, legally-usable stand-in for the
+   commercial Lucida Bright: it ships the full 200–900 weight range plus
+   italics, so the site regains genuine regular / medium / semibold / bold
+   distinctions instead of synthesizing them from a single face. */
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap');
+
+/* Kept only as an offline fallback if Google Fonts fails to load. */
 @font-face {
-    font-family: 'Lucida Bright Bold';
-    src: url('fonts/lucidabright_demi.ttf') format('truetype'),
-         url('fonts/lucidabright_demi.ttf') format('opentype');
-    font-weight: bold;
+    font-family: 'Lucida Bright';
+    src: url('fonts/lucidabright_demi.ttf') format('truetype');
+    font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
@@ -47,7 +54,7 @@ html {
 }
 
 body {
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Source Serif 4', 'Lucida Bright', Georgia, 'Times New Roman', serif;
     line-height: 1.6;
     color: #333;
     background: #ffffff;
@@ -76,6 +83,7 @@ body {
 }
 
 .section-title {
+    font-family: 'Source Serif 4', 'Lucida Bright', Georgia, 'Times New Roman', serif;
     font-size: clamp(2.8rem, 5.5vw, 4rem);
     font-weight: 700;
     margin-bottom: 20px;
@@ -88,6 +96,7 @@ body {
 
 /* About Me, Research, Project, Experience section headers - smaller font size */
 .section-header h2 {
+    font-family: 'Source Serif 4', 'Lucida Bright', Georgia, 'Times New Roman', serif;
     font-size: clamp(2rem, 4vw, 2.5rem);
     font-weight: 700;
     margin-bottom: 16px;
@@ -100,6 +109,7 @@ body {
 
 /* Skills section header - keep original style */
 .skills-section .section-header h2 {
+    font-family: 'Source Serif 4', 'Lucida Bright', Georgia, 'Times New Roman', serif;
     font-size: 1.4rem;
     font-weight: 700;
     color: #1a202c;
@@ -180,6 +190,7 @@ body {
 }
 
 .nav-link {
+    font-family: 'Source Serif 4', 'Lucida Bright', Georgia, 'Times New Roman', serif;
     color: #4a4a4a;
     text-decoration: none;
     font-weight: 500;
@@ -300,7 +311,9 @@ body:has(#home) .hero-main {
 
 .hero-greeting,
 .hero-name {
-    font-family: 'Lucida Bright Bold', 'Lucida Bright', 'Times New Roman', Georgia, serif;
+    /* Hero title intentionally keeps the original Lucida Bright (demibold);
+       !important overrides the global Source Serif 4 unification rule below. */
+    font-family: 'Lucida Bright', Georgia, 'Times New Roman', serif !important;
     font-size: clamp(3rem, 8vw, 6rem);
     font-weight: bold;
     line-height: 1.1;
@@ -336,7 +349,7 @@ body:has(#home) .hero-main {
 }
 
 .about-description {
-    font-family: 'Lucida Bright Bold', 'Lucida Bright', 'Times New Roman', Georgia, serif;
+    font-family: 'Source Serif 4', 'Lucida Bright', Georgia, 'Times New Roman', serif;
     font-size: 1.2rem;
     line-height: 1.8;
     color: #4a4a4a;
@@ -786,6 +799,56 @@ body:has(#home) .hero-main {
     border-radius: 15px;
     font-size: 0.8rem;
     font-weight: 500;
+}
+
+/* News & Insights */
+/* Keep news cards the same size as project cards instead of stretching a
+   lone card across the full grid row. */
+#news .cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 360px));
+    justify-content: center;
+}
+
+.news-intro {
+    max-width: 640px;
+    margin: 0 auto;
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.news-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+}
+
+.news-source {
+    font-weight: 600;
+    color: #5b73ff;
+}
+
+.news-type {
+    padding: 2px 10px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #00d4ff, #5b73ff);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.news-date {
+    color: #999;
+}
+
+.news-meta .news-date::before {
+    content: "·";
+    margin-right: 10px;
+    color: #ccc;
 }
 
 /* Experience */
@@ -1607,10 +1670,17 @@ body:has(#home) .hero-main {
 }
 
 .social-icon:hover {
-    background: rgba(0, 212, 255, 0.1);
     transform: translateY(-2px);
-    color: #00d4ff;
 }
+
+/* On hover, each icon adopts its platform's brand color (SVGs use
+   fill: currentColor, so setting `color` recolors the glyph). */
+.scholar-icon:hover   { color: #4285F4; background: rgba(66, 133, 244, 0.12); }   /* Google Scholar */
+.github-icon:hover    { color: #8957E5; background: rgba(137, 87, 229, 0.12); }   /* GitHub (purple) */
+.linkedin-icon:hover  { color: #0A66C2; background: rgba(10, 102, 194, 0.12); }   /* LinkedIn */
+.instagram-icon:hover { color: #E4405F; background: rgba(228, 64, 95, 0.12); }    /* Instagram */
+.youtube-icon:hover   { color: #FF0000; background: rgba(255, 0, 0, 0.10); }      /* YouTube */
+.bilibili-icon:hover  { color: #FB7299; background: rgba(251, 114, 153, 0.12); }  /* Bilibili (pink) */
 
 .footer p {
     color: #666;
@@ -1969,6 +2039,28 @@ img {
     box-shadow: 0 6px 20px rgba(0, 122, 255, 0.3) !important;
 }
 
+/* News card: place the article link and PDF link side by side */
+.news-links {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+
+/* Secondary (PDF) button: solid red fill with white text to signal a PDF. */
+.news-card .project-link-secondary {
+    background: linear-gradient(135deg, #e53935, #c62828) !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+.news-card .project-link-secondary:hover {
+    background: linear-gradient(135deg, #c62828, #b71c1c) !important;
+    color: #fff !important;
+}
+
 /* Responsive adjustments for project cards */
 @media (max-width: 768px) {
     .card-image {
@@ -2158,3 +2250,53 @@ img {
 		animation: fadeInUp 1s ease;
 	}
 } 
+/* ===== Global font unification =====
+   Apply Source Serif 4 site-wide, overriding third-party stylesheets (Bulma,
+   nerfies template, Google Fonts) that ship their own fonts on the
+   research/project sub-pages. Excluded, so they keep their own fonts:
+   code/monospace elements (inline code, bibtex, <pre>) and MathJax math
+   (elements with mjx- classes, which must render in a math serif face).
+   Because Source Serif 4 provides real weights across 300–900, the browser
+   uses genuine regular / medium / semibold / bold faces — no synthesis or
+   stroke tricks needed. The Hero title (.hero-greeting/.hero-name) is excluded
+   so it can keep the original Lucida Bright set on its own rule above. */
+body,
+body *:not(code):not(pre):not(kbd):not(samp):not(tt):not(.bibtex):not(.bibtex *):not([class*="mjx"]):not([class*="MathJax"]):not(.hero-greeting):not(.hero-name) {
+    font-family: 'Source Serif 4', 'Lucida Bright', Georgia, 'Times New Roman', serif !important;
+}
+
+code, pre, kbd, samp, tt, .bibtex, .bibtex * {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace !important;
+}
+
+/* Research sub-pages (nerfies/bulma template): make all headings bold.
+   Bulma ships .title at font-weight 600 and forces nested <strong> to
+   inherit that weight, so titles never look truly bold — bump them to 700. */
+.title,
+.title strong,
+.publication-title,
+.publication-title strong {
+    font-weight: 700 !important;
+}
+
+/* Research sub-pages: the "Paper" (PDF) button uses Bulma's dark style by
+   default. Recolor it to solid red with white text/icon so it consistently
+   signals a PDF, matching the PDF buttons elsewhere on the site. */
+.publication-links .external-link.button,
+a.external-link.button.is-dark {
+    background: linear-gradient(135deg, #e53935, #c62828) !important;
+    border-color: transparent !important;
+    color: #fff !important;
+}
+
+.publication-links .external-link.button:hover,
+a.external-link.button.is-dark:hover {
+    background: linear-gradient(135deg, #c62828, #b71c1c) !important;
+    color: #fff !important;
+}
+
+.publication-links .external-link.button .icon,
+.publication-links .external-link.button span,
+.publication-links .external-link.button i {
+    color: #fff !important;
+}
