@@ -2300,3 +2300,45 @@ a.external-link.button.is-dark:hover {
 .publication-links .external-link.button i {
     color: #fff !important;
 }
+
+/* ===== Hero title: reliable gradient on mobile =====
+   The desktop hero title stacks background-blend-mode + conic-gradient +
+   filter over background-clip:text — a combination mobile browsers (iOS
+   Safari / Android Chrome) render inconsistently, so the color looked
+   different on phones. On narrow screens, replace it with a single clean
+   linear gradient and drop the blend/filter/animation layers so the color is
+   identical and predictable across devices. */
+@media (max-width: 768px) {
+    .hero-greeting,
+    .hero-name {
+        background-image: linear-gradient(120deg, #00d4ff 0%, #5b73ff 50%, #ff6b9d 100%) !important;
+        background-size: auto !important;
+        background-position: 0 0 !important;
+        background-blend-mode: normal !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        -webkit-text-stroke: 0 !important;
+        filter: none !important;
+        text-shadow: none !important;
+        animation: fadeInUp 1s ease !important;
+    }
+}
+
+/* ===== Homepage section-title shadows =====
+   Shadow color follows the text color. The large headings use a cyan→blue→pink
+   gradient fill; a shadow can only be one color, so we tint it with a hue drawn
+   from that gradient (blue-purple) so it reads as belonging to the text.
+   Solid-color headings (category titles, Skills) use currentColor, so the
+   shadow tracks their actual text color exactly. */
+body:has(#home) .section-title,
+body:has(#home) .section-header h2 {
+    filter: drop-shadow(0 2px 5px rgba(91, 115, 255, 0.28));
+}
+
+/* Skills heading: no shadow (overrides the rule above). */
+body:has(#home) .skills-section .section-header h2 {
+    filter: none;
+    text-shadow: none;
+}
+
