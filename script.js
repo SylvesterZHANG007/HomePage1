@@ -120,10 +120,13 @@ const PageTransition = {
                 const navMenu = document.querySelector('.nav-menu');
                 const navToggle = document.querySelector('.nav-toggle');
                 const navOverlay = document.querySelector('.nav-overlay');
-                
+
                 navMenu.classList.remove('active');
                 navToggle.classList.remove('active');
                 navOverlay.classList.remove('active');
+                // Restore body scroll — without this the page stays locked
+                // (overflow: hidden set on open) and can't scroll until reload.
+                document.body.style.overflow = '';
             });
         });
 

@@ -941,6 +941,7 @@ body:has(#home) .hero-main {
     cursor: pointer;
 }
 
+
 .experience-category:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
@@ -964,6 +965,45 @@ body:has(#home) .hero-main {
 
 .experience-item {
     max-width: 100%;
+    position: relative;
+}
+
+/* Company logo pinned to the top-right of the experience card.
+   Nudged upward (negative top) so it sits near the very top edge, and shown
+   in full — width controls the size, height stays auto with no max-height cap. */
+.experience-logo {
+    position: absolute;
+    /* Vertically centered on the job title row. */
+    top: 34px;
+    right: 20px;
+    width: 104px;
+    height: auto;
+    object-fit: contain;
+    /* Override the global img { border-radius: 12px } — the logo is square. */
+    border-radius: 0 !important;
+}
+
+/* Amazon logo has a taller aspect ratio than Insta360; size it to match
+   the same row height and nudge to sit centered on the title. */
+.experience-logo-amazon {
+    width: 92px;
+    top: 26px;
+}
+
+/* Keep the header text from running under the logo. */
+.experience-item .experience-header {
+    padding-right: 125px;
+}
+
+@media (max-width: 480px) {
+    .experience-logo {
+        width: 80px;
+        top: -2px;
+        right: 2px;
+    }
+    .experience-item .experience-header {
+        padding-right: 92px;
+    }
 }
 
 .experience-header {
@@ -2383,3 +2423,75 @@ body:has(#home) .skills-section .section-header h2 {
     text-shadow: none;
 }
 
+
+/* ===== News timeline (About → Research) =====
+   Simple dated list: date on the left, announcement on the right, newest
+   first, styled to match the site. */
+.news-timeline {
+    list-style: none;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 14px 0 0;            /* right padding leaves room for scrollbar */
+    /* Scrollable window sized to show 3 full items with a hint of the next,
+       signaling there is more to scroll. */
+    max-height: 122px;
+    overflow-y: auto;
+    scrollbar-width: thin;                       /* Firefox */
+    scrollbar-color: #5b73ff rgba(0, 0, 0, 0.06);
+}
+
+/* WebKit scrollbar (Chrome/Safari/Edge) */
+.news-timeline::-webkit-scrollbar {
+    width: 6px;
+}
+.news-timeline::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 3px;
+}
+.news-timeline::-webkit-scrollbar-thumb {
+    background: linear-gradient(#00d4ff, #5b73ff);
+    border-radius: 3px;
+}
+
+.news-timeline-item {
+    display: flex;
+    gap: 20px;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    line-height: 1.4;
+}
+
+.news-timeline-item:last-child {
+    border-bottom: none;
+}
+
+.news-timeline-date {
+    flex: 0 0 108px;
+    font-weight: 600;
+    color: #5b73ff;
+    font-variant-numeric: tabular-nums;
+}
+
+.news-timeline-text {
+    color: #333;
+}
+
+.news-timeline-text a {
+    color: #5b73ff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(91, 115, 255, 0.4);
+}
+
+.news-timeline-text a:hover {
+    border-bottom-color: #5b73ff;
+}
+
+@media (max-width: 480px) {
+    .news-timeline-item {
+        flex-direction: column;
+        gap: 2px;
+    }
+    .news-timeline-date {
+        flex-basis: auto;
+    }
+}
