@@ -70,7 +70,7 @@ body {
 
 /* Sections */
 .section {
-    padding: 30px 0;
+    padding: 15px 0 18px 0;
 }
 
 .section-gray {
@@ -79,14 +79,14 @@ body {
 
 .section-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
 }
 
 .section-title {
     font-family: 'Source Serif 4', 'Lucida Bright', Georgia, 'Times New Roman', serif;
     font-size: clamp(2.8rem, 5.5vw, 4rem);
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     background: linear-gradient(135deg, #00d4ff, #5b73ff, #ff6b9d);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -99,7 +99,7 @@ body {
     font-family: 'Source Serif 4', 'Lucida Bright', Georgia, 'Times New Roman', serif;
     font-size: clamp(2rem, 4vw, 2.5rem);
     font-weight: 700;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     background: linear-gradient(135deg, #00d4ff, #5b73ff, #ff6b9d);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -274,46 +274,29 @@ body:has(#home) .hero {
     background: #ffffff;
 }
 
-/* Parallax image layer: sits behind the hero text and reacts to the mouse. */
+/* Hero image layer: static background image sitting behind the hero text. */
 .hero-parallax {
     position: absolute;
     inset: 0;
     z-index: 1;
     overflow: hidden;
     pointer-events: none;          /* never blocks text/links */
-    perspective: 900px;            /* enables the subtle 3D tilt */
 }
 
 .hero-parallax-img {
     position: absolute;
-    /* Oversize + center so translate/tilt never exposes white edges. */
-    top: -8%;
-    left: -8%;
-    width: 116%;
-    height: 116%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
-    will-change: transform;
-    transform: translate3d(0, 0, 0);
-    transition: transform 0.25s ease-out;   /* smooth return when mouse leaves */
 }
 
-/* Motion-sensitive users: keep it perfectly still. */
-@media (prefers-reduced-motion: reduce) {
-    .hero-parallax-img { transition: none; }
-}
-
-/* Mobile: parallax is disabled (see script.js) and the full image is shown
-   uncropped (contain) at natural size instead of the oversized cover crop. */
+/* Mobile: show the full image uncropped instead of the cover crop. */
 @media (max-width: 768px) {
     .hero-parallax-img {
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
         object-fit: contain;
-        transform: none !important;
-        transition: none !important;
     }
 }
 
@@ -672,7 +655,7 @@ body:has(#home) .hero-main {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 5px;
 }
 
 /* Paper Title */
@@ -680,15 +663,15 @@ body:has(#home) .hero-main {
     font-size: 1.4rem;
     font-weight: 700;
     color: #333;
-    margin: 0 0 8px 0;
-    line-height: 1.3;
+    margin: 0 0 4px 0;
+    line-height: 1.25;
 }
 
 /* Paper Authors */
 .paper-authors {
     color: #000;
-    line-height: 1.4;
-    margin: 0 0 8px 0;
+    line-height: 1.35;
+    margin: 0 0 4px 0;
     font-size: 0.95rem;
     font-style: italic;
 }
@@ -696,8 +679,8 @@ body:has(#home) .hero-main {
 /* Paper Venue */
 .paper-venue {
     color: #007bff;
-    line-height: 1.4;
-    margin: 0 0 12px 0;
+    line-height: 1.35;
+    margin: 0 0 4px 0;
     font-size: 0.9rem;
     font-weight: 600;
 }
@@ -705,8 +688,8 @@ body:has(#home) .hero-main {
 /* Paper Description */
 .paper-description {
     color: #000;
-    line-height: 1.6;
-    margin: 0 0 12px 0;
+    line-height: 1.5;
+    margin: 0 0 4px 0;
     font-size: 0.95rem;
 }
 
@@ -817,14 +800,13 @@ body:has(#home) .hero-main {
     font-size: 1.3rem;
     font-weight: 600;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
 }
 
 .card-content p {
     color: #666;
-    line-height: 1.6;
-    margin-bottom: 15px;
-    flex-grow: 1;
+    line-height: 1.5;
+    margin-bottom: 4px;
 }
 
 .project-tags {
@@ -862,7 +844,7 @@ body:has(#home) .hero-main {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-size: 0.85rem;
 }
 
@@ -2058,16 +2040,21 @@ img {
     font-weight: 700 !important;
     color: #1a1a1a !important;
     line-height: 1.4 !important;
-    margin-bottom: 16px !important;
+    margin-bottom: 8px !important;
+    /* Reserve the tallest title height (three lines) so the description, tags,
+       and button all start at the same offset across cards. */
+    min-height: 84px;
     letter-spacing: -0.01em !important;
 }
 
 .project-card-with-image p {
     font-size: 1rem !important;
-    line-height: 1.6 !important;
+    line-height: 1.5 !important;
     color: #4a5568 !important;
-    margin-bottom: 20px !important;
-    flex: 1;
+    margin-bottom: 8px !important;
+    /* Reserve the tallest description height so the tag block and button line
+       up across every card in the grid. */
+    min-height: 168px;
     font-weight: 400 !important;
 }
 
@@ -2075,8 +2062,13 @@ img {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-bottom: 20px;
+    /* Match the inter-tag gap so tag-to-tag and tag-to-button spacing is even. */
+    margin-bottom: 8px;
     align-items: center;
+    /* Reserve the height of three tag rows so cards with fewer tags still
+       line their buttons up with the rest of the grid. */
+    min-height: 112px;
+    justify-content: flex-start;
 }
 
 .project-tags .tag {
@@ -2127,7 +2119,6 @@ img {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: auto;
 }
 
 /* Secondary (PDF) button: solid red fill with white text to signal a PDF. */
@@ -2494,4 +2485,23 @@ body:has(#home) .skills-section .section-header h2 {
     .news-timeline-date {
         flex-basis: auto;
     }
+}
+
+/* Media card sits alone in its section, so it doesn't need the project grid's
+   reserved title/description/tag heights; let it size to its content and keep
+   the same even 8px rhythm throughout. */
+.news-card .card-content h3,
+.news-card .card-content p,
+.news-card .project-tags {
+    min-height: 0 !important;
+}
+
+/* Tighten the gap between the About block's CV button and the News section. */
+section.section:has(.about-content) {
+    padding-bottom: 4px;
+}
+
+/* News timeline keeps a tighter gap below its heading than other sections. */
+#news-timeline .section-header {
+    margin-bottom: 18px;
 }

@@ -204,45 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Mouse-driven parallax for the hero image: the "camera" shifts and tilts
-// toward the cursor for a subtle 3D feel. Disabled on touch / reduced-motion.
-(() => {
-    const hero = document.querySelector('.hero');
-    const img = document.querySelector('.hero-parallax-img');
-    if (!hero || !img) return;
-
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isTouch = window.matchMedia('(hover: none)').matches;
-    if (prefersReduced || isTouch) return;
-
-    const MAX_SHIFT = 12;   // px of image travel at the edges (subtle)
-    const MAX_TILT = 2.5;   // deg of 3D tilt at the edges (subtle)
-    let raf = null;
-
-    const onMove = (e) => {
-        const rect = hero.getBoundingClientRect();
-        // -1 .. 1 relative to hero center
-        const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-        const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-        if (raf) cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(() => {
-            img.style.transition = 'transform 0.15s ease-out';
-            img.style.transform =
-                `translate3d(${-nx * MAX_SHIFT}px, ${-ny * MAX_SHIFT}px, 0)` +
-                ` rotateY(${nx * MAX_TILT}deg) rotateX(${-ny * MAX_TILT}deg) scale(1.02)`;
-        });
-    };
-
-    const onLeave = () => {
-        if (raf) cancelAnimationFrame(raf);
-        img.style.transition = 'transform 0.4s ease-out';
-        img.style.transform = 'translate3d(0, 0, 0)';
-    };
-
-    hero.addEventListener('mousemove', onMove);
-    hero.addEventListener('mouseleave', onLeave);
-})();
-
 // Add loading animation for images
 document.addEventListener('DOMContentLoaded', () => {
     const images = document.querySelectorAll('img');
