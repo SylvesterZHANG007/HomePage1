@@ -2289,7 +2289,8 @@ img {
 		0 0 22px rgba(0, 247, 255, 0.10);
 	filter: saturate(1.3) contrast(1.15);
 	will-change: background-position, filter;
-	animation: fadeInUp 1s ease, prismShift 3s ease-in-out infinite, sparkle 1.5s linear infinite;
+	/* sparkle (a 1.5s brightness pulse) removed: it read as flickering. */
+	animation: fadeInUp 1s ease, prismShift 3s ease-in-out infinite;
 }
 
 @keyframes prismShift {
@@ -2752,4 +2753,37 @@ body:has(#home) .hero-content-center {
     .hero-words { white-space: nowrap; }
 
     .hero-caret { height: 1em; }
+}
+
+/* ===== Hero subtitle on mobile: plain gradient only =====
+   The desktop treatment stacks six gradient layers with screen / color-dodge /
+   multiply blending plus drop-shadow rims. Mobile browsers rasterise that
+   combination inconsistently over background-clip: text, which is what made the
+   subtitle look wrong on phones. Swap in a single linear gradient and drop the
+   blending, rim and drift so the colour renders identically everywhere. */
+@media (max-width: 768px) {
+    .hero-role,
+    .hero-focus,
+    .hero-words b {
+        background-image: linear-gradient(110deg, #00d4ff 0%, #5b73ff 45%, #ff6b9d 100%) !important;
+        background-size: auto !important;
+        background-position: 0 0 !important;
+        background-blend-mode: normal !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        -webkit-text-stroke: 0 !important;
+        filter: none !important;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) !important;
+    }
+
+    /* Keep the shared entrance, drop the gradient drift. */
+    .hero-role,
+    .hero-focus {
+        animation: fadeInUp 1s ease !important;
+    }
+
+    .hero-words b {
+        animation: none !important;
+    }
 }
