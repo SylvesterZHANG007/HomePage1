@@ -37,7 +37,7 @@
     <meta name="format-detection" content="telephone=no">
     <title>Siyuan Zhang - Portfolio</title>
     <link rel="icon" type="image/svg+xml" href="images/sylvester_robot_icon.svg">
-    <link rel="stylesheet" href="styles.css?v=20260727d">
+    <link rel="stylesheet" href="styles.css?v=20260728a">
 </head>
 <body>
     <!-- Navigation -->
@@ -75,12 +75,24 @@
             <div class="hero-main">
                 <h1 class="hero-greeting">Hi, I'm</h1>
                 <h1 class="hero-name">Sylvester Zhang!</h1>
+                <p class="hero-role">Doctoral Researcher at <b>Michigan Robotics</b>.</p>
+                <p class="hero-focus">
+                    <span>Specialized in</span>
+                    <span class="hero-words" aria-live="polite"
+                          data-words="Physical Intelligence.|Robotics.|Embodied AI."><b>Physical Intelligence.</b></span><span class="hero-caret" aria-hidden="true"></span>
+                </p>
             </div>
         </div>
+        <!-- Scroll cue: bobbing arrow hinting there is more below -->
+        <a class="hero-scroll-cue" href="#about" aria-label="Scroll down">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </a>
     </section>
 
     <!-- About Section -->
-    <section class="section">
+    <section id="about" class="section">
         <div class="container">
             <div class="about-content">
                 <h2 class="section-title">About Me</h2>
@@ -603,6 +615,6 @@
         </div>
     </footer>
 
-    <script src="script.js?v=20260727a"></script>
+    <script src="script.js?v=20260727u"></script>
 </body>
 </html> 

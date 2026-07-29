@@ -2505,3 +2505,185 @@ section.section:has(.about-content) {
 #news-timeline .section-header {
     margin-bottom: 18px;
 }
+
+/* ===== Section headings: make the gradient visible across the text =====
+   The gradient background spans the full-width h2 box, so centered text only
+   sampled a narrow slice of it and looked almost flat. Shrinking the box to
+   the text itself (inline-block) maps the whole cyan -> blue -> pink ramp
+   onto the letters. */
+.section-header h2,
+.section-title {
+    display: inline-block;
+    background-size: 100% 100%;
+}
+
+/* Keep the headings centered now that the box hugs the text. */
+.section-header,
+.about-content {
+    text-align: center;
+}
+
+/* Skills keeps its solid, left-aligned treatment. */
+.skills-section .section-header h2 {
+    display: block;
+    text-align: left;
+}
+
+/* ===== News timeline on mobile =====
+   Each entry wraps onto two lines (date above text) on narrow screens, so the
+   desktop 122px window would only reveal 1.5 entries. Size the window to three
+   stacked entries so mobile matches the desktop "3 visible, rest scrolls" feel. */
+@media (max-width: 480px) {
+    .news-timeline {
+        max-height: 258px;
+    }
+}
+
+/* ===== Hero subtitle lines: role + rotating research focus =====
+   These reuse the hero name's exact prismatic treatment (same layered
+   conic/linear gradients, blend modes, stroke, shadow, filter and animation)
+   so the whole block reads as one piece of type; only the size differs. */
+.hero-role,
+.hero-focus,
+.hero-words b {
+    /* Body typeface (Source Serif 4), matching the rest of the page copy.
+       Semibold here; the rotating keyword goes a step heavier still. */
+    font-weight: 650;
+    background-image:
+        radial-gradient(130% 130% at 8% 10%, rgba(255,255,255,0.45), transparent 62%),
+        radial-gradient(130% 130% at 92% 18%, rgba(255,255,255,0.28), transparent 60%),
+        conic-gradient(from 12deg at 50% 50%, var(--prism-a), var(--prism-b), var(--prism-c), var(--prism-a)),
+        linear-gradient(100deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.0) 28%, rgba(255,255,255,0.45) 60%, rgba(255,255,255,0.0) 100%),
+        conic-gradient(from -24deg at 55% 46%, transparent 0 10%, var(--prism-amber) 11% 13%, transparent 14% 39%, var(--prism-amber) 40% 42%, transparent 43% 100%),
+        linear-gradient(180deg, rgba(11,27,58,0.25), rgba(11,27,58,0.0) 40%);
+    background-size: 240% 240%, 240% 240%, 180% 180%, 350% 100%, 200% 200%, 100% 100%;
+    background-position: 0% 50%, 100% 50%, 50% 50%, -140% 0%, 40% 60%, 50% 50%;
+    background-blend-mode: screen, screen, normal, screen, color-dodge, multiply;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Rim via drop-shadow, not -webkit-text-stroke. These lines are gradient
+       text (background-clip: text with a transparent fill), so a centered
+       text-stroke lays its inward half over the gradient and the halves pool
+       inside counters like o, e and a - the smudge you see at small sizes.
+       paint-order can't fix it either: the "fill" is transparent, so it has
+       nothing to cover the stroke with. drop-shadow traces the rendered glyph
+       silhouette and paints outside and beneath it, leaving interiors clean. */
+    -webkit-text-stroke: 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+    filter:
+        saturate(1.2) contrast(1.05)
+        drop-shadow(0.5px 0 0 rgba(255,255,255,0.75))
+        drop-shadow(-0.5px 0 0 rgba(255,255,255,0.75))
+        drop-shadow(0 0.5px 0 rgba(255,255,255,0.75))
+        drop-shadow(0 -0.5px 0 rgba(255,255,255,0.75));
+    animation: prismShift 3s ease-in-out infinite;
+}
+
+.hero-role,
+.hero-focus {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    line-height: 1.75;              /* roomier than the default */
+}
+
+/* Institution name carries the same weight as the rotating keyword. */
+.hero-role b {
+    font-weight: 700;
+}
+
+.hero-role {
+    margin-top: 46px;               /* pushed further below the name */
+    font-size: clamp(1.3rem, 2.9vw, 2.2rem);
+}
+
+.hero-focus {
+    margin-top: 16px;               /* wider gap between the two lines */
+    font-size: clamp(1.3rem, 2.9vw, 2.2rem);
+    white-space: nowrap;
+}
+
+/* --- Rotating keyword: word is wiped in/out behind a moving cursor --- */
+.hero-words {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    text-align: left;
+    /* Reserve the widest keyword so the line above doesn't reflow while typing. */
+    min-width: 1ch;
+}
+
+/* Blinking caret at the typing position. It carries no text, so it needs an
+   explicit height - an empty inline-block collapses to zero and disappears. */
+.hero-caret {
+    display: inline-block;
+    width: 2px;
+    height: 1.05em;
+    margin-left: 3px;
+    vertical-align: -0.15em;
+    background: var(--prism-b);
+    animation: caretBlink 1s step-end infinite;
+}
+
+@keyframes caretBlink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0; }
+}
+
+.hero-words b {
+    display: inline-block;
+    white-space: nowrap;
+    /* Bold, matching the emphasised institution name on the line above. */
+    font-weight: 700;
+    -webkit-text-stroke: 0;
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-role,
+    .hero-focus,
+    .hero-words b { animation: none; }
+    .hero-caret { animation: none; opacity: 0; }
+}
+
+/* --- Scroll cue: bobbing chevron at the bottom of the hero --- */
+.hero-scroll-cue {
+    position: absolute;
+    left: 50%;
+    bottom: 34px;
+    transform: translateX(-50%);
+    z-index: 3;
+    color: var(--prism-b);
+    opacity: 0.85;
+    animation: heroBob 1.6s ease-in-out infinite;
+    transition: opacity 0.25s ease;
+}
+
+.hero-scroll-cue:hover { opacity: 1; }
+
+@keyframes heroBob {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(9px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-scroll-cue { animation: none; }
+}
+
+@media (max-width: 480px) {
+    .hero-role { margin-top: 32px; }
+    .hero-focus { white-space: normal; }
+    .hero-scroll-cue { bottom: 22px; }
+}
+
+/* ===== Hero block: true vertical centering =====
+   .hero-content-center is min-height: 100vh and flex-centres its children, but
+   it sits inside .hero's 70px top padding (navbar clearance) and smaller bottom
+   padding, so the centred block landed ~20px above the optical centre. Nudging
+   the block down restores balance; measured against the hero box, the space
+   above and below the text now match. */
+body:has(#home) .hero-content-center {
+    transform: translateY(22px);
+}

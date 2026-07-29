@@ -323,4 +323,60 @@ function toggleAbstract(abstractId) {
     } else {
         abstractElement.style.display = 'none';
     }
-} 
+}
+
+// Rotating keyword in the hero subtitle, typewriter style: the current word is
+// erased one character at a time, then the next word is typed in one character
+// at a time. A width-collapse "wipe" was tried first, but clipping a box only
+// hides the text - it never reads as erasing, and the swap at zero width looked
+// like the word changing behind a vanished cursor. Deleting real characters
+// makes the erase unmistakable.
+(() => {
+    const wrapper = document.querySelector('.hero-words');
+    if (!wrapper) return;
+
+    const target = wrapper.querySelector('b') || wrapper;
+    const words = (wrapper.dataset.words || '').split('|').filter(Boolean);
+    if (words.length < 2) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const TYPE = 30;     // ms per character typed
+    const ERASE = 30;    // ms per character erased
+    const HOLD = 2000;   // ms the complete word rests before erasing
+    const PAUSE = 320;   // ms of stillness after erasing, before typing
+
+    let index = 0;
+    let text = words[0];
+
+    const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+    const erase = async () => {
+        while (text.length) {
+            text = text.slice(0, -1);
+            target.textContent = text;
+            await wait(ERASE);
+        }
+    };
+
+    const type = async (word) => {
+        for (let i = 1; i <= word.length; i++) {
+            text = word.slice(0, i);
+            target.textContent = text;
+            await wait(TYPE);
+        }
+    };
+
+    const run = async () => {
+        // eslint-disable-next-line no-constant-condition
+        while (true) {
+            await wait(HOLD);
+            await erase();
+            await wait(PAUSE);
+            index = (index + 1) % words.length;
+            await type(words[index]);
+        }
+    };
+
+    run();
+})();
