@@ -2577,7 +2577,9 @@ section.section:has(.about-content) {
         drop-shadow(-0.5px 0 0 rgba(255,255,255,0.75))
         drop-shadow(0 0.5px 0 rgba(255,255,255,0.75))
         drop-shadow(0 -0.5px 0 rgba(255,255,255,0.75));
-    animation: prismShift 3s ease-in-out infinite;
+    /* Rise in together with the hero name (same fadeInUp, same 1s duration) so
+       the whole block lands as one unit, then keep the gradient drifting. */
+    animation: fadeInUp 1s ease, prismShift 3s ease-in-out infinite;
 }
 
 .hero-role,
@@ -2608,6 +2610,9 @@ section.section:has(.about-content) {
 .hero-words {
     display: inline-block;
     position: relative;
+    /* vertical-align: top keeps the keyword's line box in step with its lead-in
+       (baseline alignment shifted it further); the small residual offset is
+       corrected below. */
     vertical-align: top;
     text-align: left;
     /* Reserve the widest keyword so the line above doesn't reflow while typing. */
@@ -2637,6 +2642,13 @@ section.section:has(.about-content) {
     /* Bold, matching the emphasised institution name on the line above. */
     font-weight: 700;
     -webkit-text-stroke: 0;
+    /* The shared rule above also handed this element fadeInUp, so the keyword
+       ran its own entrance on top of the parent's and drifted ~20px behind
+       "Specialized in" - the overlap on load. Overriding animation with just
+       the gradient drift keeps it riding along with the parent instead. The
+       gradient fill itself stays (inherited from the shared rule); stripping it
+       here turned the word black. */
+    animation: prismShift 3s ease-in-out infinite;
 }
 
 
@@ -2686,4 +2698,58 @@ section.section:has(.about-content) {
    above and below the text now match. */
 body:has(#home) .hero-content-center {
     transform: translateY(22px);
+}
+
+/* ===== Hero name: room for descenders =====
+   line-height: 1.1 is tighter than this serif's descender depth, so the tails
+   of g and y fell outside the line box and background-clip: text cropped them.
+   A looser line box plus a little bottom padding keeps them intact. */
+.hero-greeting,
+.hero-name {
+    line-height: 1.22;
+    padding-bottom: 0.08em;
+}
+
+/* Mobile hero: scale the type down a step, tighten the vertical rhythm, and
+   keep the subtitle and scroll cue clear of each other on short screens. */
+@media (max-width: 768px) {
+    .hero-greeting,
+    .hero-name {
+        font-size: clamp(2.4rem, 11vw, 3.6rem);
+    }
+
+    .hero-role {
+        margin-top: 26px;
+        font-size: clamp(1.05rem, 4.4vw, 1.5rem);
+    }
+
+    .hero-focus {
+        margin-top: 10px;
+        font-size: clamp(1rem, 4.1vw, 1.4rem);
+    }
+}
+
+@media (max-width: 480px) {
+    /* Keep "Sylvester Zhang!" on one line instead of breaking into three. */
+    .hero-greeting,
+    .hero-name {
+        font-size: clamp(1.8rem, 9.2vw, 2.6rem);
+        white-space: nowrap;
+    }
+
+    .hero-role {
+        margin-top: 22px;
+        font-size: clamp(0.95rem, 4vw, 1.3rem);
+    }
+
+    /* Let the keyword sit on its own line under the lead-in, with the caret
+       following it rather than being pushed out of view. */
+    .hero-focus {
+        font-size: clamp(0.95rem, 3.9vw, 1.25rem);
+        white-space: normal;
+    }
+
+    .hero-words { white-space: nowrap; }
+
+    .hero-caret { height: 1em; }
 }
