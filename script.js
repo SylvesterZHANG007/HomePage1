@@ -192,8 +192,11 @@ document.addEventListener('DOMContentLoaded', () => {
     PageTransition.init();
     
     // Observe cards and sections for animations
+    // The project grid inside #pcfAll is display:none until expanded, so it never
+    // trips the observer and would stay stuck at opacity:0 / translateY(30px).
+    // Those inline styles also fight the FLIP transition, so skip it here.
     const elementsToAnimate = document.querySelectorAll(
-        '.card, .category-card-large, .metric-card, .timeline-item, .project-card-with-image, .research-card-horizontal'
+        '.card, .category-card-large, .metric-card, .timeline-item, .research-card-horizontal, .project-card-with-image:not(#pcfAll .project-card-with-image)'
     );
     
     elementsToAnimate.forEach(el => {
@@ -379,4 +382,149 @@ function toggleAbstract(abstractId) {
     };
 
     run();
+})();
+
+// Project coverflow: cards are laid out around an active index. Each card's
+// distance from the centre decides its offset, scale, blur and stacking, so the
+// middle one reads as the focus and the outer ones recede. It drifts on its own,
+// and the mouse wheel or the arrows scrub through it.
+(() => {
+    const root = document.getElementById('pcf');
+    if (!root) return;
+
+    const stage = root.querySelector('.pcf-stage');
+    const cards = [...root.querySelectorAll('.pcf-card')];
+    if (cards.length < 2) return;
+
+    const prevBtn = root.querySelector('.pcf-prev');
+    const nextBtn = root.querySelector('.pcf-next');
+
+    const N = cards.length;
+    const STEP = 235;      // px between adjacent card centres (tight enough
+                           // that the centre card overlaps its neighbours)
+    const AUTO_MS = 3000;  // dwell before drifting one card along
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let index = 0;
+    let timer = null;
+
+    // Shortest signed distance from `i` to the active index on a ring, so the
+    // carousel wraps without a jump when crossing the ends.
+    const ringOffset = (i) => {
+        let d = i - index;
+        if (d > N / 2) d -= N;
+        if (d < -N / 2) d += N;
+        return d;
+    };
+
+    const render = () => {
+        cards.forEach((card, i) => {
+            const d = ringOffset(i);
+            const a = Math.abs(d);
+            // Depth cues: shrink and blur with distance, and fade the far ones out.
+            const scale = a === 0 ? 1 : a === 1 ? 0.78 : 0.6;
+            const blur = a === 0 ? 0 : a === 1 ? 0 : 3;
+            // The container no longer clips (that sliced the shadows), so cards
+            // beyond the third ring are hidden outright.
+            const opacity = a <= 1 ? 1 : a === 2 ? 0.5 : 0;
+            // Squeeze outer cards inward so they peek rather than march off-screen.
+            const x = d * STEP * (a <= 1 ? 1 : 0.86);
+
+            card.style.setProperty('--x', `${x}px`);
+            card.style.setProperty('--s', scale);
+            card.style.setProperty('--b', `${blur}px`);
+            card.style.setProperty('--o', opacity);
+            // Centre on top so it overlaps the neighbours on both sides.
+            card.style.setProperty('--z', String(100 - a * 10));
+            card.style.visibility = opacity === 0 ? 'hidden' : 'visible';
+            card.classList.toggle('is-active', a === 0);
+            card.setAttribute('aria-hidden', a === 0 ? 'false' : 'true');
+        });
+    };
+
+    const go = (delta) => {
+        index = (index + delta + N) % N;
+        render();
+    };
+
+    const startAuto = () => {
+        if (reduce) return;
+        stopAuto();
+        timer = setInterval(() => go(1), AUTO_MS);
+    };
+    const stopAuto = () => {
+        if (timer) clearInterval(timer);
+        timer = null;
+    };
+
+    nextBtn?.addEventListener('click', () => { go(1); startAuto(); });
+    prevBtn?.addEventListener('click', () => { go(-1); startAuto(); });
+
+    // Wheel scrubbing: accumulate deltas so a trackpad's many small events don't
+    // fly through the whole carousel at once. Only claim the gesture when it is
+    // mostly horizontal-ish scrolling over the carousel; otherwise let the page
+    // scroll normally.
+    let wheelAcc = 0;
+    let wheelLock = false;
+    root.addEventListener('wheel', (e) => {
+        const amount = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+        wheelAcc += amount;
+        if (Math.abs(wheelAcc) < 60 || wheelLock) return;
+        e.preventDefault();
+        go(wheelAcc > 0 ? 1 : -1);
+        wheelAcc = 0;
+        wheelLock = true;
+        setTimeout(() => { wheelLock = false; }, 260);
+        startAuto();
+    }, { passive: false });
+
+    // Pause the drift while the pointer rests on the carousel.
+    root.addEventListener('mouseenter', stopAuto);
+    root.addEventListener('mouseleave', startAuto);
+
+    // Touch swipe.
+    let touchX = null;
+    stage.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; stopAuto(); }, { passive: true });
+    stage.addEventListener('touchend', (e) => {
+        if (touchX === null) return;
+        const dx = e.changedTouches[0].clientX - touchX;
+        if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+        touchX = null;
+        startAuto();
+    }, { passive: true });
+
+    // Clicking a side card brings it to the centre instead of following its link.
+    cards.forEach((card, i) => {
+        card.addEventListener('click', (e) => {
+            if (ringOffset(i) !== 0) {
+                e.preventDefault();
+                index = i;
+                render();
+                startAuto();
+            }
+        });
+    });
+
+    render();
+    startAuto();
+})();
+
+// Project list expand/collapse: a plain swap between the carousel and the full
+// grid, no transition. (Animated versions of this were tried and dropped.)
+(() => {
+    const btn = document.getElementById('pcfExpand');
+    const panel = document.getElementById('pcfAll');
+    const carousel = document.getElementById('pcf');
+    if (!btn || !panel || !carousel) return;
+
+    const label = btn.querySelector('.pcf-expand-label');
+    let open = false;
+
+    btn.addEventListener('click', () => {
+        open = !open;
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (label) label.textContent = open ? 'Collapse' : 'See all projects';
+        panel.classList.toggle('is-open', open);
+        carousel.classList.toggle('is-hidden', open);
+    });
 })();

@@ -2597,7 +2597,9 @@ section.section:has(.about-content) {
 }
 
 .hero-role {
-    margin-top: 46px;               /* pushed further below the name */
+    /* Closer to the 16px rhythm between the two subtitle lines; 46px made the
+       name feel detached from the block below it. */
+    margin-top: 26px;
     font-size: clamp(1.3rem, 2.9vw, 2.2rem);
 }
 
@@ -2786,4 +2788,449 @@ body:has(#home) .hero-content-center {
     .hero-words b {
         animation: none !important;
     }
+}
+
+/* ===== About: name heading, aka line, text-left / photo-right ===== */
+.about-aka {
+    text-align: center;
+    /* Pulled up tight against the name above it. */
+    margin: -14px 0 24px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #000;
+    letter-spacing: 0.01em;
+}
+
+.about-pron {
+    font-style: italic;
+    color: #000;
+}
+
+/* "Publishes as" is a lead-in, not part of the name: lighter and unbolded so
+   the legal name still reads as the emphasis. */
+.about-aka-label {
+    font-weight: 400;
+    font-style: italic;
+    color: #4a4a4a;
+}
+
+.about-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 244px;
+    gap: 36px;
+    align-items: start;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: left;              /* .about-content centres by default */
+}
+
+.about-layout .about-description {
+    text-align: left;
+}
+
+.about-layout .about-description p {
+    margin: 0 0 14px;
+    /* Smaller than before, still a step above the 0.95rem aka line. */
+    font-size: 1.06rem;
+    line-height: 1.7;
+    color: #000;
+}
+
+.about-photo {
+    margin: 0;
+}
+
+.about-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.10);
+}
+
+/* Stack the photo above the text on narrow screens, and keep it modest. */
+@media (max-width: 768px) {
+    .about-layout {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .about-photo {
+        order: -1;
+        max-width: 220px;
+        margin: 0 auto;
+    }
+
+    .about-aka {
+        font-size: 0.92rem;
+        margin-bottom: 20px;
+    }
+}
+
+/* Bio links wrap the existing bolded terms, so they should inherit the cyan
+   emphasis rather than showing the browser's blue underline. The underline only
+   appears on hover, which keeps the paragraph clean while still signalling that
+   the names and institutions are clickable. */
+.about-description a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.about-description a strong {
+    color: #00d4ff;
+}
+
+.about-description a:hover {
+    border-bottom-color: rgba(0, 212, 255, 0.55);
+}
+
+/* ===== About side column: photo above a row of profile buttons =====
+   The column is sized so the buttons' bottom edge lands level with the last
+   line of the bio on the left. */
+.about-side {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.about-side .about-photo img {
+    /* Natural aspect ratio: no cover-crop, the column width sets the size. */
+    width: 100%;
+    height: auto;
+}
+
+/* Plain text links separated by pipes, in the style of academic homepages. */
+.about-links {
+    margin: 0;
+    text-align: center;
+    /* Sized so all four links fit on one line within the photo's width. */
+    font-size: 0.7rem;
+    line-height: 1.7;
+    white-space: nowrap;
+}
+
+.about-links a {
+    color: #0645ad;
+    text-decoration: none;
+    margin: 0 1px;
+}
+
+.about-links a:hover {
+    text-decoration: underline;
+}
+
+.about-links .pipe {
+    color: #9aa1ac;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .about-side {
+        order: -1;
+        max-width: 260px;
+        margin: 0 auto;
+    }
+
+}
+
+/* Keep the collaboration invitation on a single line. */
+.about-contact .contact-text {
+    max-width: none;
+    white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+    /* Too narrow to hold it on one line; let it wrap again. */
+    .about-contact .contact-text {
+        white-space: normal;
+    }
+}
+
+/* Tighter vertical rhythm around the News timeline: the gap below the About
+   block's email line and above the Research heading was too airy. */
+#news-timeline {
+    padding-top: 4px;
+    padding-bottom: 6px;
+}
+
+#news-timeline .section-header {
+    margin-bottom: 12px;
+}
+
+/* The email line carried a 16px bottom margin, which was most of the airy gap
+   before the News heading. */
+.about-contact .contact-email {
+    margin-bottom: 2px;
+}
+
+/* ===== Project coverflow carousel =====
+   Cards sit absolutely positioned around a centre point. JS assigns each one an
+   offset from the active index; the transform below turns that offset into
+   position, scale and blur, so the middle card is largest, its neighbours are
+   smaller, and anything further out is smaller still and blurred. */
+.pcf {
+    position: relative;
+    height: 400px;
+    margin: 0 auto;
+    max-width: 1100px;
+    /* No overflow: hidden here. Clipping at the container edge sliced the cards'
+       soft shadows mid-gradient, which read as a hard light/dark seam against
+       the section below. Off-stage cards are hidden via opacity instead. */
+    overflow: visible;
+}
+
+.pcf-stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    perspective: 1400px;
+    transform-style: preserve-3d;
+}
+
+.pcf-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 330px;
+    /* JS sets --x (px), --s (scale), --b (blur px), --o (opacity), --z. */
+    transform: translate(-50%, -50%) translateX(var(--x, 0px)) scale(var(--s, 1));
+    filter: blur(var(--b, 0px));
+    opacity: var(--o, 1);
+    z-index: var(--z, 1);
+    transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 0.55s ease, opacity 0.55s ease;
+    background: linear-gradient(135deg, #f8fbff, #eef2ff);
+    border-radius: 16px;
+    /* Same shadow scale as the research cards. */
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.08);
+    overflow: hidden;
+}
+
+.pcf-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.pcf-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.pcf-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
+}
+
+.pcf-body {
+    padding: 14px 16px 18px;
+    text-align: center;
+}
+
+.pcf-body h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 10px;
+    line-height: 1.35;
+    /* Keep every card the same height regardless of title length. */
+    min-height: 2.7em;
+}
+
+.pcf-body .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 6px;
+    justify-content: center;
+    margin: 0;
+    min-height: 0 !important;
+}
+
+.pcf-body .project-tags .tag {
+    font-size: 0.72rem;
+    padding: 3px 9px;
+}
+
+/* Only the centre card is clickable; the rest are decorative until centred. */
+.pcf-card:not(.is-active) .pcf-link {
+    pointer-events: none;
+}
+
+/* Deepen only under the pointer, matching the research cards' hover. */
+.pcf-card.is-active:hover {
+    box-shadow: 0 12px 40px rgba(0, 123, 255, 0.2);
+}
+
+/* Arrow controls */
+.pcf-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    color: #5b73ff;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.pcf-prev { left: 8px; }
+.pcf-next { right: 8px; }
+
+.pcf-nav:hover {
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+}
+
+@media (max-width: 768px) {
+    .pcf {
+        height: 360px;
+    }
+
+    .pcf-card {
+        width: 260px;
+    }
+
+    .pcf-image {
+        height: 155px;
+    }
+
+    .pcf-body h3 {
+        font-size: 0.95rem;
+    }
+
+    .pcf-nav {
+        width: 34px;
+        height: 34px;
+        font-size: 1.25rem;
+    }
+}
+
+/* ===== Project carousel: expand to the full grid =====
+   The carousel only shows a few projects at a time, so a chevron below it opens
+   the complete list as ordinary cards and collapses it again. */
+.pcf-expand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    margin: 6px auto 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #5b73ff;
+    font-family: inherit;
+    font-size: 0.86rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 10px;
+    transition: background 0.2s ease;
+}
+
+.pcf-expand:hover {
+    background: rgba(91, 115, 255, 0.08);
+}
+
+.pcf-expand svg {
+    /* Bobs to invite the click; flips over once the grid is open. */
+    animation: pcfBob 1.5s ease-in-out infinite;
+}
+
+.pcf-expand[aria-expanded="true"] svg {
+    animation: pcfBobUp 1.5s ease-in-out infinite;
+}
+
+@keyframes pcfBob {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(6px) rotate(0deg); }
+}
+
+@keyframes pcfBobUp {
+    0%, 100% { transform: translateY(0) rotate(180deg); }
+    50%      { transform: translateY(-6px) rotate(180deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pcf-expand svg,
+    .pcf-expand[aria-expanded="true"] svg {
+        animation: none;
+    }
+    .pcf-expand[aria-expanded="true"] svg {
+        transform: rotate(180deg);
+    }
+}
+
+/* The carousel and the flat grid are alternates, never both visible. The swap
+   itself is a FLIP animation in script.js: grid cards start out sitting on their
+   carousel counterparts and slide into place, so the layouts morph rather than
+   crossfading. */
+.pcf {
+    transition: opacity 0.3s ease;
+}
+
+.pcf.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    left: -9999px;
+}
+
+
+/* Collapsed: out of the flow entirely. */
+.pcf-all {
+    display: none;
+}
+
+.pcf-all.is-open {
+    display: block;
+    margin-top: 18px;
+}
+
+/* Laid out for measurement but not yet painted, so the FLIP start positions can
+   be read without a flash of the final layout. */
+.pcf-all.is-measuring {
+    visibility: hidden;
+}
+
+/* Michigan Robotics wordmark in place of the institution's name, sized to the
+   cap height of the surrounding line so it sits on the same baseline. */
+.hero-role-logo {
+    height: 2.7em;
+    width: auto;
+    vertical-align: -0.95em;
+    margin-left: 0.15em;
+    border-radius: 11px;
+    /* The line's gradient text-fill would otherwise wash the logo out. */
+    -webkit-text-fill-color: initial;
+    filter: none;
+}
+
+/* Tighten the two headings that sat too far from their content: Project above
+   the carousel, and Experience above the Teaching subheading. Scoped so the
+   other sections keep the 25px spacing set earlier. */
+#projects .section-header {
+    margin-bottom: 10px;
+}
+
+#experience .section-header {
+    margin-bottom: 8px;
+}
+
+/* This block added another 20px on top of the header's margin. */
+#experience .experience-categories {
+    margin-top: 6px;
 }
