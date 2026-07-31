@@ -538,3 +538,20 @@ function toggleAbstract(abstractId) {
         carousel.classList.toggle('is-hidden', open);
     });
 })();
+
+// Experience cards: each "Show details" button reveals its card's bullet list
+// while the summary paragraph stays put. The list is collapsed in CSS by
+// default; this only flips the open state and swaps the label.
+(() => {
+    document.querySelectorAll('.exp-toggle').forEach((btn) => {
+        const list = btn.parentElement.querySelector('.experience-achievements');
+        if (!list) return;
+
+        btn.addEventListener('click', () => {
+            const open = !list.classList.contains('is-open');
+            list.classList.toggle('is-open', open);
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            btn.setAttribute('aria-label', open ? 'Hide details' : 'Show details');
+        });
+    });
+})();

@@ -950,6 +950,67 @@ body:has(#home) .hero-main {
     position: relative;
 }
 
+/* When a category holds more than one role, separate them with a hairline rule
+   and breathing room so they don't read as one run-on entry. */
+.experience-item + .experience-item {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Course names in the teaching cards, in the same cyan-to-blue gradient the
+   about-section highlights use. */
+.course-name {
+    font-weight: 600;
+    background: linear-gradient(135deg, #00d4ff, #5b73ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Course number rides along inside the gradient, a touch lighter. */
+.course-code {
+    font-weight: 500;
+}
+
+/* Show/hide the bullet list, mirroring the projects carousel: a bare chevron
+   that bobs to invite the click and flips over once the list is open. No text,
+   no border, and only a hair of vertical room so the card stays tight. */
+.exp-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 0.5px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #2563eb;
+    line-height: 0;
+}
+
+.exp-toggle svg {
+    /* Bobs down while collapsed to invite the click. */
+    animation: pcfBob 1.5s ease-in-out infinite;
+}
+
+.exp-toggle[aria-expanded="true"] svg {
+    /* Points up and bobs upward once the list is open. */
+    animation: pcfBobUp 1.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .exp-toggle svg,
+    .exp-toggle[aria-expanded="true"] svg {
+        animation: none;
+    }
+    .exp-toggle[aria-expanded="true"] svg {
+        transform: rotate(180deg);
+    }
+}
+
+
 /* Company logo pinned to the top-right of the experience card.
    Nudged upward (negative top) so it sits near the very top edge, and shown
    in full — width controls the size, height stays auto with no max-height cap. */
@@ -970,6 +1031,13 @@ body:has(#home) .hero-main {
 .experience-logo-amazon {
     width: 92px;
     top: 26px;
+}
+
+/* Columbia crest is portrait (wordmark stacked over the shield); narrower than
+   the square logos so the full lockup reads at a comparable height. */
+.experience-logo-columbia {
+    width: 70px;
+    top: 20px;
 }
 
 /* Keep the header text from running under the logo. */
@@ -1039,13 +1107,20 @@ body:has(#home) .hero-main {
     font-size: 0.95rem;
     line-height: 1.5;
     color: #4a5568;
-    margin-bottom: 12px;
+    /* Tight gap to the chevron that follows (or to the bullet list when open). */
+    margin-bottom: 4px;
 }
 
+/* Collapsed by default: the bullet list is hidden until the toggle opens it.
+   The summary paragraph above stays visible regardless. */
 .experience-achievements {
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 4px;
+}
+
+.experience-achievements.is-open {
+    display: flex;
 }
 
 .achievement-item {
