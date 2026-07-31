@@ -3234,3 +3234,40 @@ body:has(#home) .hero-content-center {
 #experience .experience-categories {
     margin-top: 6px;
 }
+
+/* ===== Carousel on mobile: keep it inside the viewport =====
+   The cards are absolutely positioned and offset with fixed pixel translations,
+   which are not constrained by the container. On a phone those offsets pushed the
+   document to ~600px wide, so the browser zoomed the whole page out. Clipping the
+   carousel horizontally keeps the layout honest; the shadow seam this avoids on
+   desktop is not noticeable at these sizes. */
+@media (max-width: 768px) {
+    .pcf {
+        overflow-x: clip;
+        overflow-y: visible;
+        height: 330px;
+    }
+
+    /* Narrower cards so the neighbours still read at phone widths. */
+    .pcf-card {
+        width: 196px;
+    }
+
+    .pcf-image {
+        height: 130px;
+    }
+
+    .pcf-body {
+        padding: 10px 12px 14px;
+    }
+
+    .pcf-body h3 {
+        font-size: 0.86rem;
+        min-height: 2.6em;
+    }
+
+    .pcf-body .project-tags .tag {
+        font-size: 0.64rem;
+        padding: 2px 7px;
+    }
+}

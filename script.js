@@ -400,8 +400,10 @@ function toggleAbstract(abstractId) {
     const nextBtn = root.querySelector('.pcf-next');
 
     const N = cards.length;
-    const STEP = 235;      // px between adjacent card centres (tight enough
-                           // that the centre card overlaps its neighbours)
+    // Offsets are absolute pixels, so they must shrink with the viewport or the
+    // cards push the document wider than the screen.
+    const stepFor = () => (window.innerWidth <= 768 ? 118 : 235);
+    let STEP = stepFor();
     const AUTO_MS = 3000;  // dwell before drifting one card along
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -503,6 +505,14 @@ function toggleAbstract(abstractId) {
                 startAuto();
             }
         });
+    });
+
+    window.addEventListener('resize', () => {
+        const next = stepFor();
+        if (next !== STEP) {
+            STEP = next;
+            render();
+        }
     });
 
     render();
