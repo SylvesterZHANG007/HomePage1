@@ -21,6 +21,45 @@
 
 // ===== 页面过渡和动画系统 =====
 
+// Lock background scrolling without changing overflow or scrollbar visibility.
+// This keeps the viewport width identical before, during, and after an overlay.
+const PageScrollLock = {
+    locked: false,
+
+    init() {
+        document.addEventListener('wheel', (event) => this.guardPointerScroll(event), { passive: false });
+        document.addEventListener('touchmove', (event) => this.guardPointerScroll(event), { passive: false });
+        document.addEventListener('keydown', (event) => this.guardKeyboardScroll(event));
+    },
+
+    lock() {
+        if (this.locked) return;
+        this.locked = true;
+        document.body.classList.add('page-scroll-locked');
+    },
+
+    unlock() {
+        if (!this.locked) return;
+        document.body.classList.remove('page-scroll-locked');
+        this.locked = false;
+    },
+
+    guardPointerScroll(event) {
+        if (!this.locked) return;
+
+        const internalScroller = event.target.closest('.nav-menu.active, .site-search-results');
+        if (!internalScroller) event.preventDefault();
+    },
+
+    guardKeyboardScroll(event) {
+        if (!this.locked) return;
+
+        const interactiveTarget = event.target.matches('input, textarea, button, a, [contenteditable="true"]');
+        const scrollKeys = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '];
+        if (!interactiveTarget && scrollKeys.includes(event.key)) event.preventDefault();
+    }
+};
+
 // Page transition animation
 const PageTransition = {
     init() {
@@ -100,17 +139,22 @@ const PageTransition = {
             const navMenu = document.querySelector('.nav-menu');
             const navToggle = document.querySelector('.nav-toggle');
             const navOverlay = document.querySelector('.nav-overlay');
-            const body = document.body;
-            
-            navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active');
-            navOverlay.classList.toggle('active');
+            const willOpen = !navMenu.classList.contains('active');
+
+            if (willOpen && SiteSearch.root && !SiteSearch.root.hidden) {
+                SiteSearch.close({ restoreFocus: false });
+            }
+
+            navMenu.classList.toggle('active', willOpen);
+            navToggle.classList.toggle('active', willOpen);
+            navOverlay.classList.toggle('active', willOpen);
+            navToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
             
             // Prevent body scroll when menu is open
-            if (navMenu.classList.contains('active')) {
-                body.style.overflow = 'hidden';
+            if (willOpen) {
+                PageScrollLock.lock();
             } else {
-                body.style.overflow = '';
+                PageScrollLock.unlock();
             }
         };
 
@@ -124,9 +168,8 @@ const PageTransition = {
                 navMenu.classList.remove('active');
                 navToggle.classList.remove('active');
                 navOverlay.classList.remove('active');
-                // Restore body scroll — without this the page stays locked
-                // (overflow: hidden set on open) and can't scroll until reload.
-                document.body.style.overflow = '';
+                navToggle.setAttribute('aria-expanded', 'false');
+                PageScrollLock.unlock();
             });
         });
 
@@ -134,6 +177,163 @@ const PageTransition = {
         document.querySelector('.nav-overlay')?.addEventListener('click', () => {
             toggleMobileMenu();
         });
+
+        document.querySelector('.nav-toggle')?.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleMobileMenu();
+            }
+        });
+    }
+};
+
+// Lightweight, client-side search for the content on this page.
+const SiteSearch = {
+    init() {
+        this.root = document.getElementById('site-search');
+        this.openButton = document.querySelector('.nav-search-button');
+        this.input = document.getElementById('site-search-input');
+        this.status = document.getElementById('site-search-status');
+        this.results = document.getElementById('site-search-results');
+        if (!this.root || !this.openButton || !this.input || !this.status || !this.results) return;
+
+        this.lastFocused = null;
+        this.items = this.buildIndex();
+
+        this.openButton.addEventListener('click', () => this.open());
+        this.root.querySelectorAll('[data-search-close]').forEach((button) => {
+            button.addEventListener('click', () => this.close());
+        });
+        this.input.addEventListener('input', () => this.search(this.input.value));
+        this.results.addEventListener('click', (event) => this.followResult(event));
+        document.addEventListener('keydown', (event) => this.handleKeydown(event));
+    },
+
+    normalize(value) {
+        return value.replace(/\s+/g, ' ').trim();
+    },
+
+    buildIndex() {
+        const candidates = document.querySelectorAll([
+            '.about-content',
+            '#news-timeline',
+            '.research-card-horizontal',
+            '.pcf-card',
+            '.project-card-with-image',
+            '.experience-item',
+            '.category-card-large'
+        ].join(','));
+        const seenTitles = new Set();
+        const items = [];
+
+        candidates.forEach((element, index) => {
+            const heading = element.querySelector('h1, h2, h3, h4');
+            const section = element.closest('section[id]');
+            const title = this.normalize(heading?.textContent || section?.querySelector('h2')?.textContent || 'Sylvester Zhang');
+            const text = this.normalize(element.textContent || '');
+            const titleKey = title.toLowerCase();
+            if (!title || !text || seenTitles.has(titleKey)) return;
+
+            seenTitles.add(titleKey);
+            if (!element.id) element.id = `search-item-${index + 1}`;
+            items.push({
+                title,
+                text,
+                textLower: text.toLowerCase(),
+                titleLower: titleKey,
+                targetId: element.id
+            });
+        });
+
+        return items;
+    },
+
+    open() {
+        this.lastFocused = document.activeElement;
+        document.querySelector('.nav-menu')?.classList.remove('active');
+        document.querySelector('.nav-toggle')?.classList.remove('active');
+        document.querySelector('.nav-overlay')?.classList.remove('active');
+        document.querySelector('.nav-toggle')?.setAttribute('aria-expanded', 'false');
+        this.root.hidden = false;
+        this.openButton.setAttribute('aria-expanded', 'true');
+        PageScrollLock.lock();
+        this.input.focus();
+    },
+
+    close({ restoreFocus = true } = {}) {
+        this.root.hidden = true;
+        this.openButton.setAttribute('aria-expanded', 'false');
+        PageScrollLock.unlock();
+        if (restoreFocus && this.lastFocused instanceof HTMLElement) this.lastFocused.focus();
+    },
+
+    search(rawQuery) {
+        const query = this.normalize(rawQuery).toLowerCase();
+        this.results.replaceChildren();
+
+        if (!query) {
+            this.status.textContent = 'Start typing to search the page.';
+            return;
+        }
+
+        const terms = query.split(' ').filter(Boolean);
+        const matches = this.items
+            .filter((item) => terms.every((term) => item.textLower.includes(term)))
+            .sort((a, b) => {
+                const aScore = a.titleLower.includes(query) ? 2 : terms.filter((term) => a.titleLower.includes(term)).length;
+                const bScore = b.titleLower.includes(query) ? 2 : terms.filter((term) => b.titleLower.includes(term)).length;
+                return bScore - aScore;
+            })
+            .slice(0, 8);
+
+        this.status.textContent = matches.length
+            ? `${matches.length} result${matches.length === 1 ? '' : 's'} found.`
+            : 'No matching content found.';
+
+        matches.forEach((item) => {
+            const termPosition = Math.max(0, item.textLower.indexOf(terms[0]));
+            const excerptStart = Math.max(0, termPosition - 55);
+            const excerptEnd = Math.min(item.text.length, excerptStart + 150);
+            const excerpt = `${excerptStart > 0 ? '…' : ''}${item.text.slice(excerptStart, excerptEnd)}${excerptEnd < item.text.length ? '…' : ''}`;
+            const listItem = document.createElement('li');
+            const link = document.createElement('a');
+            const title = document.createElement('strong');
+            const summary = document.createElement('span');
+
+            link.className = 'site-search-result';
+            link.href = `#${item.targetId}`;
+            title.textContent = item.title;
+            summary.textContent = excerpt;
+            link.append(title, summary);
+            listItem.appendChild(link);
+            this.results.appendChild(listItem);
+        });
+    },
+
+    followResult(event) {
+        const link = event.target.closest('.site-search-result');
+        if (!link) return;
+        const target = document.querySelector(link.getAttribute('href'));
+        if (!target) return;
+
+        event.preventDefault();
+        this.close({ restoreFocus: false });
+        const top = target.getBoundingClientRect().top + window.scrollY - 88;
+        window.history.replaceState(null, '', link.getAttribute('href'));
+        window.scrollTo({ top, behavior: 'smooth' });
+        target.setAttribute('tabindex', '-1');
+        target.focus({ preventScroll: true });
+    },
+
+    handleKeydown(event) {
+        const typing = event.target.matches('input, textarea, [contenteditable="true"]');
+        if (event.key === '/' && !typing && this.root.hidden) {
+            event.preventDefault();
+            this.open();
+        } else if (event.key === 'Escape' && !this.root.hidden) {
+            event.preventDefault();
+            this.close();
+        }
     }
 };
 
@@ -189,7 +389,9 @@ const observer = new IntersectionObserver((entries) => {
 // Observe elements for animation
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize page transitions
+    PageScrollLock.init();
     PageTransition.init();
+    SiteSearch.init();
     
     // Observe cards and sections for animations
     // The project grid inside #pcfAll is display:none until expanded, so it never
