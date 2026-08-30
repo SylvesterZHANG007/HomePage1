@@ -1,143 +1,270 @@
-# Siyuan (Sylvester) Zhang - Personal Portfolio Website
+# Siyuan (Sylvester) Zhang — Personal Academic Portfolio
 
-## 📋 项目概述
+The source repository for [www.siyuanzhang.com](https://www.siyuanzhang.com), the personal academic portfolio of Siyuan (Sylvester) Zhang.
 
-这是张思源（Sylvester Zhang）的个人作品集网站，展示其在机器人学、软体机器人、康复机器人等领域的学术研究和项目成果。
+The site presents research in physical and embodied intelligence, bio-inspired and soft robotics, reconfigurable systems, assistive robotics, computational design, and robot learning. It also collects selected engineering projects, publications, media coverage, teaching and industry experience, technical skills, a curriculum vitae, and professional links.
 
-## 🏗️ 项目结构
+> Last updated: August 30, 2026
 
-### 核心文件
-- **`index.html`** - 主页面，包含个人介绍、研究、项目、经验和技能等完整信息
-- **`styles.css`** - 主要样式文件，包含响应式设计、动画效果和移动端优化
-- **`script.js`** - JavaScript功能文件，处理页面交互、动画和移动端触摸优化
+## Live site and profiles
 
-### 研究页面 (`research-websites/`)
-- **`elephant-trunk.html`** - 大象鼻子启发的颗粒物操作策略研究
-- **`multimodal-gripper.html`** - 多模态夹持器研究
-- **`rehabilitation-robot.html`** - 康复机器人研究
-- **`self-reproducing-robot.html`** - 自复制机器人研究
-- **`smart-materials.html`** - 智能材料研究
+- Website: [www.siyuanzhang.com](https://www.siyuanzhang.com)
+- Curriculum vitae: [CV of ZSY academic simplified.pdf](CV%20of%20ZSY%20academic%20simplified.pdf)
+- Google Scholar: [Siyuan Zhang](https://scholar.google.com/citations?user=QDhqc2QAAAAJ&hl=en)
+- GitHub: [@SylvesterZHANG007](https://github.com/SylvesterZHANG007)
+- LinkedIn: [siyuan-zhang-columbia](https://www.linkedin.com/in/siyuan-zhang-columbia/)
+- Instagram: [@siyuan.zh](https://www.instagram.com/siyuan.zh/)
+- YouTube: [@sylvesterzhang](https://www.youtube.com/@sylvesterzhang)
+- Bilibili: [Sylvester Zhang](https://space.bilibili.com/641605796)
 
-### 项目页面
-- **`cubesat-crawling-robot.html`** - 立方星爬行机器人项目
-- **`flapping-wing-robot.html`** - 扑翼机器人项目
-- **`spherical-space-robot.html`** - 球形空间机器人项目
-- **`tendon-actuated-robot.html`** - 肌腱驱动机器人项目
-- **`quadruped-spider-robot.html`** - 四足蜘蛛机器人项目
+## About
 
-### 样式文件
-- **`unified-width.css`** - 统一页面宽度设置，确保所有页面布局一致
-- **`research-spacing-optimization.css`** - 研究页面间距优化，使内容更紧凑
-- **`university-logos.css`** - 大学logo样式设置
-- **`navbar-override.css`** - 导航栏样式覆盖
-- **`spacing-fix.css`** - 间距修复样式
+Siyuan Zhang is a Robotics PhD student at the University of Michigan, advised by Prof. Cameron Aubin and Prof. Talia Moore. He earned an M.S. in Mechanical Engineering from Columbia University, where he worked in the Creative Machines Lab with Prof. Hod Lipson and collaborated with Prof. Sunil Agrawal and Prof. Chaoqun Dong. He previously received a B.E. from Sun Yat-sen University under the guidance of Prof. Jianing Wu.
 
-### 资源文件
-- **`images/`** - 图片资源目录
-  - 项目截图和示意图
-  - 大学logo
-  - 个人头像和图标
-- **`papers/`** - 学术论文PDF文件
-- **`nerfies-template/`** - 基于NeRFies模板的样式和脚本
+His work focuses on engineering life-like machines that can sense, adapt, reorganize, and evolve through the interaction of morphology, mechanics, computation, and learning.
 
-## 🚀 主要功能特性
+## Current site content
 
-### 响应式设计
-- 完全响应式布局，支持桌面、平板和手机设备
-- 移动端触摸优化，触摸目标最小44px
-- 自适应字体大小和间距
+### Research
 
-### 移动端优化
-- 触摸友好的交互设计
-- 性能优化的滚动和动画
-- 移动端特定的样式调整
-- 横屏模式优化
+| Work | Status / venue | Resources |
+| --- | --- | --- |
+| **Robotic Mitosis: Engineering Self-Reproduction from 2D Lattices into 3D Morphogenetic Structures** | Manuscript in preparation | [Project page](research-websites/self-reproducing-robot.html) · [Paper](papers/Self_Reproducing_Robot.pdf) |
+| **From Structural Design to Dynamics Modeling: Control-Oriented Development of a 3-RRR Parallel Ankle Rehabilitation Robot** | Manuscript in preparation | [Project page](research-websites/rehabilitation-robot.html) · [Paper](papers/rehabilitation-robot.pdf) |
+| **Enhancing Grasping Diversity With a Pinch-Suction and Soft-Rigid Hybrid Multimodal Gripper** | *IEEE Transactions on Robotics*, Vol. 41, pp. 3890–3907 | [Project page](research-websites/multimodal-gripper.html) · [Paper](papers/multimodal-gripper.pdf) |
+| **Synergizing Structural Stiffness Regulation with Compliance Contact Stiffness: Bioinspired Soft Stimuli-Responsive Materials Design for Soft Machines** | *Advanced Engineering Materials*, Vol. 26, Issue 18, 2400461 | [Project page](research-websites/smart-materials.html) · [Paper](papers/smart-materials.pdf) |
+| **Transporting Dispersed Cylindrical Granules: An Intelligent Strategy Inspired by an Elephant Trunk** | *Advanced Intelligent Systems*, Vol. 5, 2300182 | [Project page](research-websites/elephant-trunk.html) · [Paper](papers/elephant-trunk.pdf) |
 
-### 内容展示
-- 研究论文详细展示
-- 项目作品完整介绍
-- 技能和工具可视化
-- 学术经历时间线
+Each research card on the homepage includes a summary and links to a dedicated project page and paper. Published works also expose expandable abstracts and BibTeX entries directly on the homepage.
 
-### 用户体验
-- 平滑的页面过渡动画
-- 玻璃态设计效果
-- 渐变文字和背景
-- 交互式卡片设计
+### Engineering projects
 
-## 🛠️ 技术栈
+| Project | Focus | Page |
+| --- | --- | --- |
+| **Quadruped Spider Robot Design and Gait Optimization** | Quadruped locomotion, gait optimization, bio-inspired design | [View project](quadruped-spider-robot.html) |
+| **Advanced Adaptive Tendon-Actuated Robot Manipulator Joint** | Tendon actuation, lever-arm amplification, space robotics | [View project](tendon-actuated-robot.html) |
+| **Biomimetic Spherical Robot with Multi-Motion Modes for Space Exploration** | Space robotics, multimodal locomotion, autonomous navigation | [View project](spherical-space-robot.html) |
+| **Bionic Flapping-Wing Robot Inspired by Birds** | Flapping-wing flight, bio-inspired aerodynamics, flight control | [View project](flapping-wing-robot.html) |
+| **Foldable, Adhesive Crawling CubeSat for Space Station Operations** | CubeSat design, adhesive locomotion, satellite servicing | [View project](cubesat-crawling-robot.html) |
 
-- **HTML5** - 语义化标记
-- **CSS3** - 现代CSS特性（Grid、Flexbox、CSS变量）
-- **JavaScript ES6+** - 现代JavaScript功能
-- **Bulma CSS框架** - 响应式CSS框架
-- **Font Awesome** - 图标库
-- **Google Fonts** - 字体服务
+The homepage presents these projects in an interactive coverflow carousel and provides an expandable full-card grid. Each project has a standalone long-form page with images, explanations, and supporting media.
 
-## 📱 移动端适配
+### News, media, experience, and skills
 
-### 断点设计
-- **768px** - 平板和中等手机
-- **480px** - 小屏手机
-- **360px** - 超小屏设备
+- A dated news timeline records academic, research, and industry milestones.
+- The Media & Insights section currently includes the Financial Times feature, [“Can we make robots that eat other robots?”](news/ft-eat-other-robots.html), together with a local [PDF copy](news/ft-eat-other-robots.pdf).
+- Teaching experience includes Mechatronics & Embedded Microcomputer Control and Robotics Studio at Columbia University.
+- Industry experience includes product design engineering at Amazon and structural design engineering at Insta360.
+- Programming and robotics tools include Python, C, C++, MATLAB, Linux, ROS, Arduino, and LaTeX.
+- CAD and engineering tools include AutoCAD, SolidWorks, Creo, CATIA, NX, and ANSYS.
 
-### 触摸优化
-- 触摸反馈动画
-- 触摸目标优化
-- 滚动性能提升
-- 触摸事件优化
+## Interface and interaction features
 
-## 🎨 设计特色
+### Navigation
 
-### 视觉风格
-- 现代简约设计
-- 渐变色彩搭配
-- 玻璃态效果
-- 动态交互元素
+- Fixed glass-style header with a left-aligned personal logo.
+- Navigation labels remain geometrically centered across the full header.
+- A mirrored search control sits on the right side of the desktop header.
+- Scroll-position-aware active navigation state.
+- Reading progress indicator along the lower edge of the header.
+- Smooth anchor navigation with a fixed-header offset.
 
-### 动画效果
-- 页面加载动画
-- 滚动触发动画
-- 悬停交互效果
-- 触摸反馈动画
+### Site search
 
-## 📁 文件组织原则
+- Fully client-side search with no backend or external search service.
+- Indexes the homepage biography, news, research, projects, experience, and skills.
+- Ranks title matches ahead of body-text matches and displays contextual excerpts.
+- Limits the result panel to eight high-relevance matches.
+- `/` opens search from anywhere on the page.
+- `Esc` closes the search dialog.
+- Search results move focus to the selected content after smooth scrolling.
 
-### 模块化设计
-- 功能分离，每个文件职责明确
-- CSS按功能分类组织
-- JavaScript模块化处理
-- 资源文件分类存储
+The search index covers content rendered on the homepage. It does not crawl text inside separate project pages, PDFs, or other binary assets.
 
-### 维护性
-- 清晰的命名规范
-- 详细的注释说明
-- 统一的代码风格
-- 可扩展的架构设计
+### Responsive and mobile behavior
 
-## 🔧 开发说明
+- Responsive layouts for desktop, tablet, mobile, landscape, and very narrow screens.
+- Mobile navigation drops down from beneath the header rather than sliding in horizontally.
+- Search and mobile navigation are mutually exclusive, preventing stacked overlays.
+- Background gestures are contained without hiding the browser scrollbar, avoiding viewport-width shifts when overlays open.
+- Touch-friendly targets and touch feedback for interactive cards.
+- Swipe, wheel, arrow-button, and automatic navigation for the project carousel.
+- Mobile-specific image, typography, spacing, and hero treatments.
 
-### 本地开发
-1. 克隆仓库到本地
-2. 使用现代浏览器打开HTML文件
-3. 修改后刷新页面查看效果
+### Motion and progressive enhancement
 
-### 部署
-- 支持GitHub Pages部署
-- 可直接上传到任何Web服务器
-- 无需额外的构建步骤
+- Typewriter rotation between “Physical Intelligence,” “Robotics,” and “Embodied AI.”
+- Intersection Observer-driven entrance animations.
+- Image fade-in behavior.
+- Expandable publication abstracts and BibTeX entries.
+- Expandable experience details.
+- Respect for `prefers-reduced-motion` in continuous hero and carousel animation.
 
-## 📄 许可证
+## Technology
 
-本项目采用开源许可证，欢迎学习和参考。
+The portfolio is a static website and does not require a framework build, package manager, database, or application server.
 
-## 👨‍💻 作者
+- Semantic HTML5
+- Modern CSS, including Grid, Flexbox, responsive media queries, glass effects, and fluid typography
+- Vanilla JavaScript (ES6+)
+- Intersection Observer and modern DOM APIs
+- Google Fonts (`Source Serif 4` on the main site; Google Sans, Noto Sans, and Castoro on research pages)
+- Bundled Bulma, Font Awesome, carousel, and slider assets for the Nerfies-derived research-page layout
+- Academicons on research pages
+- GitHub Pages-compatible static hosting
 
-**张思远 (Siyuan Zhang)**
-- 哥伦比亚大学机械工程硕士
-- 机器人学研究者
-- 软体机器人专家
+## Repository structure
 
----
+```text
+HomePage1/
+├── index.html                     # Main portfolio and all homepage content
+├── styles.css                    # Shared design system and responsive styles
+├── script.js                     # Navigation, search, motion, and interactions
+├── CNAME                         # Custom domain: www.siyuanzhang.com
+├── README.md                     # Project documentation
+├── start-demo.sh                 # Optional local server helper (port 8081)
+│
+├── images/                       # Portraits, logos, figures, thumbnails, and icons
+├── fonts/                        # Local font fallbacks
+├── papers/                       # PDFs linked by the research cards
+├── news/                         # Media article page, styles, and PDF
+│
+├── research-websites/            # Five standalone research project pages
+│   ├── self-reproducing-robot.html
+│   ├── rehabilitation-robot.html
+│   ├── multimodal-gripper.html
+│   ├── smart-materials.html
+│   ├── elephant-trunk.html
+│   └── *.css                     # Research-page layout overrides and shared styles
+│
+├── quadruped-spider-robot.html   # Standalone engineering project pages
+├── tendon-actuated-robot.html
+├── spherical-space-robot.html
+├── flapping-wing-robot.html
+├── cubesat-crawling-robot.html
+│
+├── nerfies-template/             # Vendored research-page template assets
+└── Self_Reproducing_Robot/       # Supporting research source and media assets
+```
 
-*最后更新: 2024年12月* 
+The repository also retains original papers, reports, videos, source material, design notes, and historical implementation documents. Because many assets are binary or high resolution, a full clone is larger than a typical static-site repository.
+
+## Run locally
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/SylvesterZHANG007/HomePage1.git
+cd HomePage1
+```
+
+### 2. Start a local static server
+
+Python 3:
+
+```bash
+python -m http.server 8081
+```
+
+On systems where Python is exposed as `python3`:
+
+```bash
+python3 -m http.server 8081
+```
+
+macOS or Linux users can also run:
+
+```bash
+./start-demo.sh
+```
+
+### 3. Open the site
+
+Visit [http://localhost:8081](http://localhost:8081).
+
+A local server is recommended instead of opening `index.html` directly because it reproduces GitHub Pages path handling more accurately and avoids browser restrictions around local files.
+
+## Content maintenance guide
+
+### Update the biography or portrait
+
+- Edit the About section in `index.html`.
+- The active professional portrait is `images/professional_photo.jpg`.
+- Keep the CV, Google Scholar, GitHub, and LinkedIn links in the adjacent profile-links block synchronized with the footer.
+
+### Add or update research
+
+1. Update or add the research card in `index.html`.
+2. Add the detailed page under `research-websites/`.
+3. Store the linked paper in `papers/`.
+4. Add an abstract and BibTeX block when applicable.
+5. Confirm that relative paths work from both the root and `research-websites/` directory.
+
+### Add or update a project
+
+1. Update both the coverflow card and the expanded project-grid card in `index.html`.
+2. Add or edit the corresponding standalone root-level HTML page.
+3. Place optimized images and videos under a clearly named subdirectory of `images/`.
+4. Check the project on desktop and narrow screens because the carousel uses viewport-dependent offsets.
+
+### Update news or media coverage
+
+- Add milestones to the `#news-timeline` list in `index.html`.
+- Add media cards to the `#news` section.
+- Store standalone articles and related files under `news/`.
+
+### Replace the CV
+
+Replace `CV of ZSY academic simplified.pdf` while keeping the filename unchanged, or update every CV link in the homepage and navigation.
+
+### Extend site search
+
+The client-side index is built in `SiteSearch.buildIndex()` in `script.js`. Add a selector there when introducing a new homepage card type that should be searchable.
+
+### Refresh cached assets
+
+After changing `styles.css` or `script.js`, update their `?v=` query values in `index.html`. This helps GitHub Pages visitors receive the newest assets instead of a cached copy.
+
+## Deployment
+
+The repository is designed for direct static deployment.
+
+### GitHub Pages
+
+1. Push the latest commit to the branch used by GitHub Pages.
+2. In the repository’s **Settings → Pages**, publish the repository root from that branch.
+3. Keep `CNAME` at the repository root; it currently maps the site to `www.siyuanzhang.com`.
+4. Ensure the custom domain’s DNS records continue to point to GitHub Pages.
+5. After deployment, verify the homepage, research pages, project pages, PDFs, media, navigation, and search.
+
+No compilation or generated output directory is required.
+
+## Accessibility and compatibility
+
+The current implementation includes semantic section headings, descriptive image alt text, labelled navigation and search controls, live search-result status, keyboard-operable menus, focus placement after search navigation, touch-sized controls, and reduced-motion handling for continuous animation.
+
+The main experience targets current versions of Chrome, Edge, Firefox, and Safari. Some visual effects rely on modern browser capabilities such as `backdrop-filter`, `:has()`, CSS Grid, optional chaining, and Intersection Observer; older browsers may receive a simplified presentation.
+
+## Validation checklist
+
+Before publishing a content or design update:
+
+- Confirm all navigation anchors reach the intended section.
+- Test `/`, `Esc`, search result selection, and empty-result behavior.
+- Verify the mobile menu opens downward and does not shift the page horizontally.
+- Confirm search and the mobile menu cannot remain open simultaneously.
+- Exercise carousel arrows, wheel/trackpad navigation, touch swipe, and “See all projects.”
+- Open every changed research or project page and its linked PDF.
+- Check the layout near 768 px, 480 px, and 360 px widths.
+- Run a local HTTP server and confirm `index.html`, `styles.css`, `script.js`, and changed assets return successfully.
+- Review `git diff --check` before committing.
+
+## Copyright and reuse
+
+Copyright © 2026 Siyuan (Sylvester) Zhang. All rights reserved.
+
+This repository does not currently include a separate open-source license. The website code, writing, figures, publications, photographs, and media should not be assumed to be licensed for redistribution or reuse. Contact the author before reusing material beyond what is permitted by applicable law.
+
+## Contact
+
+For research collaboration, project opportunities, or questions about the work presented here, use the contact information on [www.siyuanzhang.com](https://www.siyuanzhang.com).
