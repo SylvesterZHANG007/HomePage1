@@ -3242,7 +3242,13 @@ body:has(#home) .hero-content-center {
     height: auto;
     display: block;
     border-radius: 12px;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.10);
+    box-shadow: none;
+    filter: none;
+    opacity: 1 !important;
+    animation: none !important;
+    transition: none !important;
+    mix-blend-mode: normal;
+    clip-path: none;
 }
 
 /* Stack the photo above the text on narrow screens, and keep it modest. */
