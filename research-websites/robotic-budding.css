@@ -1,0 +1,381 @@
+/* Robotic Budding additions for the shared research-project template. */
+
+.robotic-budding-template {
+  color: #363636;
+  background: #fff;
+}
+
+.robotic-budding-template .hero {
+  padding-top: 70px;
+}
+
+.robotic-budding-template .publication-title {
+  line-height: 1.15;
+}
+
+.robotic-budding-template .affiliation-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem 1.5rem;
+  margin-top: 0.8rem;
+}
+
+.robotic-budding-template .publication-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.robotic-budding-template .publication-links .link-block {
+  margin: 0;
+}
+
+.robotic-budding-template .article-image {
+  width: 100%;
+  max-width: 700px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.robotic-budding-template .article-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 16px;
+}
+
+.robotic-budding-template .small-image {
+  max-width: 360px;
+}
+
+.robotic-budding-template .large-image {
+  max-width: 1000px;
+}
+
+.robotic-budding-template .module-architecture-image {
+  max-width: 720px;
+}
+
+.robotic-budding-template .control-architecture-image {
+  max-width: 680px;
+}
+
+.robotic-budding-template .gear-drive-image {
+  max-width: 500px;
+}
+
+.robotic-budding-template .locomotion-sequence-image {
+  max-width: 1000px;
+}
+
+.robotic-budding-template .poster-image {
+  max-width: 1000px;
+}
+
+.robotic-budding-template .research-subsection-title {
+  margin-top: 2.75rem;
+}
+
+.robotic-budding-template .research-subsection-title.first {
+  margin-top: 0.35rem;
+}
+
+.robotic-budding-template .figure-caption,
+.robotic-budding-template .video-caption {
+  margin-top: 0.8rem;
+  color: #666;
+  font-size: 0.95rem;
+  font-style: italic;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.robotic-budding-template .figures-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.robotic-budding-template .figures-row .figure-item {
+  flex: 1 1 300px;
+  max-width: 440px;
+  text-align: center;
+}
+
+.robotic-budding-template .figures-row img {
+  display: block;
+  width: 100%;
+  height: 270px;
+  object-fit: contain;
+  border-radius: 16px;
+  background: #fafafa;
+}
+
+.robotic-budding-template .process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 2rem 0 0;
+}
+
+.robotic-budding-template .process-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1.15rem;
+  border: 1px solid #e6e9ef;
+  border-radius: 12px;
+  background: #fafbfc;
+  line-height: 1.5;
+}
+
+.robotic-budding-template .process-item strong {
+  color: #3273dc;
+  font-size: 1.02rem;
+}
+
+.robotic-budding-template .article-video {
+  width: 100%;
+  max-width: 850px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.robotic-budding-template .article-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 16px;
+  background: #000;
+}
+
+.robotic-budding-template .stage-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.robotic-budding-template .trilobite-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.robotic-budding-template .stage-item {
+  overflow: hidden;
+  border: 1px solid #e6e9ef;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.robotic-budding-template .stage-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: #fff;
+}
+
+.robotic-budding-template .stage-item p {
+  margin: 0;
+  padding: 0.7rem 0.8rem;
+  color: #4a4a4a;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.robotic-budding-template .sequence-caption {
+  margin-top: -1.15rem;
+  margin-bottom: 1.75rem;
+}
+
+.robotic-budding-template .evidence-note,
+.robotic-budding-template .archive-notice {
+  display: flex;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+  padding: 1rem 1.15rem;
+  border-left: 4px solid #3273dc;
+  border-radius: 8px;
+  background: #f4f8ff;
+  color: #3d4a60;
+  line-height: 1.55;
+}
+
+.robotic-budding-template .resource-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.robotic-budding-template .poster-visuals-title {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.robotic-budding-template .poster-visuals-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+  margin: 1.5rem auto 2rem;
+}
+
+.robotic-budding-template .poster-visual-item {
+  margin: 0;
+  text-align: center;
+}
+
+.robotic-budding-template .poster-visual-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.robotic-budding-template .resource-card {
+  padding: 1.35rem;
+  border: 1px solid #e6e9ef;
+  border-radius: 12px;
+  background: #fafbfc;
+}
+
+.robotic-budding-template .resource-card .title {
+  margin-bottom: 0.65rem;
+}
+
+.robotic-budding-template .resource-card p {
+  min-height: 3rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+}
+
+/* Keep the page-level search control while retaining the shared centered navbar. */
+html body.robotic-budding-template .navbar .nav-container {
+  display: grid !important;
+  grid-template-columns: minmax(40px, 1fr) auto minmax(40px, 1fr) !important;
+  align-items: center !important;
+}
+
+html body.robotic-budding-template .navbar .nav-container > .nav-logo {
+  order: 1 !important;
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  justify-self: start !important;
+  margin-right: 0 !important;
+}
+
+html body.robotic-budding-template .navbar .nav-container > .nav-menu {
+  order: 2 !important;
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  justify-self: center !important;
+  margin: 0 !important;
+}
+
+html body.robotic-budding-template .navbar .nav-container > .nav-actions {
+  order: 3 !important;
+  grid-column: 3 !important;
+  grid-row: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-self: end !important;
+  gap: 10px !important;
+}
+
+html body.robotic-budding-template .navbar .nav-actions .nav-toggle {
+  order: initial !important;
+}
+
+@media (max-width: 900px) {
+  .robotic-budding-template .process-grid,
+  .robotic-budding-template .stage-grid,
+  .robotic-budding-template .trilobite-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .robotic-budding-template .affiliation-list,
+  .robotic-budding-template .figures-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .robotic-budding-template .figures-row .figure-item {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .robotic-budding-template .resource-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .robotic-budding-template .poster-visuals-grid {
+    grid-template-columns: 1fr;
+  }
+
+  html body.robotic-budding-template .navbar .nav-container {
+    grid-template-columns: auto 1fr auto !important;
+  }
+
+  html body.robotic-budding-template .navbar .nav-container > .nav-menu {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    justify-self: stretch !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .robotic-budding-template .hero .container,
+  .robotic-budding-template .hero .columns,
+  .robotic-budding-template .hero .column {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .robotic-budding-template .publication-authors .affiliation-block {
+    width: 100%;
+    min-width: 0;
+    white-space: normal !important;
+  }
+
+  .robotic-budding-template .publication-authors .author-block {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .robotic-budding-template .process-grid,
+  .robotic-budding-template .stage-grid,
+  .robotic-budding-template .trilobite-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .robotic-budding-template .evidence-note,
+  .robotic-budding-template .archive-notice {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .robotic-budding-template .publication-title {
+    font-size: 2rem !important;
+  }
+
+  .robotic-budding-template .section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .robotic-budding-template .column.is-85-percent {
+    width: 100%;
+  }
+}

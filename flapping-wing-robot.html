@@ -6,6 +6,7 @@
     <title>Bionic Flapping-Wing Robot - Siyuan Zhang</title>
     <link rel="icon" type="image/svg+xml" href="images/sylvester_robot_icon.svg">
     <link rel="stylesheet" href="styles.css?v=20260731o">
+    <link rel="stylesheet" href="site-chrome.css?v=20260923-search-icon">
     <style>
         .page-title {
             font-size: clamp(2rem, 4vw, 3rem) !important;
@@ -86,7 +87,7 @@
         }
     </style>
 </head>
-<body>
+<body class="project-article">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -94,11 +95,6 @@
                 <a href="index.html">
                     <img src="images/sylvester_robot_icon.svg" alt="Sylvester Zhang">
                 </a>
-            </div>
-            <div class="nav-toggle" onclick="toggleMobileMenu()">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
@@ -108,9 +104,36 @@
                 <li><a href="index.html#experience" class="nav-link">Experience</a></li>
                 <li><a href="CV of ZSY academic simplified.pdf" class="nav-link" target="_blank">CV</a></li>
             </ul>
+            <div class="nav-actions">
+                <button class="nav-search-button" type="button" aria-label="Search this page" aria-controls="site-search" aria-expanded="false">
+                    <span class="search-icon" aria-hidden="true"></span>
+                </button>
+                <div class="nav-toggle" onclick="toggleMobileMenu()" role="button" tabindex="0" aria-label="Open navigation menu" aria-expanded="false">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
         </div>
-        <div class="nav-overlay" onclick="toggleMobileMenu()"></div>
+        <div class="nav-overlay"></div>
     </nav>
+
+    <div class="site-search" id="site-search" role="dialog" aria-modal="true" aria-labelledby="site-search-title" hidden>
+        <button class="site-search-backdrop" type="button" aria-label="Close search" data-search-close></button>
+        <div class="site-search-panel">
+            <div class="site-search-heading">
+                <h2 id="site-search-title">Search this page</h2>
+                <button class="site-search-close" type="button" aria-label="Close search" data-search-close>&times;</button>
+            </div>
+            <label class="sr-only" for="site-search-input">Search this project page</label>
+            <div class="site-search-field">
+                <span class="search-icon" aria-hidden="true"></span>
+                <input id="site-search-input" type="search" autocomplete="off" placeholder="Search this project...">
+            </div>
+            <p class="site-search-status" id="site-search-status" aria-live="polite">Start typing to search the page.</p>
+            <ul class="site-search-results" id="site-search-results"></ul>
+        </div>
+    </div>
 
     <!-- Article Content -->
     <section class="section">
@@ -258,6 +281,6 @@
         </div>
     </footer>
 
-    <script src="script.js?v=20260731o"></script>
+    <script src="script.js?v=20260923-site-chrome"></script>
 </body>
-</html> 
+</html>

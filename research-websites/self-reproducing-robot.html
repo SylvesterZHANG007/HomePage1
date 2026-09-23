@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Robotic Mitosis: Engineering Self-Reproduction from 2D Lattices into 3D Morphogenetic Structures">
-  <meta name="keywords" content="Self-Reproducing Robot, Modules, Distributed Systems, Bio-inspired Robotics">
+  <meta name="description" content="Robotic Budding: From Homogeneous Cells to Diverse Morphologies in Physical Self-Reproduction">
+  <meta name="keywords" content="robotic budding, physical self-reproduction, modular robots, self-reconfiguring robots, embodied intelligence, teleoperation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Robotic Mitosis: Engineering Self-Reproduction from 2D Lattices into 3D Morphogenetic Structures</title>
+  <title>Robotic Budding: Physical Self-Reproduction</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-
   <link rel="stylesheet" href="../nerfies-template/static/css/bulma.min.css">
   <link rel="stylesheet" href="../nerfies-template/static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="../nerfies-template/static/css/bulma-slider.min.css">
@@ -16,160 +15,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="../nerfies-template/static/css/index.css">
   <link rel="stylesheet" href="university-logos.css">
-  <link rel="stylesheet" href="common-styles.css">
-  <link rel="stylesheet" href="navbar-override.css">
+  <link rel="stylesheet" href="common-styles.css?v=20260922-unified-nav">
+  <link rel="stylesheet" href="navbar-override.css?v=20260922-unified-nav">
   <link rel="stylesheet" href="spacing-fix.css">
   <link rel="stylesheet" href="unified-width.css">
   <link rel="stylesheet" href="research-spacing-optimization.css">
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../styles.css?v=20260913-clean-photo">
+  <link rel="stylesheet" href="robotic-budding.css?v=20260922-template">
+  <link rel="stylesheet" href="../site-chrome.css?v=20260923-search-icon">
   <link rel="icon" href="../images/sylvester_robot_icon.svg">
-  
-  <style>
-    .article-image {
-      width: 100%;
-      max-width: 700px;
-      margin: 2rem auto;
-      text-align: center;
-    }
-    .article-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 16px;
-      margin: 0 auto;
-    }
-    .small-image {
-      max-width: 350px !important;
-    }
-    .small-image img {
-      max-width: 100% !important;
-    }
-    .extra-small-image {
-      max-width: 250px !important;
-    }
-    .extra-small-image img {
-      max-width: 100% !important;
-    }
-    .figures-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-    .figures-row .figure-item {
-      flex: 1 1 250px;
-      max-width: 300px;
-      text-align: center;
-    }
-    .figures-row .figure-item.small-fig {
-      flex: 0 0 180px;
-      max-width: 180px;
-    }
-    .figures-row .figure-item img {
-      width: 100%;
-      height: auto;
-      border-radius: 16px;
-    }
-    .figures-row .figure-caption {
-      font-size: 0.85rem;
-      margin-top: 0.5rem;
-    }
-    @media (max-width: 768px) {
-      .figures-row {
-        flex-direction: column;
-        align-items: center;
-      }
-      .figures-row .figure-item {
-        max-width: 350px;
-      }
-    }
-    .medium-image {
-      max-width: 500px !important;
-    }
-    .medium-image img {
-      max-width: 100% !important;
-    }
-    .large-image {
-      max-width: 1000px !important;
-    }
-    .large-image img {
-      max-width: 100% !important;
-    }
-    .figure-caption {
-      text-align: center;
-      color: #666;
-      font-size: 0.95rem;
-      font-style: italic;
-      margin-top: 0.8rem;
-      line-height: 1.4;
-    }
-    .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1.5rem 0;
-      font-size: 0.95rem;
-    }
-    .comparison-table th, .comparison-table td {
-      border: 1px solid #ddd;
-      padding: 12px 15px;
-      text-align: left;
-    }
-    .comparison-table th {
-      background-color: #f5f5f5;
-      font-weight: 600;
-    }
-    .comparison-table tr:nth-child(even) {
-      background-color: #fafafa;
-    }
-    .article-video {
-      width: 100%;
-      max-width: 700px;
-      margin: 2rem auto;
-      text-align: center;
-    }
-    .article-video video {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 16px;
-      margin: 0 auto;
-    }
-    .video-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-    .video-row .video-item {
-      flex: 1 1 300px;
-      max-width: 400px;
-      text-align: center;
-    }
-    .video-row .video-item video {
-      width: 100%;
-      height: auto;
-      border-radius: 16px;
-    }
-    .video-caption {
-      text-align: center;
-      color: #666;
-      font-size: 0.95rem;
-      font-style: italic;
-      margin-top: 0.8rem;
-      line-height: 1.4;
-    }
-    @media (max-width: 768px) {
-      .video-row {
-        flex-direction: column;
-        align-items: center;
-      }
-      .video-row .video-item {
-        max-width: 100%;
-      }
-    }
-  </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="../nerfies-template/static/js/fontawesome.all.min.js"></script>
@@ -177,540 +31,293 @@
   <script src="../nerfies-template/static/js/bulma-slider.min.js"></script>
   <script src="../nerfies-template/static/js/index.js"></script>
 </head>
-<body>
+<body class="robotic-budding-template">
 
-<nav class="navbar" id="navbar">
+  <nav class="navbar" id="navbar">
     <div class="nav-container">
-        <div class="nav-logo">
-            <a href="../index.html">
-                <img src="../images/sylvester_robot_icon.svg" alt="Sylvester Zhang">
-            </a>
+      <div class="nav-logo">
+        <a href="../index.html" aria-label="Go to the homepage">
+          <img src="../images/sylvester_robot_icon.svg" alt="Sylvester Zhang">
+        </a>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../index.html#research" class="nav-link active">Research</a></li>
+        <li><a href="../index.html#projects" class="nav-link">Project</a></li>
+        <li><a href="../index.html#news" class="nav-link">Media &amp; Insights</a></li>
+        <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
+        <li><a href="../CV of ZSY academic simplified.pdf" class="nav-link" target="_blank" rel="noopener">CV</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="nav-search-button" type="button" aria-label="Search this page" aria-controls="site-search" aria-expanded="false">
+          <span class="search-icon" aria-hidden="true"></span>
+        </button>
+        <div class="nav-toggle" onclick="toggleMobileMenu()" role="button" tabindex="0" aria-label="Open navigation menu" aria-expanded="false">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
         </div>
-        <div class="nav-toggle" onclick="toggleMobileMenu()">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-        <ul class="nav-menu">
-            <li><a href="../index.html" class="nav-link">Home</a></li>
-            <li><a href="../index.html#research" class="nav-link active">Research</a></li>
-            <li><a href="../index.html#projects" class="nav-link">Project</a></li>
-            <li><a href="../index.html#news" class="nav-link">Media &amp; Insights</a></li>
-            <li><a href="../index.html#experience" class="nav-link">Experience</a></li>
-                            <li><a href="../CV of ZSY academic simplified.pdf" class="nav-link" target="_blank">CV</a></li>
-        </ul>
+      </div>
     </div>
-    <div class="nav-overlay" onclick="toggleMobileMenu()"></div>
-</nav>
+    <div class="nav-overlay"></div>
+  </nav>
 
-<section class="hero">
-  <div class="hero-body">
+  <div class="site-search" id="site-search" role="dialog" aria-modal="true" aria-labelledby="site-search-title" hidden>
+    <button class="site-search-backdrop" type="button" aria-label="Close search" data-search-close></button>
+    <div class="site-search-panel">
+      <div class="site-search-heading">
+        <h2 id="site-search-title">Search this page</h2>
+        <button class="site-search-close" type="button" aria-label="Close search" data-search-close>&times;</button>
+      </div>
+      <label class="sr-only" for="site-search-input">Search this project page</label>
+      <div class="site-search-field">
+        <span class="search-icon" aria-hidden="true"></span>
+        <input id="site-search-input" type="search" autocomplete="off" placeholder="Search modules, morphologies, control, results...">
+      </div>
+      <p class="site-search-status" id="site-search-status" aria-live="polite">Start typing to search the page.</p>
+      <ul class="site-search-results" id="site-search-results"></ul>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Robotic Budding: From Homogeneous Cells to Diverse Morphologies in Physical Self-Reproduction</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><strong>Siyuan Zhang</strong><sup>1,2</sup>,</span>
+              <span class="author-block">Junyan Liu<sup>1</sup>,</span>
+              <span class="author-block">Wanglin He<sup>1</sup>,</span>
+              <span class="author-block">Hod Lipson<sup>1,†</sup></span>
+            </div>
+            <div class="is-size-5 publication-authors affiliation-list">
+              <div class="affiliation-block">
+                <img src="../images/university-logos/columbia.png" alt="Columbia University" class="university-logo">
+                <span class="author-block"><sup>1</sup>Creative Machines Lab, Columbia University</span>
+              </div>
+              <div class="affiliation-block">
+                <img src="../images/university-logos/umich.webp" alt="University of Michigan" class="university-logo">
+                <span class="author-block"><sup>2</sup>Department of Robotics, University of Michigan, Ann Arbor</span>
+              </div>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block"><a href="../papers/robotic-budding.pdf" class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener"><span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span></a></span>
+                <span class="link-block"><a href="../papers/robotic-budding-poster.pdf" class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener"><span class="icon"><i class="fas fa-image"></i></span><span>Poster</span></a></span>
+                <span class="link-block"><a href="#seal-demonstration" class="external-link button is-normal is-rounded is-dark"><span class="icon"><i class="fas fa-play"></i></span><span>Video</span></a></span>
+                <span class="link-block"><a href="robotic-mitosis-archive.html" class="external-link button is-normal is-rounded is-dark"><span class="icon"><i class="fas fa-archive"></i></span><span>Previous Project</span></a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-85-percent">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>Physical self-reproduction requires a robot to gather matter, assemble it into a functional body, and separate the resulting offspring without sacrificing its own structure. This work introduces a homogeneous modular platform that demonstrates a budding-style reproduction process across two distinct three-dimensional morphologies. Each diamond-shaped module combines two actuated joints, onboard computation and power, and reversible magnetic docking interfaces.</p>
+            <p>A teleoperated parent robot collects scattered modules into a planar composite, folds the acquired modules into a target body, and mechanically separates from a structurally equivalent offspring. The same module design supports a three-module trilobite and a five-module seal, showing that one robotic cell can realize different body plans through module count and connection topology. The experiments establish the mechanical feasibility of collection, assembly, folding, separation, and independent locomotion, while leaving autonomous navigation, closed-loop docking, and recursive reproduction for future work.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Robotic Mitosis: Engineering Self-Reproduction from 2D Lattices into 3D Morphogenetic Structures</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="#"><strong>Siyuan Zhang</strong></a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="#">Hod Lipson</a><sup>1</sup></span>
-          </div>
-          <div class="is-size-5 publication-authors">
-            <div class="affiliation-block">
-              <img src="../images/university-logos/columbia.png" alt="Columbia University" class="university-logo">
-              <span class="author-block"><sup>1</sup>Columbia University</span>
-            </div>
-          </div>
-
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <span class="link-block">
-                <a href="../papers/Self_Reproducing_Robot.pdf"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-            </div>
+        <div class="column is-85-percent">
+          <h2 class="title is-3">Research Question and Contribution</h2>
+          <div class="content has-text-justified">
+            <p>Physical self-reproduction poses a stricter challenge than reconfiguration because a robot must create another functional body while preserving the parent. This project asks whether one homogeneous robotic cell can support distinct body plans and enable a parent to construct an offspring from loose modules in its environment.</p>
+            <p>The system addresses this question through robotic budding. The parent retains all of its original modules, while the modules collected from the environment form the offspring. A shared module design is evaluated in a three-module trilobite and a five-module seal, allowing morphology to vary through module count and connection topology rather than hardware redesign.</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-85-percent">
+          <h2 class="title is-3">Robotic Budding Framework</h2>
+          <div class="content has-text-justified"><p>Unlike robotic mitosis, in which an existing body divides its own hardware, robotic budding preserves the parent and builds the offspring entirely from modules gathered from the environment. A parent with <em>n</em> modules sequentially collects <em>n</em> loose modules, forming a temporary planar assembly of <em>2n</em> modules. The acquired half then folds into a three-dimensional body and separates from the parent.</p></div>
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-85-percent">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Self-reproduction is a defining property of biological life and a long-standing milestone for autonomous robotic systems. Despite advances in self-reconfiguration and algorithmic replication, no physical robot has demonstrated embodied self-reproduction capable of reversible shape transformation and structural variation. Here, we introduce a modular robotic architecture that reproduces through a geometry-guided 2D–3D–2D morphological cycle. Identical triangular modules autonomously attach, fold, and reorganize using magnetic coupling, allowing a "mother" robot to absorb free modules, increase its mass, and generate a physically detached offspring.
-          </p>
-          <p>
-            We show that this mechanism enables reproduction across multiple scales: a minimal 2-module body reproduces with a 33% success rate in 4-module system, whereas 6-module and 8-module worms achieve 100% reproducibility across all trials. The system exhibits early signatures of differentiation, where structurally identical offspring diverge into distinct post-division states due to pathway-dependent morphological transitions.
-          </p>
-          <p>
-            These results demonstrate that a small set of geometric, mechanical, and dynamical principles is sufficient to instantiate physical self-reproduction in a modular robot. By grounding replication in embodied interactions rather than symbolic instruction, this work provides a foundation for scalable, evolution-capable robotic lineages.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Abstract. -->
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Introduction -->
-    <div class="columns is-centered">
-      <div class="column is-85-percent">
-        <h2 class="title is-3">Introduction</h2>
-        <div class="content has-text-justified">
-          <p>Robotic systems have demonstrated remarkable capabilities across structured environments, yet achieving long-term operation in remote, harsh, or unpredictable settings remains an open challenge. Space exploration, deep-sea inspection, and disaster-response missions expose robots to conditions that are difficult to predict, maintain, or repair (Fig. 1). Over time, these environments can induce mechanical degradation, component failure, and mission interruption.</p>
-        </div>
-        
-        <div class="article-image large-image">
-          <img src="../images/self-reproducing-robot/extreme environment robot.png"
-               alt="Robots in Extreme Environments"/>
-          <div class="figure-caption">
-            <strong>Figure 1.</strong> Robots in extreme environments: (left) Mars rover from NASA, (middle) a bio-inspired underwater robot (source: Festo), and (right) Boston Dynamics' Spot for disaster response.
-          </div>
-        </div>
-        
-        <div class="content has-text-justified">
-          <p>The concept of machines capable of growth and self-repair dates back to the foundational theory of self-reproducing automata by von Neumann. However, traditional engineering approaches still rely largely on stronger materials, redundancy, and fault-tolerant control. These strategies do not address a fundamental limitation: once deployed, most engineered systems remain static. They cannot expand, repair structural damage, or generate new functional units to sustain operation in dynamic environments. In contrast, biological systems achieve long-term persistence through processes of growth, regeneration, and self-reproduction.</p>
-        </div>
-
-        <h3 class="title is-4">Types of Morphological Autonomy</h3>
-        <div class="content has-text-justified">
-          <p>To situate the concept of robotic self-reproduction more precisely, we highlight three established categories of morphological autonomy: self-reconfiguration, self-replication, and self-reproduction.</p>
-        </div>
-        
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Self-Reconfigurable Robot</th>
-              <th>Self-Replicating Robot</th>
-              <th>Self-Reproducing Robot</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Core capability</strong></td>
-              <td>Change its own shape.</td>
-              <td>Build an identical copy.</td>
-              <td>Build a new unit from a copied mother robot.</td>
-            </tr>
-            <tr>
-              <td><strong>Resulting configuration</strong></td>
-              <td>Single robot with a new form.</td>
-              <td>Two or more identical robots.</td>
-              <td>Two or more new robots, with the potential for one to be a variant.</td>
-            </tr>
-            <tr>
-              <td><strong>Evolutionary implication</strong></td>
-              <td>One robot adapting.</td>
-              <td>Just cloning.</td>
-              <td>Evolution between copies.</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3 class="title is-4">Biological Inspiration: Cell Division</h3>
-        <div class="content has-text-justified">
-          <p>Biological cell division provides a powerful model for the highest level of autonomy. As shown in Fig. 2, a cell absorbs external resources, increases its mass, and divides into offspring that may inherit or develop new characteristics. Inspired by this principle, researchers have sought to bridge the gap between biological and mechanical reproduction.</p>
-        </div>
-        
-        <div class="article-image">
-          <img src="../images/self-reproducing-robot/cell_division.png"
-               alt="Cell Division Model"/>
-          <div class="figure-caption">
-            <strong>Figure 2.</strong> Biological cell division model. The process consists of three phases: (left) absorbing external resources to increase mass, (middle) internal growth and replication, and (right) physical fission into two independent offspring. This cycle serves as the template for our robotic reproduction strategy.
-          </div>
-        </div>
-
-        <h3 class="title is-4">Our Approach: 2D-3D Transformation</h3>
-        <div class="content has-text-justified">
-          <p>In this work, we introduce a planar-to-spatial self-reproducing robot composed of triangular lattice modules; each module consists of two triangle pieces connected via hinge joints. Building upon methods for self-folding machines and programmable matter, our architecture enables reversible transformation between compact 2D configurations and functional 3D bodies (Fig. 3). The mechanism supports modular absorption, structural expansion, and the assembly of a new, physically detached copy, representing a step toward embodied, evolution-capable robotic systems.</p>
-        </div>
-        
-        <div class="article-image small-image">
-          <img src="../images/self-reproducing-robot/transformation from 2d to 3d.png"
-               alt="2D to 3D Transformation"/>
-          <div class="figure-caption">
-            <strong>Figure 3.</strong> Reversible transformation between 2D and 3D configurations. A planar triangular lattice folds into volumetric configurations and subsequently unfolds back into a flat 2D sheet. This reversible transformation underlies the robot's ability to switch between planar docking states and spatial growth configurations.
+          <div class="process-grid" aria-label="Four stages of robotic budding">
+            <div class="process-item"><strong>1. Collect</strong><span>The parent approaches one loose module at a time.</span></div>
+            <div class="process-item"><strong>2. Assemble</strong><span>Magnetic docking grows a planar composite.</span></div>
+            <div class="process-item"><strong>3. Fold</strong><span>Joint motion forms the target three-dimensional body.</span></div>
+            <div class="process-item"><strong>4. Separate</strong><span>The offspring detaches while the parent remains intact.</span></div>
           </div>
         </div>
       </div>
     </div>
-    <!--/ Introduction -->
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Computational Design -->
-    <div class="columns is-centered">
-      <div class="column is-85-percent">
-        <h2 class="title is-3">Computational Design</h2>
-        
-        <div class="content has-text-justified">
-          <p>The computational design process began with the identification of key hardware elements required to support self-reproduction. Spherical magnets were selected as the primary coupling mechanism between modules due to their self-aligning behavior, omnidirectional connectivity, and sufficient holding force.</p>
-        </div>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-85-percent">
+          <h2 class="title is-3">System Design</h2>
+          <h3 class="title is-4 research-subsection-title first">Homogeneous Robotic Cell</h3>
+          <div class="content has-text-justified"><p>Each module consists of two triangular segments connected by two revolute joints. Two 22 kgf·cm servo actuators provide the range of motion required to transform a planar assembly into a three-dimensional morphology. An Arduino Nano ESP32 coordinates actuation and wireless communication, while a 7.4 V Li-Po battery supplies onboard power. Five N42 neodymium magnets at each triangular end create reversible, direction-independent docking interfaces.</p></div>
+          <div class="article-image module-architecture-image"><img src="../images/robotic-budding/module-architecture.webp" alt="Internal architecture of the homogeneous robotic module" loading="lazy"><div class="figure-caption"><strong>Figure 1.</strong> Mechanical and electronic architecture of one homogeneous robotic cell.</div></div>
+          <div class="article-image gear-drive-image"><img src="../images/robotic-budding/gear-drive-closeup.webp" alt="Close-up rendering of the dual-servo gear transmission inside a robotic module" loading="lazy"><div class="figure-caption"><strong>Figure 2.</strong> Meshing gear transmission between the two servo-driven module segments, extracted from page 2 of the project poster.</div></div>
+          <div class="article-image small-image"><img src="../images/robotic-budding/folded-module.webp" alt="One module folded by ninety degrees" loading="lazy"><div class="figure-caption"><strong>Figure 3.</strong> A single module folded 90 degrees between its triangular segments.</div></div>
 
-        <h3 class="title is-4">Module Geometry and Structural Motivation</h3>
-        <div class="content has-text-justified">
-          <p>Since the intended inter-module motion is primarily revolute, each module was constructed from two rigid pieces. Ensuring compactness while maintaining structural integrity required careful selection of the polygonal geometry for each piece. We adopted an equilateral triangular shape with an edge length of 150 mm (Fig. 4), motivated by both geometric versatility and mechanical stability.</p>
-          <p>Triangles form the fundamental primitive of surface representation in computer graphics and computational geometry. As the simplest non-degenerate polygon, they remain planar under all transformations and can approximate arbitrary curved surfaces without distortion. From a structural standpoint, the triangle is the only inherently rigid polygon—unlike quadrilaterals or higher-order shapes, which deform unless constrained.</p>
-        </div>
-        
-        <div class="article-image">
-          <img src="../images/self-reproducing-robot/magnet_piece.png"
-               alt="Module Structure"/>
-          <div class="figure-caption">
-            <strong>Figure 4.</strong> Structural and geometric foundations of the triangular module. (a) Arrangement of spherical magnets and gear-driven joints across the 19.5 mm module thickness. (b) Piece geometry of the equilateral triangular panel with edge length 150 mm.
-          </div>
-        </div>
-
-        <h3 class="title is-4">Magnetic Force and Torque Modeling</h3>
-        <div class="content has-text-justified">
-          <p>To determine the torque requirements at each revolute joint, the magnetic interaction force between two dipoles separated by distance r was modeled. At r = 19.5 mm, the required torque was estimated as τ<sub>total</sub> ≈ 13.7 kg·cm (no payload) and τ<sub>total</sub> ≈ 24.3 kg·cm (with 1 kg payload), as shown in Fig. 5.</p>
-        </div>
-        
-        <div class="article-image medium-image">
-          <img src="../images/self-reproducing-robot/torque_vs_r.png"
-               alt="Torque vs Distance"/>
-          <div class="figure-caption">
-            <strong>Figure 5.</strong> Required servo torque versus magnet center distance.
-          </div>
-        </div>
-
-        <h3 class="title is-4">Actuator and Electronics Selection</h3>
-        <div class="content has-text-justified">
-          <p>These calculations guided the actuator selection. A 22 kg·cm servo motor (Fig. 6) was chosen to provide an adequate safety margin. The Arduino Nano ESP32 (Fig. 7) was selected for its communication flexibility, onboard computation, and compatibility with peripheral devices. Each module also incorporates a custom 7.4V battery and power management circuitry for autonomous operation.</p>
-        </div>
-        
-        <div class="article-image small-image">
-          <img src="../images/self-reproducing-robot/servo.png"
-               alt="Servo Motor"/>
-          <div class="figure-caption">
-            <strong>Figure 6.</strong> Selected servo motor (22 kg·cm).
-          </div>
-        </div>
-        
-        <div class="article-image small-image">
-          <img src="../images/self-reproducing-robot/arduino_esp32.png"
-               alt="Arduino Nano ESP32"/>
-          <div class="figure-caption">
-            <strong>Figure 7.</strong> Arduino Nano ESP32 microcontroller.
-          </div>
-        </div>
-
-        <h3 class="title is-4">Design Iteration and Final Configuration</h3>
-        <div class="content has-text-justified">
-          <p>The module design progressed through five iterations (Fig. 8). Version 1 established the initial concept; Version 2 optimized magnet placement; Version 3 refined internal electronics and gear layout; Version 4 improved servo integration; and Version 5 consolidated all refinements into a compact, robust form. The final design (Fig. 9) served as the basis for subsequent fabrication and experimental validation.</p>
-        </div>
-        
-        <div class="article-image large-image">
-          <img src="../images/self-reproducing-robot/generations_of_module.png"
-               alt="Module Design Iterations"/>
-          <div class="figure-caption">
-            <strong>Figure 8.</strong> Module design iteration: V1, V2, V3, V4, V5. Versions V1–V5 illustrate the evolution of the mechanical layout, including magnet placement, hinge–gear integration, electronics packaging, and structural stiffening. Each iteration increases reliability of folding, torque transmission, and inter-module attachment.
-          </div>
-        </div>
-        
-        <div class="article-image">
-          <img src="../images/self-reproducing-robot/V5.png"
-               alt="Final Module Design"/>
-          <div class="figure-caption">
-            <strong>Figure 9.</strong> Final version (V5) of the module, showing the integrated servo, gear structure, and embedded electronics. This embodiment allows the module to function as a developmental building block for multi-module growth and division.
+          <h3 class="title is-4 research-subsection-title">One Module, Two Morphologies</h3>
+          <div class="content has-text-justified"><p>The same robotic cell forms two target bodies without changing its mechanical, electrical, or docking design. The trilobite uses three modules, while the seal uses five. Their different body plans arise from module count, connection topology, and joint configuration.</p></div>
+          <div class="figures-row morphology-row">
+            <div class="figure-item"><img src="../images/robotic-budding/trilobite.webp" alt="Three-module trilobite morphology" loading="lazy"><div class="figure-caption"><strong>Figure 4A.</strong> Three-module trilobite morphology.</div></div>
+            <div class="figure-item"><img src="../images/robotic-budding/seal.webp" alt="Five-module seal morphology" loading="lazy"><div class="figure-caption"><strong>Figure 4B.</strong> Five-module seal morphology.</div></div>
           </div>
         </div>
       </div>
     </div>
-    <!--/ Computational Design -->
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Prototype Fabrication -->
-    <div class="columns is-centered">
-      <div class="column is-85-percent">
-        <h2 class="title is-3">Prototype Fabrication</h2>
-        
-        <div class="content has-text-justified">
-          <p>Building on the computational design, a physical prototype of the triangular module was fabricated to validate the mechanical feasibility of the actuation, magnetic coupling, and geometric configuration (Fig. 10). All key components—including the servo motor, spherical magnets, controller, and onboard electronics—were integrated within the triangular frame.</p>
-        </div>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-85-percent">
+          <h2 class="title is-3">Teleoperated Collection and Assembly</h2>
+          <h3 class="title is-4 research-subsection-title first">Control Architecture</h3>
+          <div class="content has-text-justified"><p>The current experiments use direct human teleoperation. A browser interface sends forward, left, and right commands to a serial host, which broadcasts them wirelessly to the modules. Periodic heartbeat messages travel in the opposite direction. Docking is confirmed visually rather than through contact, current, or force feedback.</p></div>
+          <div class="article-image control-architecture-image"><img src="../images/robotic-budding/control-architecture.webp" alt="Control architecture for the modular robot" loading="lazy"><div class="figure-caption"><strong>Figure 5.</strong> Browser-based teleoperation, serial host, wireless broadcast, heartbeat feedback, and robotic modules.</div></div>
 
-        <h3 class="title is-4">Locomotion Characterization of Minimal Assemblies</h3>
-        <div class="content has-text-justified">
-          <p>Before constructing larger structures capable of self-reproduction, we first investigated how the fabricated modules behave as dynamical units. Complex multi-body topologies are difficult to analyze analytically, and their motion patterns emerge from coupled geometric and magnetic interactions.</p>
-          <p>As shown in Fig. 11, the single module exhibits irregular and weakly directed motion, making it unsuitable as a base unit for controlled growth or division. By contrast, the 2-module system (Fig. 12) demonstrates a far clearer directional bias and repeatable locomotion pattern. This emergent stability motivated our choice of a 2-module worm-like configuration as the minimal "mother" robot for initiating the self-reproduction cycle.</p>
+          <h3 class="title is-4 research-subsection-title">Locomotion Primitives</h3>
+          <div class="content has-text-justified"><p>Forward, left-forward, and right-forward motion primitives allow the parent to approach each loose module before magnetic docking. The same commands also verify that a separated offspring can move independently after the budding sequence.</p></div>
+          <div class="article-image locomotion-sequence-image"><img src="../images/robotic-budding/seal-locomotion-sequence.webp" alt="Complete forward, left-forward, and right-forward locomotion sequences of the five-module seal" loading="lazy"><div class="figure-caption"><strong>Figure 6.</strong> Complete forward, left-forward, and right-forward locomotion cycles of the five-module seal, extracted from page 3 of the project poster.</div></div>
         </div>
-        
-        <div class="figures-row">
-          <div class="figure-item small-fig">
-            <img src="../images/self-reproducing-robot/single_module.png" alt="Single Module Prototype"/>
-            <div class="figure-caption">
-              <strong>Figure 10.</strong> Fabricated single-module prototype with servo–gear hinge, embedded magnets, and electronics.
-            </div>
-          </div>
-          <div class="figure-item">
-            <img src="../images/self-reproducing-robot/single_module_locomotion.png" alt="Single Module Locomotion"/>
-            <div class="figure-caption">
-              <strong>Figure 11.</strong> Locomotion behavior of a single module under periodic actuation.
-            </div>
-          </div>
-          <div class="figure-item">
-            <img src="../images/self-reproducing-robot/2_module_locomotion.png" alt="2-Module Locomotion"/>
-            <div class="figure-caption">
-              <strong>Figure 12.</strong> Locomotion behavior of a 2-module robot with clear directional bias.
-            </div>
-          </div>
-        </div>
+      </div>
+    </div>
+  </section>
 
-        <h3 class="title is-4">Fundamental 2D–3D–2D Morphological Transition</h3>
-        <div class="content has-text-justified">
-          <p>A core requirement for self-reproduction is the ability to transition between planar and spatial configurations: modules must approach in 2D for efficient docking, fold into a 3D structure for growth, and return to 2D for separation. As illustrated in Fig. 13 and Video 1, beginning with a planar configuration, the robot folds upward into a transient 3D tetrahedral geometry. From this intermediate high-energy configuration, the system then reverses the process during decoupling, eventually returning to a planar but mirrored state.</p>
-          <p>This reversible cycle demonstrates the essential morphological pathway: <strong>2D → 3D → 2D</strong>. Such transitions form the structural basis of our reproduction mechanism: planar states enable assembly and division, while the 3D state enables volumetric growth and module rearrangement.</p>
-        </div>
-        
-        <div class="article-image large-image">
-          <img src="../images/self-reproducing-robot/tetrahedron.png"
-               alt="Tetrahedron Transformation"/>
-          <div class="figure-caption">
-            <strong>Figure 13.</strong> Transformation sequence of two modules into a tetrahedron through sequential magnetic couplings. Starting from a planar 2-module chain (a), the modules rotate and attach at successive magnet interfaces to form a closed tetrahedral shape (b–d). After reaching the fully folded configuration, the structure reverses the sequence (e–h) and returns to a planar but mirrored layout (i). This reversible 2D–3D–2D pathway forms the basis of the coupling maneuver used in self-reproduction.
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-85-percent">
+          <h2 class="title is-3">Preliminary Results</h2>
+          <div class="content has-text-justified"><p>The experiments applied the same four-stage budding sequence at two module counts. The evidence is organized from the compact three-module topology to the larger five-module morphology. Together, the demonstrations evaluated whether one module design could support end-to-end collection, folding, and separation across distinct body plans.</p></div>
+
+          <h3 class="title is-4 research-subsection-title">Three-Module Trilobite</h3>
+          <div class="content has-text-justified"><p>The same module hardware and budding workflow reproduced a compact three-module trilobite. This second body plan shows that the reproduction process is not restricted to one module count or connection topology.</p></div>
+          <div class="stage-grid trilobite-grid" aria-label="Six stages of three-module trilobite reproduction">
+            <div class="stage-item"><img src="../images/robotic-budding/trilobite-stage-1.webp" alt="Trilobite reproduction stage one" loading="lazy"><p><strong>I.</strong> Initial state</p></div>
+            <div class="stage-item"><img src="../images/robotic-budding/trilobite-stage-2.webp" alt="Trilobite reproduction stage two" loading="lazy"><p><strong>II.</strong> First module</p></div>
+            <div class="stage-item"><img src="../images/robotic-budding/trilobite-stage-3.webp" alt="Trilobite reproduction stage three" loading="lazy"><p><strong>III.</strong> Second module</p></div>
+            <div class="stage-item"><img src="../images/robotic-budding/trilobite-stage-4.webp" alt="Trilobite reproduction stage four" loading="lazy"><p><strong>IV.</strong> Planar composite</p></div>
+            <div class="stage-item"><img src="../images/robotic-budding/trilobite-stage-5.webp" alt="Trilobite reproduction stage five" loading="lazy"><p><strong>V.</strong> Offspring folding</p></div>
+            <div class="stage-item"><img src="../images/robotic-budding/trilobite-stage-6.webp" alt="Trilobite reproduction stage six" loading="lazy"><p><strong>VI.</strong> Separation</p></div>
           </div>
+          <div class="figure-caption sequence-caption"><strong>Figure 7.</strong> Six stages of three-module trilobite reproduction, from the initial parent and loose modules to offspring separation.</div>
+          <div class="evidence-note"><strong>Experimental scope.</strong> One successful end-to-end trilobite demonstration is presented. Recursive reproduction by either offspring has not yet been tested.</div>
+
+          <h3 class="title is-4 research-subsection-title" id="seal-demonstration">Five-Module Seal</h3>
+          <div class="content has-text-justified"><p>The parent seal collected five scattered modules, producing a ten-module planar composite. The acquired half then folded and separated as a second five-module seal. The video documents direct human teleoperation of the parent while it navigated among the loose modules.</p></div>
+          <div class="article-video">
+            <video controls playsinline preload="metadata" poster="../images/robotic-budding/five-module-seal-video-poster.webp"><source src="../media/robotic-budding/five-module-seal-teleoperation.mp4" type="video/mp4">Your browser does not support HTML5 video.</video>
+            <div class="video-caption"><strong>Video 1.</strong> Teleoperated five-module seal robot collecting loose modules. The web version is compressed to 1080p; the original 4K recording remains unchanged.</div>
+          </div>
+          <div class="stage-grid" aria-label="Eight stages of five-module seal reproduction">
+            <div class="stage-item"><img src="../images/robotic-budding/seal-stage-1.webp" alt="Seal reproduction stage one" loading="lazy"><p><strong>I.</strong> Initial state</p></div>
+            <div class="stage-item"><img src="../images/robotic-budding/seal-stage-2.webp" alt="Seal reproduction stage two" loading="lazy"><p><strong>II.</strong> First module</p></div>
+            <div class="stage-item"><img src="../images/robotic-budding/seal-stage-3.webp" alt="Seal reproduction stage three" loading="lazy"><p><strong>III.</strong> Second module</p></div>
+            <div class="stage-item"><img src="../images/robotic-budding/seal-stage-4.webp" alt="Seal reproduction stage four" loading="lazy"><p><strong>IV.</strong> Third module</p></div>
+            <div class="stage-item"><img src="../images/robotic-budding/seal-stage-5.webp" alt="Seal reproduction stage five" loading="lazy"><p><strong>V.</strong> Fourth module</p></div>
+            <div class="stage-item"><img src="../images/robotic-budding/seal-stage-6.webp" alt="Seal reproduction stage six" loading="lazy"><p><strong>VI.</strong> Planar composite</p></div>
+            <div class="stage-item"><img src="../images/robotic-budding/seal-stage-7.webp" alt="Seal reproduction stage seven" loading="lazy"><p><strong>VII.</strong> Offspring folding</p></div>
+            <div class="stage-item"><img src="../images/robotic-budding/seal-stage-8.webp" alt="Seal reproduction stage eight" loading="lazy"><p><strong>VIII.</strong> Separation</p></div>
+          </div>
+          <div class="figure-caption sequence-caption"><strong>Figure 8.</strong> Eight stages of five-module seal reproduction, including sequential collection, planar assembly, folding, and separation.</div>
+          <div class="evidence-note"><strong>Experimental scope.</strong> One successful end-to-end seal demonstration is presented. The current material does not report a statistically characterized success rate.</div>
         </div>
-        
-        <div class="article-video">
-          <video controls autoplay loop muted playsinline>
-            <source src="../2module_coupling.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          <div class="video-caption">
-            <strong>Video 1.</strong> 2-module coupling demonstration showing the reversible 2D–3D–2D morphological transition.
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-85-percent">
+          <h2 class="title is-3">Discussion and Future Work</h2>
+          <h3 class="title is-4 research-subsection-title first">What the Demonstrations Establish</h3>
+          <div class="content has-text-justified"><p>Within the tested, human-directed setting, the system completed collection, planar assembly, folding, separation, and post-separation locomotion for two target morphologies. These results support the mechanical feasibility of robotic budding with one homogeneous module design. They do not yet establish autonomous operation, repeated-trial reliability, or multigenerational reproduction.</p></div>
+          <h3 class="title is-4 research-subsection-title">Current Limitations</h3>
+          <div class="content has-text-justified"><p>Human-selected commands and visual confirmation remain part of the control loop, so the present evidence cannot be generalized to autonomous execution. Each morphology is represented by one successful end-to-end demonstration, leaving success rates and failure modes unquantified. Only first-generation offspring were tested, so recursive reproduction remains outside the current evidence.</p></div>
+          <h3 class="title is-4 research-subsection-title">Next Experiments</h3>
+          <div class="content has-text-justified"><p>Next experiments should replace visual teleoperation with vision-based navigation and physical docking feedback, then measure collection and separation success across repeated trials. A further test should require an offspring to collect a new module set and produce the next generation. This experiment would determine whether structural equivalence also supports recursive reproductive capability.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="poster">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-85-percent">
+          <h2 class="title is-3">Poster</h2>
+          <div class="content has-text-justified"><p>The conference poster below is taken exclusively from the first page of the supplied poster PDF. The downloadable poster file also contains only this overview page.</p></div>
+          <div class="article-image poster-image">
+            <a href="../papers/robotic-budding-poster.pdf" target="_blank" rel="noopener"><img src="../images/robotic-budding/poster-overview.webp" alt="First page of the Robotic Budding conference poster" loading="lazy"></a>
+            <div class="figure-caption"><strong>Poster.</strong> System formulation, module design, control, locomotion, and both budding demonstrations.</div>
           </div>
         </div>
       </div>
     </div>
-    <!--/ Prototype Fabrication -->
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Experimental Demonstration -->
-    <div class="columns is-centered">
-      <div class="column is-85-percent">
-        <h2 class="title is-3">Experimental Demonstration</h2>
-        
-        <div class="content has-text-justified">
-          <p>Having established that a 2-module system can reliably transition through the full <strong>2D → 3D → 2D</strong> morphological cycle, we next integrated locomotion and modular attachment to validate physical self-reproduction. This section demonstrates that the same geometric and dynamic principles scale naturally from the 2-module "mother" robot to larger assemblies consisting of 4, 6, and 8 modules.</p>
-        </div>
-
-        <h3 class="title is-4">Self-Reproduction in a 4-Module System</h3>
-        <div class="content has-text-justified">
-          <p>We first evaluated the minimal complete reproduction cycle using a 4-module system arranged as a planar worm-like chain. This configuration represents the smallest system capable of both growth and subsequent division.</p>
-          <p>As shown in Fig. 14, the 2-module mother robot sequentially absorbed two free modules from the environment to form a 4-module chain. Once assembled, the system performed the tetrahedral coupling maneuver previously characterized in the 2-module experiments. This coupling temporarily lifted the center modules into a 3D configuration, enabling the chain to reorganize and subsequently divide into two independent 2-module individuals.</p>
-        </div>
-        
-        <div class="article-image">
-          <img src="../images/self-reproducing-robot/4_module_reproduce_process.png"
-               alt="4-Module Reproduction Process"/>
-          <div class="figure-caption">
-            <strong>Figure 14.</strong> Self-reproduction process of the 4-module system. Starting from a 2-module mother, the system absorbs two external modules to grow into a 4-module chain. A tetrahedral intermediate is formed through sequential magnetic coupling, enabling structural reorganization and eventual division into two daughter 2-module bodies for new generations.
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-85-percent">
+          <h2 class="title is-3">Resources and Archive</h2>
+          <div class="resource-grid">
+            <div class="resource-card"><h3 class="title is-5">Extended Abstract</h3><p><em>One Module Design, Two Morphologies: Toward Self-Reproducing Modular Robot</em></p><a href="../papers/robotic-budding.pdf" target="_blank" rel="noopener">Open paper PDF</a></div>
+            <div class="resource-card"><h3 class="title is-5">Conference Poster</h3><p><em>Robotic Budding: From Homogeneous Cells to Diverse Morphologies in Physical Self-Reproduction</em></p><a href="../papers/robotic-budding-poster.pdf" target="_blank" rel="noopener">Open one-page poster PDF</a></div>
           </div>
-        </div>
-
-        <h3 class="title is-4">Emergence of Differentiation</h3>
-        <div class="content has-text-justified">
-          <p>A notable feature of this process is the emergence of differentiation (Fig. 15, Video 2). Although both offspring originate from the same parent configuration, their final states may vary depending on whether each tetrahedral unit completes the decoupling action. This variability resembles divergent developmental outcomes—analogous to selective gene expression—where structurally similar units follow distinct behavioral trajectories.</p>
-        </div>
-        
-        <div class="article-video">
-          <video controls autoplay loop muted playsinline>
-            <source src="../4module_devide.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          <div class="video-caption">
-            <strong>Video 2.</strong> 4-module division process showing the growth, coupling, and separation cycle.
-          </div>
-        </div>
-        
-        <div class="article-image large-image">
-          <img src="../images/self-reproducing-robot/4_module_process.png"
-               alt="4-Module Process States"/>
-          <div class="figure-caption">
-            <strong>Figure 15.</strong> Growth, coupling, and division states in the 4-module self-reproduction pathway. A mother robot expands from two to four modules through two absorption (a–c), undergoes a 3D coupling transition that redistributes geometric constraints (e–f), and then reduces back to two daughter chains through dimensional decoupling (g). The schematic on the right captures the developmental stages of this embodied reproduction cycle.
-          </div>
-        </div>
-
-        <h3 class="title is-4">Success Rate Evaluation</h3>
-        <div class="content has-text-justified">
-          <p>The reproduction success rate was evaluated across 15 repeated trials (Fig. 16). Among these, only 5 trials achieved complete self-reproduction, corresponding to a success rate of 33%. Within this successful subset, only 3 trials resulted in fully separated offspring, while the remaining 2 exhibited partial decoupling during the final division stage.</p>
-          <p>Several trials demonstrate "near-miss" behaviors: although these executions did not follow the intended actuation sequence or achieve full division, the resulting configurations still resembled the target morphology. These cases indicate that the system possesses multiple feasible—but suboptimal—trajectories through its morphological state space.</p>
-        </div>
-        
-        <div class="article-image large-image">
-          <img src="../images/self-reproducing-robot/4_module_success_evaluation.png"
-               alt="Success Evaluation"/>
-          <div class="figure-caption">
-            <strong>Figure 16.</strong> Experimental evaluation of 4-module self-reproduction outcomes. Trials are grouped by result category: (1) unsuccessful attempts that fail during planar assembly (gray), (2) partial pathways that achieve the 3D coupling stage but do not complete division (blue), and (3) fully successful growth–coupling–division cycles that produce a detached replica (green).
-          </div>
-        </div>
-
-        <h3 class="title is-4">Self-Reproduction in 6-Module and 8-Module Systems</h3>
-        <div class="content has-text-justified">
-          <p>Building on the 4-module experiments, we next evaluated self-reproduction in larger 6-module and 8-module worm configurations (Fig. 17, Video 3, Video 4). Unlike the 4-module system—which required a tightly synchronized sequence of tetrahedral coupling and exhibited a comparatively high failure rate—the larger systems displayed markedly more stable and reliable behavior. The increased body length and mass provided greater inertial damping and improved contact consistency, mitigating unintended drift during locomotion and attachment.</p>
-          <p>Both systems achieved a <strong>100% reproduction success rate</strong>, demonstrating that larger worm-like assemblies are inherently more capable of reliable self-reproduction. Increased length enhances mechanical leverage and provides a more forgiving morphological workspace, allowing the robot to exploit passive stability during division. This trend parallels observations in biological multicellular systems, where increased structural complexity often improves robustness and repeatability of reproductive processes.</p>
-        </div>
-        
-        <div class="video-row">
-          <div class="video-item">
-            <video controls autoplay loop muted playsinline>
-              <source src="../6module_devide.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <div class="video-caption">
-              <strong>Video 3.</strong> 6-module division process.
-            </div>
-          </div>
-          <div class="video-item">
-            <video controls autoplay loop muted playsinline>
-              <source src="../8module_devide.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <div class="video-caption">
-              <strong>Video 4.</strong> 8-module division process.
-            </div>
-          </div>
-        </div>
-        
-        <div class="article-image large-image">
-          <img src="../images/self-reproducing-robot/6_and_8.png"
-               alt="6 and 8 Module Systems"/>
-          <div class="figure-caption">
-            <strong>Figure 17.</strong> Self-reproduction in larger systems. (A) Division process in a 6-module worm: (a) initial aligned configuration, (b–d) progressive flapping leading to separation. (B) Equivalent process in an 8-module worm. Both systems reliably divide via the same motion strategy.
-          </div>
+          <div class="archive-notice"><i class="fas fa-archive" aria-hidden="true"></i><div><strong>Robotic Mitosis remains archived.</strong> The previous project page, paper, source directory, images, and videos are still preserved. <a href="robotic-mitosis-archive.html">Open the archived project page</a> or <a href="../papers/Self_Reproducing_Robot.pdf" target="_blank" rel="noopener">view the archived paper</a>.</div></div>
         </div>
       </div>
     </div>
-    <!--/ Experimental Demonstration -->
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Discussion -->
-    <div class="columns is-centered">
-      <div class="column is-85-percent">
-        <h2 class="title is-3">Discussion</h2>
-        <div class="content has-text-justified">
-          <p>The experiments presented here demonstrate that a small set of geometric and physical principles is sufficient to instantiate embodied self-reproduction in a modular robotic system. Across configurations ranging from 2 to 8 modules, the core mechanism remains unchanged: reversible transitions between planar and spatial morphologies, magnetic attachment that supports both assembly and disassembly, and actuation patterns that exploit the passive dynamics of the worm-like chain.</p>
-          <p>A key insight emerging from these demonstrations is that structural scale profoundly influences reproducibility. Whereas the 4-module system required precise timing and exhibited sensitivity to drift and misalignment, larger chains reproduced with markedly greater stability. This trend suggests that increasing morphological complexity provides a form of physical redundancy—an effect reminiscent of multicellular organisms, where collective structure buffers variations in individual cell behavior.</p>
-          <p>The system also displays early signatures of differentiation. In the 4-module experiments, offspring sometimes diverged into distinct post-division states despite originating from identical parent configurations. Such divergence is not programmed but arises from the morphological pathways taken during division, indicating that even minimal robotic substrates may support variant-generating processes analogous to developmental variability in biological systems.</p>
-          <p>The growth–reorganization–division cycle reflects the essential logic of mitosis. Our system likewise absorbs modules, restructures via 2D–3D transformation, and physically divides—providing a mechanical analogue that justifies the term <strong>Robotic Mitosis</strong>.</p>
-          <p>Importantly, these results establish a physical basis for self-reproduction that does not rely on digital instruction, symbolic representation, or external assembly. Instead, reproduction is driven by embodied interactions among parts, dynamics, and geometry—a hallmark of biological reproduction and a critical step toward autonomous material-based evolution.</p>
-        </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-social-links">
+        <a href="https://scholar.google.com/citations?user=QDhqc2QAAAAJ&amp;hl=en" class="social-icon scholar-icon" title="Google Scholar" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+        </a>
+        <a href="https://github.com/SylvesterZHANG007" class="social-icon github-icon" title="GitHub" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/siyuan-zhang-columbia/" class="social-icon linkedin-icon" title="LinkedIn" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/siyuan.zh/" class="social-icon instagram-icon" title="Instagram" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@sylvesterzhang" class="social-icon youtube-icon" title="YouTube" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a href="https://space.bilibili.com/641605796?spm_id_from=333.337.0.0" class="social-icon bilibili-icon" title="Bilibili" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.151.929.4.267.249.391.551.391.907 0 .356-.124.657-.373.906l-1.174 1.12zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.789 1.894v7.52c.02.764.283 1.396.789 1.894.507.497 1.134.755 1.88.773h13.334c.746-.018 1.373-.276 1.88-.773.506-.498.769-1.13.789-1.894v-7.52c-.02-.765-.283-1.396-.789-1.894-.507-.497-1.134-.755-1.88-.773H5.333zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z"/>
+          </svg>
+        </a>
       </div>
+      <p>&copy; 2026 Siyuan (Sylvester) Zhang. All rights reserved.</p>
     </div>
-    <!--/ Discussion -->
-  </div>
-</section>
+  </footer>
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Limitation and Future Work -->
-    <div class="columns is-centered">
-      <div class="column is-85-percent">
-        <h2 class="title is-3">Limitations and Future Work</h2>
-        
-        <h3 class="title is-4">Current Limitations</h3>
-        <div class="content has-text-justified">
-          <p>Although the system reliably reproduces in low-dimensional, low-complexity configurations, several factors constrain its scalability. Each module weighs approximately 295 g, and the magnetic joints—while adequate for planar worm morphologies—lack the strength to support multi-layer or volumetric assemblies. As additional layers are introduced, gravitational loading, hinge friction, and accumulated mass quickly exceed the capacity of the magnetic interfaces.</p>
-          <p>In addition to these mechanical constraints, the current control strategy uses simple periodic linear actuation sequences, which produce imprecise and often inefficient locomotion. These inaccuracies restrict the operational envelope: during reproduction, the mother robot must begin near the free modules to ensure attachment.</p>
-        </div>
-
-        <h3 class="title is-4">Future Directions</h3>
-        <div class="content has-text-justified">
-          <p><strong>Improved Locomotion Strategies:</strong> More sophisticated actuation patterns—such as superpositions of trigonometric basis functions, optimized using trajectory search or reinforcement learning in simulation (e.g., MuJoCo)—could dramatically improve locomotion stability and precision.</p>
-          <p><strong>Extended Morphologies:</strong> Exploring branched topologies, looped chains, or truly three-dimensional lattices could uncover new reproduction pathways, including fission-like splitting, budding, or collective morphogenesis.</p>
-          <p><strong>Hardware Redesign:</strong> Lighter modules, stronger reversible joints, and higher-torque actuation would enable more ambitious architectures. An alternative direction is to redesign the fundamental unit: for example, a one-dimensional rod-like module capable of assembling into surfaces and then into three-dimensional bodies.</p>
-        </div>
-      </div>
-    </div>
-    <!--/ Limitation and Future Work -->
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Conclusion -->
-    <div class="columns is-centered">
-      <div class="column is-85-percent">
-        <h2 class="title is-3">Conclusion</h2>
-        <div class="content has-text-justified">
-          <p>This work demonstrates that physical self-reproduction can emerge from a minimal set of geometric, mechanical, and dynamical principles. Using triangular modular units connected by magnetic joints, the system is able to grow by acquiring new modules, undergo reversible 2D–3D–2D transformations, and divide into physically detached offspring. Experiments across 2-, 4-, 6-, and 8-module configurations reveal that the same underlying mechanism scales reliably with system size, with larger assemblies exhibiting markedly greater stability and robustness.</p>
-          <p>These results establish a concrete physical pathway—grounded not in symbolic instruction or external assembly but in embodied interactions between structure, actuation, and passive dynamics—toward robotic systems capable of propagation and morphological variation.</p>
-          <p>The demonstrations presented here represent only the earliest stage of what such systems may achieve. As modules become lighter, joints stronger, and controllers more adaptive, self-reproducing robots could extend from simple worm-like chains to more complex two- and three-dimensional architectures. Integrating learning-based control may further enable robots to refine locomotion, discover new reproduction strategies, and adapt their morphology across generations. Together, these directions point toward a future in which robotic collectives not only mimic biological processes but begin to explore the principles of growth, differentiation, and evolution within physical bodies.</p>
-        </div>
-      </div>
-    </div>
-    <!--/ Conclusion -->
-  </div>
-</section>
-
-
-<footer class="footer">
-        <div class="container">
-            <div class="footer-social-links">
-                <a href="https://scholar.google.com/citations?user=QDhqc2QAAAAJ&hl=en" class="social-icon scholar-icon" title="Google Scholar" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
-                    </svg>
-                </a>
-                <a href="https://github.com/SylvesterZHANG007" class="social-icon github-icon" title="GitHub" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                </a>
-                <a href="https://www.linkedin.com/in/siyuan-zhang-columbia/" class="social-icon linkedin-icon" title="LinkedIn" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                </a>
-                <a href="https://www.instagram.com/siyuan.zh/" class="social-icon instagram-icon" title="Instagram" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                </a>
-                <a href="https://www.youtube.com/@sylvesterzhang" class="social-icon youtube-icon" title="YouTube" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                    </svg>
-                </a>
-                <a href="https://space.bilibili.com/641605796?spm_id_from=333.337.0.0" class="social-icon bilibili-icon" title="Bilibili" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.151.929.4.267.249.391.551.391.907 0 .356-.124.657-.373.906l-1.174 1.12zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.789 1.894v7.52c.02.764.283 1.396.789 1.894.507.497 1.134.755 1.88.773h13.334c.746-.018 1.373-.276 1.88-.773.506-.498.769-1.13.789-1.894v-7.52c-.02-.765-.283-1.396-.789-1.894-.507-.497-1.134-.755-1.88-.773H5.333zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z"/>
-                    </svg>
-                </a>
-            </div>
-            <p>&copy; 2026 Siyuan (Sylvester) Zhang. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="../script.js?v=20260731o"></script>
+  <script src="../script.js?v=20260922-unified-nav"></script>
 </body>
 </html>
-
-
-</html> 

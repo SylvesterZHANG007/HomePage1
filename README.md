@@ -4,7 +4,7 @@ The source repository for [www.siyuanzhang.com](https://www.siyuanzhang.com), th
 
 The site presents research in physical and embodied intelligence, bio-inspired and soft robotics, reconfigurable systems, assistive robotics, computational design, and robot learning. It also collects selected engineering projects, publications, media coverage, teaching and industry experience, technical skills, a curriculum vitae, and professional links.
 
-> Last updated: August 30, 2026
+> Last updated: September 23, 2026
 
 ## Live site and profiles
 
@@ -29,13 +29,15 @@ His work focuses on engineering life-like machines that can sense, adapt, reorga
 
 | Work | Status / venue | Resources |
 | --- | --- | --- |
-| **Robotic Mitosis: Engineering Self-Reproduction from 2D Lattices into 3D Morphogenetic Structures** | Manuscript in preparation | [Project page](research-websites/self-reproducing-robot.html) · [Paper](papers/Self_Reproducing_Robot.pdf) |
+| **Robotic Budding: From Homogeneous Cells to Diverse Morphologies in Physical Self-Reproduction** | IROS 2026 Modular Robot Workshop extended abstract | [Project page](research-websites/self-reproducing-robot.html) · [Paper](papers/robotic-budding.pdf) · [Poster](papers/robotic-budding-poster.pdf) |
 | **From Structural Design to Dynamics Modeling: Control-Oriented Development of a 3-RRR Parallel Ankle Rehabilitation Robot** | Manuscript in preparation | [Project page](research-websites/rehabilitation-robot.html) · [Paper](papers/rehabilitation-robot.pdf) |
 | **Enhancing Grasping Diversity With a Pinch-Suction and Soft-Rigid Hybrid Multimodal Gripper** | *IEEE Transactions on Robotics*, Vol. 41, pp. 3890–3907 | [Project page](research-websites/multimodal-gripper.html) · [Paper](papers/multimodal-gripper.pdf) |
 | **Synergizing Structural Stiffness Regulation with Compliance Contact Stiffness: Bioinspired Soft Stimuli-Responsive Materials Design for Soft Machines** | *Advanced Engineering Materials*, Vol. 26, Issue 18, 2400461 | [Project page](research-websites/smart-materials.html) · [Paper](papers/smart-materials.pdf) |
 | **Transporting Dispersed Cylindrical Granules: An Intelligent Strategy Inspired by an Elephant Trunk** | *Advanced Intelligent Systems*, Vol. 5, 2300182 | [Project page](research-websites/elephant-trunk.html) · [Paper](papers/elephant-trunk.pdf) |
 
 Each research card on the homepage includes a summary and links to a dedicated project page and paper. Published works also expose expandable abstracts and BibTeX entries directly on the homepage.
+
+The previous **Robotic Mitosis** implementation is preserved as a historical snapshot at [research-websites/robotic-mitosis-archive.html](research-websites/robotic-mitosis-archive.html). Its original paper, `Self_Reproducing_Robot/` source directory, figures, and demonstration videos remain unchanged.
 
 ### Engineering projects
 
@@ -119,18 +121,24 @@ The portfolio is a static website and does not require a framework build, packag
 HomePage1/
 ├── index.html                     # Main portfolio and all homepage content
 ├── styles.css                    # Shared design system and responsive styles
+├── site-chrome.css               # Consistent navigation and footer across public pages
 ├── script.js                     # Navigation, search, motion, and interactions
 ├── CNAME                         # Custom domain: www.siyuanzhang.com
 ├── README.md                     # Project documentation
 ├── start-demo.sh                 # Optional local server helper (port 8081)
 │
 ├── images/                       # Portraits, logos, figures, thumbnails, and icons
+│   └── robotic-budding/          # Optimized module, morphology, sequence, and poster visuals
+├── media/
+│   └── robotic-budding/          # Web-optimized five-module seal teleoperation video
 ├── fonts/                        # Local font fallbacks
 ├── papers/                       # PDFs linked by the research cards
 ├── news/                         # Media article page, styles, and PDF
 │
-├── research-websites/            # Five standalone research project pages
+├── research-websites/            # Five active research project pages and one archive
 │   ├── self-reproducing-robot.html
+│   ├── robotic-mitosis-archive.html
+│   ├── robotic-budding.css
 │   ├── rehabilitation-robot.html
 │   ├── multimodal-gripper.html
 │   ├── smart-materials.html

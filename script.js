@@ -221,7 +221,15 @@ const SiteSearch = {
             '.pcf-card',
             '.project-card-with-image',
             '.experience-item',
-            '.category-card-large'
+            '.category-card-large',
+            '.budding-hero-inner',
+            '.budding-section',
+            'body.research-project-template .hero',
+            'body.research-project-template .section',
+            'body.robotic-budding-template .hero',
+            'body.robotic-budding-template .section',
+            'body.project-article .section',
+            'body.news-article .ft-article'
         ].join(','));
         const seenTitles = new Set();
         const items = [];
